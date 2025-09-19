@@ -1,0 +1,26 @@
+.destacados {
+  background-color: #f9fdfb;
+  padding: 2rem;
+  text-align: center;
+}
+
+.tarjetas {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.tarjeta {
+  background-color: #ffffff;
+  border: 2px solid #a0d6b4;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 220px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: scale(1.03);
+}
