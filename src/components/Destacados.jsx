@@ -1,10 +1,12 @@
 import React from 'react';
 import '../styles/Destacados.css';
 
+//carrusel de productos destacados
 const Destacados = () => {
   const cursos = [
     { id: 1, titulo: "Autoestima", descripcion: "Fortalece tu valor personal." },
-    { id: 2, titulo: "Mindfulness", descripcion: "Aprende a vivir el presente." }
+    { id: 2, titulo: "Mindfulness", descripcion: "Aprende a vivir el presente." },
+    { id: 3, titulo: "Arteterapia", descripcion: "Aprende a plasmar tus emociones en papel atraves del arte" }
   ];
 
   return (

@@ -1,47 +1,35 @@
-import React from 'react'
-// registro
+import React from 'react';
+import '../styles/Registro.css';
+
 const Registro = () => {
+  const submit = (e) => {
+    e.preventDefault();
+    alert('¡Registro enviado!');
+  };
+
   return (
-    <div className="container mt-4">
+    <div className="registro-container">
       <h2>Registro</h2>
-      <form>
-        <div className="mb-3">
-          <label htmlFor="nombre" className="form-label">Nombre</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            className="form-control"
-            required
-          />
+      <form onSubmit={submit}>
+        <div className="campo">
+          <label htmlFor="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="correo" className="form-label">Correo electrónico</label>
-          <input
-            type="email"
-            id="correo"
-            name="correo"
-            className="form-control"
-            required
-          />
+        <div className="campo">
+          <label htmlFor="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="contraseña" className="form-label">Contraseña</label>
-          <input
-            type="password"
-            id="contraseña"
-            name="contraseña"
-            className="form-control"
-            required
-          />
+        <div className="campo">
+          <label htmlFor="contraseña">Contraseña</label>
+          <input type="password" id="contraseña" name="contraseña" required />
         </div>
 
-        <button type="submit" className="btn btn-primary">Registrarse</button>
+        <button type="submit" className="boton-registro">Registrarse</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Registro
+export default Registro;

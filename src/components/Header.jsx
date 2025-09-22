@@ -16,15 +16,13 @@ const Header = () => {
       <nav className="menu">
         <Link to="/">Inicio</Link>
         <span>|</span>
-        <Link to="/mentorias">Mentorías</Link>
-        <span>|</span>
-        <Link to="/cursos">Cursos</Link>
-        <span>|</span>
-        <Link to="/charlas">Charlas</Link>
-        <span>|</span>
         <Link to="/recursos">Recursos</Link>
         <span>|</span>
         <Link to="/contacto">Contacto</Link>
+        <span>|</span>
+        <Link to="/registro">Registro</Link>
+        <span>|</span>
+        <Link to="/sesion">Inicio de sesión</Link>
       </nav>
     </header>
   );
