@@ -1,16 +1,16 @@
 import React from 'react'
-import Registro from '../components/Registro'
+import Contacto from '../components/Contacto'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const PagRegistro = () => {
+const PagContacto = () => {
   return (
     <div>
-        <Header />
-        <Registro/>
+         <Header />
+        <Contacto/>
         <Footer />
     </div>
   )
 }
 
-export default PagRegistro
+export default PagContacto

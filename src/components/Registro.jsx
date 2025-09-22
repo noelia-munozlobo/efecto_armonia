@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Registro.css';
 
 const Registro = () => {
+  const [nombre, setNombre] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [contraseña, setContraseña] = useState('');
+
   const submit = (e) => {
     e.preventDefault();
     alert('¡Registro enviado!');
@@ -13,17 +17,35 @@ const Registro = () => {
       <form onSubmit={submit}>
         <div className="campo">
           <label htmlFor="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required />
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required
+            onChange={(e) => setNombre(e.target.value)}
+          />
         </div>
 
         <div className="campo">
           <label htmlFor="correo">Correo electrónico</label>
-          <input type="email" id="correo" name="correo" required />
+          <input
+            type="email"
+            id="correo"
+            name="correo"
+            required
+            onChange={(e) => setCorreo(e.target.value)}
+          />
         </div>
 
         <div className="campo">
           <label htmlFor="contraseña">Contraseña</label>
-          <input type="password" id="contraseña" name="contraseña" required />
+          <input
+            type="password"
+            id="contraseña"
+            name="contraseña"
+            required
+            onChange={(e) => setContraseña(e.target.value)}
+          />
         </div>
 
         <button type="submit" className="boton-registro">Registrarse</button>
@@ -33,3 +55,4 @@ const Registro = () => {
 };
 
 export default Registro;
+
