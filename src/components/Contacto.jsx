@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Contacto.css';
 
+//informacion de contacto
 const Contacto = () => {
   return (
     <div className="contacto-container">

@@ -1,1 +1,16 @@
-{}
+{
+  "usuarios": [
+    {
+      "id": "2243",
+      "nombre": "Fede",
+      "correo": "fede@gmail.com",
+      "contraseña": "123"
+    },
+    {
+      "id": "2afc",
+      "nombre": "Rodro",
+      "correo": "rodro@gmail.com",
+      "contraseña": "123"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Hero.css';
 
+//Texto de Bienvenida
 const Hero = () => (
   <section className="hero">
     <h1>Bienvenido a Efecto Armonía</h1>

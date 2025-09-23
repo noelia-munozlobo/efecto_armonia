@@ -1,20 +1,36 @@
 import React, { useState } from 'react';
 import '../styles/Registro.css';
+import { postData } from '../services/fetch';
+import { useNavigate } from 'react-router-dom';
 
 const Registro = () => {
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
-
-  const submit = (e) => {
+  const navigate = useNavigate()
+  const agregarUsuario = async (e) => {
     e.preventDefault();
-    alert('¡Registro enviado!');
+    const obj = {
+      nombre,
+      correo,
+      contraseña
+    };
+
+    try {
+      const respuesta = await postData("usuarios",obj);
+      console.log('Respuesta del servidor:', respuesta);
+      navigate("/sesion")
+      
+    } catch (error) {
+      console.error('Error al registrar:', error);
+      alert('Hubo un problema al enviar el registro');
+    }
   };
 
   return (
     <div className="registro-container">
       <h2>Registro</h2>
-      <form onSubmit={submit}>
+      <form>
         <div className="campo">
           <label htmlFor="nombre">Nombre</label>
           <input
@@ -48,11 +64,12 @@ const Registro = () => {
           />
         </div>
 
-        <button type="submit" className="boton-registro">Registrarse</button>
+        <button type="button" onClick={agregarUsuario} className="boton-registro">Registrarse</button>
       </form>
     </div>
   );
 };
 
 export default Registro;
+
 

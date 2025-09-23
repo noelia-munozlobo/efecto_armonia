@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Destacados.css';
 
-//carrusel de productos destacados
+//carrusel de productos destacados en pagina principal
 const Destacados = () => {
   const cursos = [
     { id: 1, titulo: "Autoestima", descripcion: "Fortalece tu valor personal." },

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 import logo from '../assets/logo.png';
 
+//Header con barra e navegacion
 const Header = () => {
   return (
     <header className="barra-navegacion">
