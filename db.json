@@ -4,13 +4,15 @@
       "id": "2243",
       "nombre": "Fede",
       "correo": "fede@gmail.com",
-      "contraseña": "123"
+      "contraseña": "123",
+      "tipoUsuario": "admin"
     },
     {
       "id": "2afc",
       "nombre": "Rodro",
       "correo": "rodro@gmail.com",
-      "contraseña": "123"
+      "contraseña": "123",
+      "tipoUsuario": "usuario"
     }
   ]
 }

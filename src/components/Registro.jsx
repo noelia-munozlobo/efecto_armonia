@@ -13,7 +13,8 @@ const Registro = () => {
     const obj = {
       nombre,
       correo,
-      contraseña
+      contraseña,
+      tipoUsuario:"usuario"
     };
 
     try {

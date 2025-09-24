@@ -1,41 +1,35 @@
 import React, { useState } from 'react';
 import '../styles/Sesion.css';
-
+import { getData } from '../services/fetch';
+import { useNavigate } from 'react-router-dom';
 const Sesion = () => {
   const [nombre, setNombre] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const navigate = useNavigate()
+  const getUsers = async () => {
+    const usuarios = await getData("usuarios");
 
-  const getUsuarios = async (e) => {
-    e.preventDefault();
-
-    
-    const getData = async () => {
-      return [
-        { nombre: 'Fede', contraseña: '123' },,
-        
-      ];
-    };
-
-    const usuarios = await getData();
-
-   
     const usuarioValido = usuarios.find(
-      (usuario) => usuario.nombre === nombre && usuario.contraseña === contraseña
+      (usuario) => usuario.nombre === nombre && usuario.contraseña === contraseña && usuario.tipoUsuario == "usuario"
     );
-
-   
+    const usuarioValidoAdmin = usuarios.find(
+      (usuario) => usuario.nombre === nombre && usuario.contraseña === contraseña && usuario.tipoUsuario == "admin"
+    );
     if (usuarioValido) {
-      alert('Inicio de sesión exitoso');
-     
-    } else {
-      alert('Nombre o contraseña incorrectos');
+      navigate("/")
+      return
+    }
+     if (usuarioValidoAdmin) {
+      navigate("/PagAdmin")
+      return
     }
   };
+
 
   return (
     <div className="registro-container">
       <h2>Inicio de Sesión</h2>
-      <form onSubmit={submit}>
+      <form>
         <div className="campo">
           <label htmlFor="nombre">Nombre</label>
           <input
@@ -58,11 +52,10 @@ const Sesion = () => {
           />
         </div>
 
-        <button type="submit" className="boton-registro">Iniciar Sesión</button>
+        <button type="button" onClick={getUsers} className="boton-registro">Iniciar Sesión</button>
       </form>
     </div>
   );
-};
-
+}
 export default Sesion;
 

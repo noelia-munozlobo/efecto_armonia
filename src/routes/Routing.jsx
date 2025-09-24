@@ -4,6 +4,7 @@ import PagRegistro from '../pages/PagRegistro';
 import PagSesion from '../pages/PagSesion';
 import PagContacto from '../pages/PagContacto';
 import PagRecursos from '../pages/PagRecursos';
+import PagAdmin from '../pages/PagAdmin';
 
 const Routing = () => (
   <Router>
@@ -13,6 +14,7 @@ const Routing = () => (
       <Route path="/sesion" element={<PagSesion />} />
       <Route path="/contacto" element={<PagContacto />} />
       <Route path="/recursos" element={<PagRecursos />} />
+      <Route path="/PagAdmin" element={<PagAdmin />} />
     </Routes>
   </Router>
 );

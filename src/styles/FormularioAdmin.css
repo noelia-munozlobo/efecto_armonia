@@ -1,0 +1,54 @@
+.formulario-admin {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #e0f7f4;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(100, 200, 180, 0.2); 
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.formulario-admin h2 {
+  text-align: center;
+  color: #00796b; 
+  margin-bottom: 20px;
+}
+
+.formulario-admin label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #004d40; 
+}
+
+.formulario-admin input,
+.formulario-admin select,
+.formulario-admin textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #b2dfdb; 
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.formulario-admin textarea {
+  resize: vertical;
+}
+
+.formulario-admin button {
+  width: 100%;
+  padding: 12px;
+  background-color: #26a69a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formulario-admin button:hover {
+  background-color: #00796b; 
+}
