@@ -14,5 +14,43 @@
       "contraseña": "123",
       "tipoUsuario": "usuario"
     }
+  ],
+  "recursos": [
+    {
+      "id": "e987",
+      "tipo": "charla",
+      "nombre": "Charla sobre como dar una charla mientras estàn en un charla",
+      "descripcion": "Charla"
+    },
+    {
+      "id": "3042",
+      "tipo": "recurso",
+      "nombre": "Recurso",
+      "descripcion": "jeje xd"
+    },
+    {
+      "id": "0be2",
+      "tipo": "charla",
+      "nombre": "amarte a ti mismo",
+      "descripcion": "aaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "64f1",
+      "tipo": "charla",
+      "nombre": "amarte a ti mismo",
+      "descripcion": "aaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "eade",
+      "tipo": "charla",
+      "nombre": "amarte a ti mismo",
+      "descripcion": "aaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "ad4a",
+      "tipo": "recurso",
+      "nombre": "aaa",
+      "descripcion": "bbb"
+    }
   ]
 }

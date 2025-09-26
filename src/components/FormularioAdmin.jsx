@@ -1,23 +1,31 @@
 import { useState } from "react";
 import '../styles/FormularioAdmin.css';
+import { enviarRecurso } from "../services/fetch";
 
-const FormularioAdmin = ({ alAgregar }) => {
+
+const FormularioAdmin = () => {
   const [tipo, setTipo] = useState('curso');
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
 
-  const enviarFormulario = (evento) => {
+  const enviarFormulario = async (evento) => {
     evento.preventDefault();
+
     const nuevoRecurso = {
-      id: Date.now(),
       tipo,
       nombre,
       descripcion,
     };
-    alAgregar(nuevoRecurso);
-    setTipo('curso');
-    setNombre('');
-    setDescripcion('');
+
+    try {
+      const respuesta = await enviarRecurso("recursos", nuevoRecurso);
+      setTipo('curso');
+      setNombre('');
+      setDescripcion('');
+      alert("El recurso fue agregado")
+    } catch (error) {
+      console.error("Error al enviar el recurso:", error);
+    }
   };
 
   return (
@@ -56,3 +64,5 @@ const FormularioAdmin = ({ alAgregar }) => {
 };
 
 export default FormularioAdmin;
+
+

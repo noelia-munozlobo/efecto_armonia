@@ -12,15 +12,33 @@
 }
 
 .tarjeta {
-  background-color: #ffffff;
+  position: relative;
   border: 2px solid #a0d6b4;
   border-radius: 12px;
-  padding: 1rem;
   width: 220px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  height: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: white;
 }
 
 .tarjeta:hover {
   transform: scale(1.03);
+}
+
+.tarjeta .contenido {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.tarjeta h3,
+.tarjeta p {
+  margin: 0;
 }

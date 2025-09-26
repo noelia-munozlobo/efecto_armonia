@@ -30,14 +30,14 @@ async function getData(endpoint) {
    }
 }
 
-async function enviarRecurso() {
+async function enviarRecurso(recurso, nuevoRecurso) {
   try {
-    const respuesta = await fetch(`http://localhost:3001/${ruta}`, {
+    const respuesta = await fetch(`http://localhost:3001/${recurso}`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(recurso)
+      body: JSON.stringify(nuevoRecurso)
     });
 
     const resultado = await respuesta.json();
@@ -47,5 +47,7 @@ async function enviarRecurso() {
     console.error("Error al guardar el recurso:", error);
   }
 }
+
+
 
 export {postData,getData,enviarRecurso}
