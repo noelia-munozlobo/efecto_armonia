@@ -1,35 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Recursos.css';
-
-// Datos simulados de recursos disponibles
-const recursosData = [
-  { id: 1, tipo: 'curso', titulo: 'Autoestima', precio: 20 },
-  { id: 2, tipo: 'charla', titulo: 'Mindfulness', precio: 15 },
-  { id: 3, tipo: 'manual', titulo: 'Guía emocional', precio: 10 },
-  { id: 4, tipo: 'curso', titulo: 'Comunicación asertiva', precio: 25 },
-  { id: 5, tipo: 'charla', titulo: 'Gestión del estrés', precio: 18 },
-  { id: 6, tipo: 'manual', titulo: 'Primeros auxilios emocionales', precio: 12 },
-];
+import { getData, postData } from '../services/fetch';
 
 const Recursos = () => {
-  // Estado para filtrar por tipo (curso, charla, manual)
+  const [recursos, setRecursos] = useState([]);
   const [filtro, setFiltro] = useState('todos');
-
-  // Estado para ordenar por precio (ascendente o descendente)
   const [orden, setOrden] = useState('asc');
+  const [alerta, setAlerta] = useState(false); // Nuevo estado para la alerta
 
-  // Función que filtra y ordena los recursos 
+  useEffect(() => {
+    const fetchRecursos = async () => {
+      const data = await getData('recursos');
+      setRecursos(data || []);
+    };
+    fetchRecursos();
+  }, []);
+
   const filtrarRecursos = () => {
-    // Filtrar por tipo si se seleccionó algo distinto a "todos"
     let filtrados = filtro === 'todos'
-      ? recursosData
-      : recursosData.filter(r => r.tipo === filtro);
+      ? recursos
+      : recursos.filter(r => r.tipo === filtro);
 
-    // Ordenar por precio según el estado "orden"
     return orden === 'asc'
-      ? filtrados.sort((a, b) => a.precio - b.precio)
-      : filtrados.sort((a, b) => b.precio - a.precio);
+      ? [...filtrados].sort((a, b) => (a.precio || 0) - (b.precio || 0))
+      : [...filtrados].sort((a, b) => (b.precio || 0) - (a.precio || 0));
   };
+
+  async function seguirCurso(idCurso, nombreCurso) {
+    const objCurso = {
+      idUsuario: JSON.parse(localStorage.getItem("usuarios")).id,
+      nombreUsuario: JSON.parse(localStorage.getItem("usuarios")).nombre,
+      idCurso: idCurso,
+      nombreCurso: nombreCurso
+    }
+    await postData('suscripciones', objCurso);
+    setAlerta(true); // Mostrar alerta
+    setTimeout(() => setAlerta(false), 2000); // Ocultar después de 2 segundos
+  }
 
   return (
     <div className="recursos-container">
@@ -39,26 +46,26 @@ const Recursos = () => {
           <option value="todos">Todos</option>
           <option value="curso">Cursos</option>
           <option value="charla">Charlas</option>
-          <option value="manual">Manuales</option>
-        </select>
-
-        <h3>Ordenar por</h3>
-        <select onChange={(e) => setOrden(e.target.value)}>
-          <option value="asc">Menor precio</option>
-          <option value="desc">Mayor precio</option>
+          <option value="recurso">Recursos</option>
         </select>
       </aside>
 
       <section className="lista-recursos">
         <h2>Recursos disponibles</h2>
-
+        {alerta && (
+          <div className="alerta-suscrito" style={{ color: 'green', marginBottom: '10px' }}>
+            ¡Te has suscrito correctamente!
+          </div>
+        )}
         <div className="bloques">
           {filtrarRecursos().map((r) => (
             <div key={r.id} className="bloque">
-              <h4>{r.titulo}</h4>
+              <h4>{r.nombre || r.titulo}</h4>
               <p>Tipo: {r.tipo}</p>
-              <p>Precio: ${r.precio}</p>
-              <button>Ver más</button>
+              <p>{r.descripcion}</p>
+              <button
+                onClick={() => seguirCurso(r.id, r.nombre)}
+              >Seguir</button>
             </div>
           ))}
         </div>

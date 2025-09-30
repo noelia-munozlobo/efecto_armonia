@@ -1,0 +1,65 @@
+.pagina-cliente {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  font-family: 'Poppins', sans-serif;
+  color: #2e7d6f;
+}
+
+.pagina-cliente h2 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.pagina-cliente p {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #4e6e63;
+}
+
+.calendario-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background-color: #d0f0e0;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(46, 125, 111, 0.1);
+}
+
+.calendario-contenedor input[type="date"] {
+  padding: 10px;
+  border: 1px solid #a0d6b4;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #2e7d6f;
+}
+
+.resultado-fecha {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.lista-eventos {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.evento {
+  background-color: #e8f5e9;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(46, 125, 111, 0.05);
+  color: #4e6e63;
+}
+
+.sin-eventos {
+  font-style: italic;
+  color: #81c784;
+  margin-top: 12px;
+}

@@ -1,0 +1,59 @@
+.bloque {
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(46, 125, 111, 0.1);
+  transition: transform 0.3s ease;
+  border: 1px solid #a0d6b4; /* borde verde medio */
+  background-color: transparent; /* sin fondo */
+}
+
+.bloque:hover {
+  transform: translateY(-4px);
+}
+
+.bloque h4 {
+  margin: 0 0 0.5rem 0;
+  color: #2e7d6f;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.bloque p {
+  margin: 0.3rem 0;
+  color: #4e6e63;
+  font-size: 0.95rem;
+}
+
+.bloque input,
+.bloque textarea,
+.bloque select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #a0d6b4;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  color: #2e7d6f;
+}
+
+.bloque textarea {
+  resize: vertical;
+}
+
+.bloque button {
+  padding: 10px 16px;
+  margin-right: 0.5rem;
+  background-color: #2e7d6f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bloque button:hover {
+  background-color: #81c784;
+}
+

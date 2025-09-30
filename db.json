@@ -17,40 +17,126 @@
   ],
   "recursos": [
     {
-      "id": "e987",
-      "tipo": "charla",
-      "nombre": "Charla sobre como dar una charla mientras estàn en un charla",
-      "descripcion": "Charla"
-    },
-    {
-      "id": "3042",
-      "tipo": "recurso",
-      "nombre": "Recurso",
-      "descripcion": "jeje xd"
-    },
-    {
-      "id": "0be2",
-      "tipo": "charla",
-      "nombre": "amarte a ti mismo",
-      "descripcion": "aaaaaaaaaaaaaaaaaaaaaaaaaa"
-    },
-    {
-      "id": "64f1",
-      "tipo": "charla",
-      "nombre": "amarte a ti mismo",
-      "descripcion": "aaaaaaaaaaaaaaaaaaaaaaaaaa"
-    },
-    {
       "id": "eade",
       "tipo": "charla",
       "nombre": "amarte a ti mismo",
       "descripcion": "aaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     {
-      "id": "ad4a",
-      "tipo": "recurso",
-      "nombre": "aaa",
-      "descripcion": "bbb"
+      "id": "0361",
+      "tipo": "curso",
+      "nombre": "estados del animo",
+      "descripcion": "dwhhdhdshd"
+    },
+    {
+      "id": "b122",
+      "tipo": "curso",
+      "nombre": "amarte a ti mismo",
+      "descripcion": "asajsashhs"
+    },
+    {
+      "id": "b011",
+      "tipo": "charla",
+      "nombre": "numero 1",
+      "descripcion": "preuba"
+    }
+  ],
+  "suscripciones": [
+    {
+      "id": "691c",
+      "idUsuario": 1,
+      "idCurso": "e987"
+    },
+    {
+      "id": "d0db",
+      "idUsuario": 1,
+      "idCurso": "eade",
+      "nombreCurso": "amarte a ti mismo"
+    },
+    {
+      "id": "ca1f",
+      "idUsuario": 1,
+      "idCurso": "3042",
+      "nombreCurso": "Recurso"
+    },
+    {
+      "id": "5cdb",
+      "idUsuario": 1,
+      "idCurso": "3042",
+      "nombreCurso": "Recurso"
+    },
+    {
+      "id": "2d2d",
+      "idUsuario": 1,
+      "idCurso": "3042",
+      "nombreCurso": "Recurso"
+    },
+    {
+      "id": "18d7",
+      "idUsuario": 1,
+      "idCurso": "e987",
+      "nombreCurso": "Charla sobre como dar una charla mientras estàn en un charla"
+    },
+    {
+      "id": "12e0",
+      "idUsuario": 1,
+      "idCurso": "3042",
+      "nombreCurso": "Recurso"
+    },
+    {
+      "id": "f6ff",
+      "idUsuario": 1,
+      "idCurso": "3042",
+      "nombreCurso": "Recurso"
+    },
+    {
+      "id": "6a1f",
+      "idUsuario": 1,
+      "idCurso": "3042",
+      "nombreCurso": "Recurso"
+    },
+    {
+      "id": "d453",
+      "idUsuario": 1,
+      "idCurso": "3042",
+      "nombreCurso": "Recurso"
+    },
+    {
+      "id": "8bb4",
+      "idUsuario": 1,
+      "idCurso": "3042",
+      "nombreCurso": "Recurso"
+    },
+    {
+      "id": "cad9",
+      "idUsuario": 1,
+      "idCurso": "e987",
+      "nombreCurso": "Charla sobre como dar una charla mientras estàn en un charla"
+    },
+    {
+      "id": "faae",
+      "idUsuario": 1,
+      "idCurso": "e987",
+      "nombreCurso": "Charla sobre como dar una charla mientras estàn en un charla"
+    },
+    {
+      "id": "a623",
+      "idUsuario": 1,
+      "idCurso": "eade",
+      "nombreCurso": "amarte a ti mismo"
+    },
+    {
+      "id": "3d74",
+      "idUsuario": "2afc",
+      "idCurso": "eade",
+      "nombreCurso": "amarte a ti mismo"
+    },
+    {
+      "id": "9318",
+      "idUsuario": "2afc",
+      "nombreUsuario": "Rodro",
+      "idCurso": "0361",
+      "nombreCurso": "estados del animo"
     }
   ]
 }

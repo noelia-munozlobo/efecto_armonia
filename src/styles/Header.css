@@ -1,9 +1,9 @@
-/* Contenedor principal del header */
+
 .barra-navegacion {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #d0f0e0; /* verde agua suave */
+  background-color: #d0f0e0; 
   padding: 0.6rem 1.2rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: sticky;
@@ -12,7 +12,7 @@
   flex-wrap: wrap;
 }
 
-/* Logo alineado a la izquierda */
+
 .logo {
   display: flex;
   align-items: center;
@@ -40,7 +40,7 @@
   color: #4e6e63;
 }
 
-/* Menú de navegación horizontal */
+
 .menu {
   display: flex;
   align-items: center;

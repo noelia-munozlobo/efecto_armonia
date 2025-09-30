@@ -16,11 +16,13 @@ const Sesion = () => {
       (usuario) => usuario.nombre === nombre && usuario.contraseña === contraseña && usuario.tipoUsuario == "admin"
     );
     if (usuarioValido) {
-      navigate("/")
+      navigate("/PagCliente")
+      localStorage.setItem("usuarios",JSON.stringify(usuarioValido))
       return
     }
      if (usuarioValidoAdmin) {
       navigate("/PagAdmin")
+      localStorage.setItem("usuarios",JSON.stringify(usuarioValidoAdmin))
       return
     }
   };

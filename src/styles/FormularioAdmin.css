@@ -1,24 +1,25 @@
 .formulario-admin {
   max-width: 500px;
   margin: 40px auto;
-  padding: 20px;
-  background-color: #e0f7f4;
+  padding: 24px;
+  background-color: #d0f0e0; 
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(100, 200, 180, 0.2); 
-  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 12px rgba(46, 125, 111, 0.15); 
+  font-family: 'Poppins', sans-serif;
 }
 
 .formulario-admin h2 {
   text-align: center;
-  color: #00796b; 
+  color: #2e7d6f; 
   margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .formulario-admin label {
   display: block;
   margin-bottom: 6px;
-  font-weight: bold;
-  color: #004d40; 
+  font-weight: 500;
+  color: #4e6e63; 
 }
 
 .formulario-admin input,
@@ -27,10 +28,18 @@
   width: 100%;
   padding: 10px;
   margin-bottom: 16px;
-  border: 1px solid #b2dfdb; 
+  border: 1px solid #a0d6b4; 
   border-radius: 8px;
   font-size: 16px;
   background-color: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+.formulario-admin input:focus,
+.formulario-admin select:focus,
+.formulario-admin textarea:focus {
+  border-color: #2e7d6f;
+  outline: none;
 }
 
 .formulario-admin textarea {
@@ -40,15 +49,16 @@
 .formulario-admin button {
   width: 100%;
   padding: 12px;
-  background-color: #26a69a;
+  background-color: #2e7d6f; 
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .formulario-admin button:hover {
-  background-color: #00796b; 
+  background-color: #81c784; 
 }

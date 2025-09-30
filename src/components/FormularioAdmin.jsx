@@ -7,6 +7,7 @@ const FormularioAdmin = () => {
   const [tipo, setTipo] = useState('curso');
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
+  const [precio, setPrecio] = useState(''); 
 
   const enviarFormulario = async (evento) => {
     evento.preventDefault();
@@ -22,6 +23,7 @@ const FormularioAdmin = () => {
       setTipo('curso');
       setNombre('');
       setDescripcion('');
+      setPrecio('');
       alert("El recurso fue agregado")
     } catch (error) {
       console.error("Error al enviar el recurso:", error);
@@ -64,5 +66,3 @@ const FormularioAdmin = () => {
 };
 
 export default FormularioAdmin;
-
-

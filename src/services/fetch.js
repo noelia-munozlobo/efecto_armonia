@@ -1,33 +1,67 @@
-async function postData(endpoint,obj) {
-   try {
-     const peticion = await fetch(`http://localhost:3001/${endpoint}`,{
-         method: 'POST',
-         headers:{
-             "Content-Type": "application/json"
-         },
-         body: JSON.stringify(obj)
-     })
-     const respuesta = await peticion.json()
-     console.log(respuesta);
-     return respuesta
-   } catch (error) {
-        console.error(error);
-   }
+async function postData(endpoint, obj) {
+  try {
+    const peticion = await fetch(`http://localhost:3001/${endpoint}`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    });
+    const respuesta = await peticion.json();
+    console.log(respuesta);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
 }
+
 async function getData(endpoint) {
-   try {
-     const peticion = await fetch(`http://localhost:3001/${endpoint}`,{
-         method: 'GET',
-         headers:{
-             "Content-Type": "application/json"
-         }
-             })
-     const respuesta = await peticion.json()
-     console.log(respuesta);
-     return respuesta
-   } catch (error) {
-        console.error(error);
-   }
+  try {
+    const peticion = await fetch(`http://localhost:3001/${endpoint}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const respuesta = await peticion.json();
+    console.log(respuesta);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function putData(endpoint, obj) {
+  try {
+    const peticion = await fetch(`http://localhost:3001/${endpoint}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    });
+    const respuesta = await peticion.json();
+    console.log(respuesta);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function deleteData(endpoint) {
+  try {
+    const peticion = await fetch(`http://localhost:3001/${endpoint}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const respuesta = await peticion.json();
+    console.log(respuesta);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function enviarRecurso(recurso, nuevoRecurso) {
@@ -48,6 +82,4 @@ async function enviarRecurso(recurso, nuevoRecurso) {
   }
 }
 
-
-
-export {postData,getData,enviarRecurso}
+export { postData, getData, putData, deleteData, enviarRecurso }
