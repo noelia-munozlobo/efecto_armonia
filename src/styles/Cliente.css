@@ -1,65 +1,104 @@
 .pagina-cliente {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 24px;
-  font-family: 'Poppins', sans-serif;
-  color: #2e7d6f;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfaf4; 
+  color: #2f3e3e; 
 }
 
-.pagina-cliente h2 {
-  text-align: center;
-  margin-bottom: 16px;
-  font-weight: 600;
-}
-
-.pagina-cliente p {
-  text-align: center;
-  margin-bottom: 24px;
-  color: #4e6e63;
+h2 {
+  color: #2f3e3e;
+  margin-bottom: 1rem;
 }
 
 .calendario-contenedor {
+  margin-bottom: 1.5rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  background-color: #d0f0e0;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(46, 125, 111, 0.1);
+  gap: 1rem;
 }
 
-.calendario-contenedor input[type="date"] {
-  padding: 10px;
-  border: 1px solid #a0d6b4;
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: #ffffff;
-  color: #2e7d6f;
+input[type="date"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #e0f4f1; 
+  color: #2f3e3e;
 }
 
-.resultado-fecha {
-  margin-top: 24px;
-  text-align: center;
+.resultado-fecha,
+.resultado-general {
+  margin-top: 1rem;
+  background-color: #fffef9;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 .lista-eventos {
   list-style: none;
   padding: 0;
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 
 .evento {
-  background-color: #e8f5e9;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.75rem;
   border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 1px 3px rgba(46, 125, 111, 0.05);
-  color: #4e6e63;
+  transition: transform 0.2s ease;
+  background-color: #e0f4f1; 
+  border-left: 6px solid #2f3e3e; 
+}
+
+.evento:hover {
+  transform: scale(1.02);
+  background-color: #d4ebe7;
+}
+
+.evento strong {
+  font-weight: 600;
+  color: #2f3e3e;
+}
+
+.evento span {
+  font-size: 0.9rem;
+  color: #555;
+  margin-left: 0.5rem;
 }
 
 .sin-eventos {
+  color: #999;
   font-style: italic;
-  color: #81c784;
-  margin-top: 12px;
+  margin-top: 1rem;
+}
+.input-Texto {
+  width: 20%;
+  padding: 0.6rem 1rem;
+  margin: 1rem 0.5rem 1rem 0;
+  border: 1.5px solid #b3b3b3;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+
+.input-Texto:focus {
+  outline: none;
+  border-color: #2f3e3e;
+  background: #fff;
+}
+
+.mentoriaBtn {
+  padding: 0.6rem 1.5rem;
+  background:#8cb6a5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.mentoriaBtn:hover {
+  background: #4c6793;
 }

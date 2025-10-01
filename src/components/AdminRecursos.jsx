@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { getData, deleteData, putData } from "../services/fetch";
+import { getData, deleteData, putData, obtenerMentorias } from "../services/fetch";
 import "../styles/AdminRecursos.css";
 
 const AdminRecursos = () => {
   const [recursos, setRecursos] = useState([]);
+  const [mentorías, setMentorías] = useState([]); 
   const [editando, setEditando] = useState(null);
   const [formulario, setFormulario] = useState({ nombre: "", descripcion: "", tipo: "" });
 
   useEffect(() => {
     cargarRecursos();
+    cargarMentorias();
   }, []);
 
   const cargarRecursos = async () => {
     const data = await getData("recursos");
     setRecursos(data || []);
+  };
+
+  const cargarMentorias = async () => {
+    const data = await obtenerMentorias();
+    setMentorías(data || []);
   };
 
   const eliminarRecurso = async (id) => {
@@ -89,6 +96,23 @@ const AdminRecursos = () => {
               <button onClick={() => eliminarRecurso(r.id)}>Eliminar</button>
             </div>
           )
+        )}
+      </div>
+
+      
+      <div className="lista-mentorias" style={{ marginTop: "2rem" }}>
+        <h2>Mentorías Solicitadas</h2>
+        {mentorías.length > 0 ? (
+          <ul>
+            {mentorías.map((m, idx) => (
+              <li key={idx}>
+                <strong>{m.nombreUsuario}</strong> - {m.fecha} <br />
+                {m.texto}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No hay mentorías solicitadas.</p>
         )}
       </div>
     </div>

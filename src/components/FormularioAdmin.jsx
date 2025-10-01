@@ -7,7 +7,6 @@ const FormularioAdmin = () => {
   const [tipo, setTipo] = useState('curso');
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
-  const [precio, setPrecio] = useState(''); 
 
   const enviarFormulario = async (evento) => {
     evento.preventDefault();
@@ -23,7 +22,6 @@ const FormularioAdmin = () => {
       setTipo('curso');
       setNombre('');
       setDescripcion('');
-      setPrecio('');
       alert("El recurso fue agregado")
     } catch (error) {
       console.error("Error al enviar el recurso:", error);
@@ -38,7 +36,7 @@ const FormularioAdmin = () => {
         <select id="tipo" value={tipo} onChange={(e) => setTipo(e.target.value)} required>
           <option value="curso">Curso</option>
           <option value="charla">Charla</option>
-          <option value="recurso">Recurso</option>
+          <option value="recurso">Guia</option>
         </select>
 
         <label htmlFor="nombre">Nombre</label>

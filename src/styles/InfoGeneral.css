@@ -20,12 +20,12 @@
   margin-right: auto;
 }
 
-/* Sección de Pilar */
+
 .perfil-pilar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center; /* ← centrado vertical */
+  align-items: center;
   gap: 2rem;
   margin-top: 2rem;
   text-align: left;
@@ -35,7 +35,7 @@
   max-width: 280px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  align-self: center; /* ← asegura que la imagen se centre si el texto es más largo */
+  align-self: center; 
 }
 
 .texto-pilar {

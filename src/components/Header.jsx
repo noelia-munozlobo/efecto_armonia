@@ -21,9 +21,19 @@ const Header = () => {
         <span>|</span>
         <Link to="/contacto">Contacto</Link>
         <span>|</span>
+        {localStorage.getItem('usuarios') && (
+          <>
+            <Link to="/PagCliente">Mi Perfil</Link>
+            <span>|</span>
+          </>
+        )}
         <Link to="/registro">Registro</Link>
         <span>|</span>
         <Link to="/sesion">Inicio de sesión</Link>
+        <span>|</span>
+        <Link to="/" onClick={() => {
+          localStorage.clear()
+        }}>Cerrar Sesion</Link>
       </nav>
     </header>
   );

@@ -82,4 +82,19 @@ async function enviarRecurso(recurso, nuevoRecurso) {
   }
 }
 
-export { postData, getData, putData, deleteData, enviarRecurso }
+async function obtenerMentorias() {
+  try {
+    const respuesta = await fetch(`http://localhost:3001/mentorias`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const resultado = await respuesta.json();
+    console.log("Mentorías obtenidas:", resultado);
+    return resultado;
+  } catch (error) {
+    console.error("Error al obtener las mentorías:", error);
+  }
+}
+export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias }

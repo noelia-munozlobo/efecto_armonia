@@ -6,7 +6,7 @@ const Recursos = () => {
   const [recursos, setRecursos] = useState([]);
   const [filtro, setFiltro] = useState('todos');
   const [orden, setOrden] = useState('asc');
-  const [alerta, setAlerta] = useState(false); // Nuevo estado para la alerta
+  const [alerta, setAlerta] = useState(false); 
 
   useEffect(() => {
     const fetchRecursos = async () => {
@@ -32,10 +32,10 @@ const Recursos = () => {
       nombreUsuario: JSON.parse(localStorage.getItem("usuarios")).nombre,
       idCurso: idCurso,
       nombreCurso: nombreCurso
-    }
+    };
     await postData('suscripciones', objCurso);
-    setAlerta(true); // Mostrar alerta
-    setTimeout(() => setAlerta(false), 2000); // Ocultar después de 2 segundos
+    setAlerta(true); 
+    setTimeout(() => setAlerta(false), 2000);
   }
 
   return (
@@ -53,7 +53,7 @@ const Recursos = () => {
       <section className="lista-recursos">
         <h2>Recursos disponibles</h2>
         {alerta && (
-          <div className="alerta-suscrito" style={{ color: 'green', marginBottom: '10px' }}>
+          <div className="alerta-suscrito">
             ¡Te has suscrito correctamente!
           </div>
         )}
