@@ -5,6 +5,7 @@ import '../styles/AdminSuscritos.css';
 const ListaSuscritos = () => {
   const [suscritos, setSuscritos] = useState([]);
 
+  // se obtienen las suscripciones 
   useEffect(() => {
     const fetchSuscritos = async () => {
       const data = await getData('suscripciones');
@@ -19,6 +20,7 @@ const ListaSuscritos = () => {
       {suscritos.length === 0 ? (
         <div className="sin-suscritos">No hay suscripciones registradas.</div>
       ) : (
+        // Si hay suscripciones, se listan con usuario y curso
         <ul>
           {suscritos.map(s => (
             <li key={s.id}>

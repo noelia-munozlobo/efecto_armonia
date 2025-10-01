@@ -8,6 +8,7 @@ const Recursos = () => {
   const [orden, setOrden] = useState('asc');
   const [alerta, setAlerta] = useState(false); 
 
+  // Carga los recursos 
   useEffect(() => {
     const fetchRecursos = async () => {
       const data = await getData('recursos');
@@ -16,6 +17,7 @@ const Recursos = () => {
     fetchRecursos();
   }, []);
 
+  // Filtra y ordena los recursos
   const filtrarRecursos = () => {
     let filtrados = filtro === 'todos'
       ? recursos
@@ -26,6 +28,7 @@ const Recursos = () => {
       : [...filtrados].sort((a, b) => (b.precio || 0) - (a.precio || 0));
   };
 
+  // Registra la suscripción del usuario a un curso
   async function seguirCurso(idCurso, nombreCurso) {
     const objCurso = {
       idUsuario: JSON.parse(localStorage.getItem("usuarios")).id,
@@ -35,7 +38,7 @@ const Recursos = () => {
     };
     await postData('suscripciones', objCurso);
     setAlerta(true); 
-    setTimeout(() => setAlerta(false), 2000);
+    setTimeout(() => setAlerta(false), 2000); // Muestra alerta temporal
   }
 
   return (
@@ -57,6 +60,7 @@ const Recursos = () => {
             ¡Te has suscrito correctamente!
           </div>
         )}
+        {/* Muestra los recursos filtrados y ordenados */}
         <div className="bloques">
           {filtrarRecursos().map((r) => (
             <div key={r.id} className="bloque">

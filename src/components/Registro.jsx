@@ -4,24 +4,26 @@ import { postData } from '../services/fetch';
 import { useNavigate } from 'react-router-dom';
 
 const Registro = () => {
+  // Estados para capturar los datos del formulario
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  // Envía los datos del nuevo usuario y redirige a la página de sesión
   const agregarUsuario = async (e) => {
     e.preventDefault();
     const obj = {
       nombre,
       correo,
       contraseña,
-      tipoUsuario:"usuario"
+      tipoUsuario: "usuario"
     };
 
     try {
-      const respuesta = await postData("usuarios",obj);
+      const respuesta = await postData("usuarios", obj);
       console.log('Respuesta del servidor:', respuesta);
-      navigate("/sesion")
-      
+      navigate("/sesion"); // Redirección tras registro 
     } catch (error) {
       console.error('Error al registrar:', error);
       alert('Hubo un problema al enviar el registro');
@@ -64,7 +66,6 @@ const Registro = () => {
             onChange={(e) => setContraseña(e.target.value)}
           />
         </div>
-
         <button type="button" onClick={agregarUsuario} className="boton-registro">Registrarse</button>
       </form>
     </div>
@@ -72,5 +73,3 @@ const Registro = () => {
 };
 
 export default Registro;
-
-

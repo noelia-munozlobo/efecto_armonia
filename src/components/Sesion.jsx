@@ -2,35 +2,41 @@ import React, { useState } from 'react';
 import '../styles/Sesion.css';
 import { getData } from '../services/fetch';
 import { useNavigate } from 'react-router-dom';
+
 const Sesion = () => {
   const [nombre, setNombre] = useState('');
   const [contraseña, setContraseña] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  // Verifica si el usuario existe y redirige según su tipo
   const getUsers = async () => {
     const usuarios = await getData("usuarios");
 
     const usuarioValido = usuarios.find(
       (usuario) => usuario.nombre === nombre && usuario.contraseña === contraseña && usuario.tipoUsuario == "usuario"
     );
+
     const usuarioValidoAdmin = usuarios.find(
       (usuario) => usuario.nombre === nombre && usuario.contraseña === contraseña && usuario.tipoUsuario == "admin"
     );
+
     if (usuarioValido) {
-      navigate("/PagCliente")
-      localStorage.setItem("usuarios",JSON.stringify(usuarioValido))
-      return
+      navigate("/PagCliente"); // Redirige a vista cliente
+      localStorage.setItem("usuarios", JSON.stringify(usuarioValido));
+      return;
     }
-     if (usuarioValidoAdmin) {
-      navigate("/PagAdmin")
-      localStorage.setItem("usuarios",JSON.stringify(usuarioValidoAdmin))
-      return
+
+    if (usuarioValidoAdmin) {
+      navigate("/PagAdmin"); // Redirige a vista admin
+      localStorage.setItem("usuarios", JSON.stringify(usuarioValidoAdmin));
+      return;
     }
   };
-
 
   return (
     <div className="registro-container">
       <h2>Inicio de Sesión</h2>
+      {/* Formulario controlado con estados */}
       <form>
         <div className="campo">
           <label htmlFor="nombre">Nombre</label>
@@ -54,10 +60,13 @@ const Sesion = () => {
           />
         </div>
 
+        {/* Botón que dispara la verificación de usuario */}
         <button type="button" onClick={getUsers} className="boton-registro">Iniciar Sesión</button>
       </form>
     </div>
   );
-}
+};
+
 export default Sesion;
+
 

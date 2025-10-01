@@ -4,32 +4,37 @@ import "../styles/AdminRecursos.css";
 
 const AdminRecursos = () => {
   const [recursos, setRecursos] = useState([]);
-  const [mentorías, setMentorías] = useState([]); 
+  const [mentorías, setMentorías] = useState([]);
   const [editando, setEditando] = useState(null);
   const [formulario, setFormulario] = useState({ nombre: "", descripcion: "", tipo: "" });
 
+  // Carga inicial de recursos 
   useEffect(() => {
     cargarRecursos();
     cargarMentorias();
   }, []);
 
+  // Obtiene los recursos del db.json
   const cargarRecursos = async () => {
     const data = await getData("recursos");
     setRecursos(data || []);
   };
 
+  // Obtiene las mentorías solicitadas desde la API
   const cargarMentorias = async () => {
     const data = await obtenerMentorias();
     setMentorías(data || []);
   };
 
+  // Elimina un recurso 
   const eliminarRecurso = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar este recurso?")) {
       await deleteData("recursos/" + id);
-      cargarRecursos();
+      cargarRecursos(); // Recarga la lista actualizada
     }
   };
 
+  // Activa el modo edición y carga los datos del recurso en el formulario
   const editarRecurso = (recurso) => {
     setEditando(recurso.id);
     setFormulario({
@@ -44,14 +49,16 @@ const AdminRecursos = () => {
     setFormulario({ nombre: "", descripcion: "", tipo: "" });
   };
 
+  // Actualiza el estado del formulario mientras se escribe
   const actualizarFormulario = (e) => {
     setFormulario({ ...formulario, [e.target.name]: e.target.value });
   };
 
+  // Guarda los cambios del recurso editado
   const guardarCambios = async (id) => {
     await putData("recursos/" + id, formulario);
     setEditando(null);
-    cargarRecursos();
+    cargarRecursos(); // Refresca la lista con los cambios
   };
 
   return (
@@ -60,6 +67,7 @@ const AdminRecursos = () => {
       <div className="bloques">
         {recursos.map((r) =>
           editando === r.id ? (
+            // muestra formulario editable
             <div key={r.id} className="bloque">
               <input
                 name="nombre"
@@ -88,6 +96,7 @@ const AdminRecursos = () => {
               <button onClick={cancelarEdicion}>Cancelar</button>
             </div>
           ) : (
+            // muestra recurso  de editar y eliminar con botones de acción
             <div key={r.id} className="bloque">
               <h4>{r.nombre || r.titulo}</h4>
               <p>Tipo: {r.tipo}</p>
@@ -99,7 +108,6 @@ const AdminRecursos = () => {
         )}
       </div>
 
-      
       <div className="lista-mentorias" style={{ marginTop: "2rem" }}>
         <h2>Mentorías Solicitadas</h2>
         {mentorías.length > 0 ? (

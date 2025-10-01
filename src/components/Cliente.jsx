@@ -8,6 +8,7 @@ const Cliente = () => {
   const [recursos, setRecursos] = useState([]); 
   const [textoMentoria, setTexto] = useState('');
 
+  //  Es para obtener las suscripciones del usuario y los recursos disponibles
   useEffect(() => {
     async function traerDatos() {
       const usuario = JSON.parse(localStorage.getItem("usuarios"));
@@ -24,6 +25,7 @@ const Cliente = () => {
     setFechaSeleccionada(e.target.value);
   };
 
+  // Envía una solicitud de mentoría con la fecha y el texto ingresado
   const agendarMentoria = async () => {
     const objMentoria = {
       idUsuario: JSON.parse(localStorage.getItem("usuarios")).id,
@@ -33,10 +35,13 @@ const Cliente = () => {
     }
     await postData('mentorias', objMentoria);
   };
+
+  // Obtiene los recursos que el usuario ha seguido según sus suscripciones
   const recursosSeguidos = eventos
     .map(ev => recursos.find(r => r.id === ev.idCurso))
     .filter(Boolean);
 
+  // Filtra los eventos que coinciden con la fecha seleccionada
   const eventosDelDia = eventos.filter((evento) => {
     if (!evento.fecha || !fechaSeleccionada) return false;
     const fechaEvento = new Date(evento.fecha).toISOString().split('T')[0];
@@ -59,6 +64,7 @@ const Cliente = () => {
         />
       </div>
 
+      {/* Muestra los eventos del día si hay una fecha seleccionada */}
       {fechaSeleccionada && (
         <div className="resultado-fecha">
           <p>Has seleccionado: <strong>{fechaSeleccionada}</strong></p>
@@ -76,9 +82,11 @@ const Cliente = () => {
         </div>
       )}
 
+      {/* Formulario para solicitar mentoría */}
       <input type="text" className="input-Texto" placeholder='Texto mentoria' onChange={(e) => setTexto(e.target.value)} />
       <button className='mentoriaBtn' onClick={agendarMentoria}>Solicitar mentoría</button>
 
+      {/* Muestra todos los recursos si no hay fecha seleccionada */}
       {!fechaSeleccionada && (
         <div className="resultado-general">
           <h2>Recursos que has seguido</h2>
