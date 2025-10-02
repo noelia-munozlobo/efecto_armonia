@@ -20,7 +20,7 @@ const AdminRecursos = () => {
     setRecursos(data || []);
   };
 
-  // Obtiene las mentorías solicitadas desde la API
+  // Obtiene las mentorías del db.json
   const cargarMentorias = async () => {
     const data = await obtenerMentorias();
     setMentorías(data || []);

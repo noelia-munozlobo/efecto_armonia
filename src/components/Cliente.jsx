@@ -63,8 +63,6 @@ const Cliente = () => {
           onChange={manejarCambioFecha}
         />
       </div>
-
-      {/* Muestra los eventos del día si hay una fecha seleccionada */}
       {fechaSeleccionada && (
         <div className="resultado-fecha">
           <p>Has seleccionado: <strong>{fechaSeleccionada}</strong></p>

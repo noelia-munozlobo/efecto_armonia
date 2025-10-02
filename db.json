@@ -15,9 +15,39 @@
       "tipoUsuario": "usuario"
     }
   ],
-  "recursos": [],
+  "recursos": [
+    {
+      "id": "9e22",
+      "tipo": "curso",
+      "nombre": "Inteligencia Emocional en el Aula",
+      "descripcion": "recurso para docentes"
+    },
+    {
+      "id": "b5a3",
+      "tipo": "curso",
+      "nombre": "Atención a crisis conductuales en el aula",
+      "descripcion": "Curso para aprender a manejar crisis"
+    },
+    {
+      "id": "5178",
+      "tipo": "charla",
+      "nombre": "Como lidiar con el duelo",
+      "descripcion": "Una masterclass con tips sobre como lidiar con el duelo "
+    },
+    {
+      "id": "f1e1",
+      "tipo": "charla",
+      "nombre": "Como amarte a ti mismo",
+      "descripcion": "Una charla donde vamos a ver sobre el autoestima "
+    },
+    {
+      "id": "9e98",
+      "tipo": "recurso",
+      "nombre": "10 cosas que puedes hacer si tienes ansiedad",
+      "descripcion": "un manual increíble que habla sobre 10 tips que te podrían ayudar si tienes ansiedad"
+    }
+  ],
   "mentorias": [
-    {},
     {
       "id": "8542",
       "idUsuario": "2afc",
