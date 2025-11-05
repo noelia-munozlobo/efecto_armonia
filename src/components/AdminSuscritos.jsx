@@ -15,22 +15,9 @@ const ListaSuscritos = () => {
   }, []);
 
   return (
-    <div className="lista-suscritos-admin">
-      <h3>Suscritos</h3>
-      {suscritos.length === 0 ? (
-        <div className="sin-suscritos">No hay suscripciones registradas.</div>
-      ) : (
-        // Si hay suscripciones, se listan con usuario y curso
-        <ul>
-          {suscritos.map(s => (
-            <li key={s.id}>
-              <span>Usuario: <b>{s.idUsuario}</b></span>
-              <span>Curso: <b>{s.nombreCurso}</b></span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+<div>
+  
+</div>
   );
 };
 

@@ -13,6 +13,13 @@
       "correo": "rodro@gmail.com",
       "contraseña": "123",
       "tipoUsuario": "usuario"
+    },
+    {
+      "id": "c50e",
+      "nombre": "Luis",
+      "correo": "luis@gmail.com",
+      "contraseña": "123",
+      "tipoUsuario": "usuario"
     }
   ],
   "recursos": [
@@ -61,6 +68,57 @@
       "nombreUsuario": "Rodro",
       "fecha": "2025-10-17",
       "texto": "muerte de mi mascota"
+    },
+    {
+      "id": "d1e1",
+      "idUsuario": "c50e",
+      "nombreUsuario": "Luis",
+      "fecha": "2025-11-22",
+      "texto": "Pan"
+    }
+  ],
+  "suscripciones": [
+    {
+      "id": "69af",
+      "idUsuario": "c50e",
+      "nombreUsuario": "Luis",
+      "idCurso": "9e22",
+      "nombreCurso": "Inteligencia Emocional en el Aula"
+    },
+    {
+      "id": "2803",
+      "idUsuario": "c50e",
+      "nombreUsuario": "Luis",
+      "idCurso": "b5a3",
+      "nombreCurso": "Atención a crisis conductuales en el aula"
+    },
+    {
+      "id": "2d4b",
+      "idUsuario": "c50e",
+      "nombreUsuario": "Luis",
+      "idCurso": "b5a3",
+      "nombreCurso": "Atención a crisis conductuales en el aula"
+    },
+    {
+      "id": "3120",
+      "idUsuario": "c50e",
+      "nombreUsuario": "Luis",
+      "idCurso": "b5a3",
+      "nombreCurso": "Atención a crisis conductuales en el aula"
+    },
+    {
+      "id": "4e4a",
+      "idUsuario": "c50e",
+      "nombreUsuario": "Luis",
+      "idCurso": "5178",
+      "nombreCurso": "Como lidiar con el duelo"
+    },
+    {
+      "id": "ae78",
+      "idUsuario": "c50e",
+      "nombreUsuario": "Luis",
+      "idCurso": "9e98",
+      "nombreCurso": "10 cosas que puedes hacer si tienes ansiedad"
     }
   ]
 }
