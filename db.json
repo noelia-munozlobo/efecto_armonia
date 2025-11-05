@@ -45,6 +45,12 @@
       "tipo": "recurso",
       "nombre": "10 cosas que puedes hacer si tienes ansiedad",
       "descripcion": "un manual increíble que habla sobre 10 tips que te podrían ayudar si tienes ansiedad"
+    },
+    {
+      "id": "5cf5",
+      "tipo": "charla",
+      "nombre": "clarla sobre autoestima",
+      "descripcion": "charla 2"
     }
   ],
   "mentorias": [
@@ -61,6 +67,50 @@
       "nombreUsuario": "Rodro",
       "fecha": "2025-10-17",
       "texto": "muerte de mi mascota"
+    },
+    {
+      "id": "e984",
+      "idUsuario": "2afc",
+      "nombreUsuario": "Rodro",
+      "fecha": "",
+      "texto": "aaaaa"
+    },
+    {
+      "id": "9b68",
+      "idUsuario": "2afc",
+      "nombreUsuario": "Rodro",
+      "fecha": "",
+      "texto": "aaaaa"
+    }
+  ],
+  "suscripciones": [
+    {
+      "id": "2fc6",
+      "idUsuario": "2243",
+      "nombreUsuario": "Fede",
+      "idCurso": "9e22",
+      "nombreCurso": "Inteligencia Emocional en el Aula"
+    },
+    {
+      "id": "fad1",
+      "idUsuario": "2afc",
+      "nombreUsuario": "Rodro",
+      "idCurso": "9e22",
+      "nombreCurso": "Inteligencia Emocional en el Aula"
+    },
+    {
+      "id": "4e18",
+      "idUsuario": "2afc",
+      "nombreUsuario": "Rodro",
+      "idCurso": "b5a3",
+      "nombreCurso": "Atención a crisis conductuales en el aula"
+    },
+    {
+      "id": "88d5",
+      "idUsuario": "2243",
+      "nombreUsuario": "Fede",
+      "idCurso": "5178",
+      "nombreCurso": "Como lidiar con el duelo"
     }
   ]
 }
