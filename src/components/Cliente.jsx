@@ -87,8 +87,8 @@ const Cliente = () => {
       {/* Muestra todos los recursos si no hay fecha seleccionada */}
       {!fechaSeleccionada && (
         <div className="resultado-general">
-          <h2>Recursos que has seguido</h2>
-          <h3>Todos los recursos seguidos:</h3>
+          <h2>Recursos</h2>
+          <h3>Recursos que has leído:</h3>
           {recursosSeguidos.length > 0 ? (
             <ul className="lista-eventos">
               {recursosSeguidos.map((recurso, index) => (
