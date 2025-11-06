@@ -1,16 +1,18 @@
 import React from 'react'
 import FormularioAdmin from '../components/FormularioAdmin'
+import FormularioPsicologo from '../components/FormularioPsicologo'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ListaSuscritos from '../components/AdminSuscritos';
 import AdminRecursos from '../components/AdminRecursos';
+import AdminEspecialistas from '../components/AdminEspecialistas';
 
 const PagAdmin = () => {
   return (
     <div>
         <Header/>
-        <ListaSuscritos/>
+        <FormularioPsicologo/>
         <FormularioAdmin/>
+        <AdminEspecialistas/>
         <AdminRecursos/>
         <Footer/>
     </div>
