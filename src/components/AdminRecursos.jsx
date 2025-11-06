@@ -6,7 +6,7 @@ const AdminRecursos = () => {
   const [recursos, setRecursos] = useState([]);
   const [mentorías, setMentorías] = useState([]);
   const [editando, setEditando] = useState(null);
-  const [formulario, setFormulario] = useState({ nombre: "", descripcion: "", tipo: "" });
+  const [formulario, setFormulario] = useState({ nombre: "", descripcion: "", tipo: "", informacion: "" });
 
   // Carga inicial de recursos 
   useEffect(() => {
@@ -41,12 +41,13 @@ const AdminRecursos = () => {
       nombre: recurso.nombre || "",
       descripcion: recurso.descripcion || "",
       tipo: recurso.tipo || "curso",
+      informacion: recurso.informacion || ""
     });
   };
 
   const cancelarEdicion = () => {
     setEditando(null);
-    setFormulario({ nombre: "", descripcion: "", tipo: "" });
+    setFormulario({ nombre: "", descripcion: "", tipo: "", informacion: "" });
   };
 
   // Actualiza el estado del formulario mientras se escribe
@@ -82,6 +83,13 @@ const AdminRecursos = () => {
                 placeholder="Descripción"
                 rows={2}
               />
+              <textarea
+                name="informacion"
+                value={formulario.informacion}
+                onChange={actualizarFormulario}
+                placeholder="Información Adicional"
+                rows={2}
+              />
               <select
                 name="tipo"
                 value={formulario.tipo}
@@ -95,12 +103,14 @@ const AdminRecursos = () => {
               <button onClick={() => guardarCambios(r.id)}>Guardar</button>
               <button onClick={cancelarEdicion}>Cancelar</button>
             </div>
+
           ) : (
             // muestra recurso  de editar y eliminar con botones de acción
             <div key={r.id} className="bloque">
               <h4>{r.nombre || r.titulo}</h4>
               <p>Tipo: {r.tipo}</p>
               <p>{r.descripcion}</p>
+              <p>Información Adicional: {r.informacion}</p>
               <button onClick={() => editarRecurso(r)}>Editar</button>
               <button onClick={() => eliminarRecurso(r.id)}>Eliminar</button>
             </div>

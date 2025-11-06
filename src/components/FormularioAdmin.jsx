@@ -7,6 +7,7 @@ const FormularioAdmin = () => {
   const [tipo, setTipo] = useState('curso');
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
+  const [informacion, setInformacion] = useState('');
 
   // Envía el nuevo recurso y limpia el formulario
   const enviarFormulario = async (evento) => {
@@ -16,6 +17,7 @@ const FormularioAdmin = () => {
       tipo,
       nombre,
       descripcion,
+      informacion
     };
 
     try {
@@ -23,6 +25,7 @@ const FormularioAdmin = () => {
       setTipo('curso');
       setNombre('');
       setDescripcion('');
+      setInformacion('');
       alert("El recurso fue agregado");
     } catch (error) {
       console.error("Error al enviar el recurso:", error);
@@ -57,6 +60,14 @@ const FormularioAdmin = () => {
           onChange={(e) => setDescripcion(e.target.value)}
           rows="4"
           required
+        />
+
+        <label htmlFor="informacion">Información Adicional</label>
+        <textarea
+          id="informacion"
+          value={informacion}
+          onChange={(e) => setInformacion(e.target.value)}
+          rows="4"
         />
 
         <button type="submit">Guardar</button>
