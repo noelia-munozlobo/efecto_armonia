@@ -126,5 +126,15 @@
       "idCurso": "9e98",
       "nombreCurso": "10 cosas que puedes hacer si tienes ansiedad"
     }
+  ],
+  "especialistas": [
+    {
+      "nombre": "Dra. Maria Lopez",
+      "correo": "mariLopez@gmail.com",
+      "telefono": "555-1234",
+      "especialidad": "Psicologia Infantil",
+      "descripcion": "",
+      "id": "a1b2"
+    }
   ]
 }
