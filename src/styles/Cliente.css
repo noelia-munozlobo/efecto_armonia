@@ -1,0 +1,104 @@
+.pagina-cliente {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfaf4; 
+  color: #2f3e3e; 
+}
+
+h2 {
+  color: #2f3e3e;
+  margin-bottom: 1rem;
+}
+
+.calendario-contenedor {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+input[type="date"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #e0f4f1; 
+  color: #2f3e3e;
+}
+
+.resultado-fecha,
+.resultado-general {
+  margin-top: 1rem;
+  background-color: #fffef9;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.lista-eventos {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.evento {
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+  background-color: #e0f4f1; 
+  border-left: 6px solid #2f3e3e; 
+}
+
+.evento:hover {
+  transform: scale(1.02);
+  background-color: #d4ebe7;
+}
+
+.evento strong {
+  font-weight: 600;
+  color: #2f3e3e;
+}
+
+.evento span {
+  font-size: 0.9rem;
+  color: #555;
+  margin-left: 0.5rem;
+}
+
+.sin-eventos {
+  color: #999;
+  font-style: italic;
+  margin-top: 1rem;
+}
+.input-Texto {
+  width: 20%;
+  padding: 0.6rem 1rem;
+  margin: 1rem 0.5rem 1rem 0;
+  border: 1.5px solid #b3b3b3;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+
+.input-Texto:focus {
+  outline: none;
+  border-color: #2f3e3e;
+  background: #fff;
+}
+
+.mentoriaBtn {
+  padding: 0.6rem 1.5rem;
+  background:#8cb6a5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.mentoriaBtn:hover {
+  background: #4c6793;
+}
