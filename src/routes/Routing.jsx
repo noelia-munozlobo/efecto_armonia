@@ -6,6 +6,7 @@ import PagContacto from '../pages/PagContacto';
 import PagRecursos from '../pages/PagRecursos';
 import PagAdmin from '../pages/PagAdmin';
 import PagCliente from '../pages/PagCliente';
+import PagEspecialista from '../pages/PagEspecialista';
 
 
 const Routing = () => (
@@ -18,6 +19,7 @@ const Routing = () => (
       <Route path="/recursos" element={<PagRecursos />} />
       <Route path="/PagAdmin" element={<PagAdmin />} />
       <Route path="/PagCliente" element={<PagCliente/>} />
+      <Route path="/PagEspecialista" element={<PagEspecialista/>} />
       
     </Routes>
   </Router>

@@ -22,13 +22,14 @@
 .texto-superpuesto {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #000000; /* 🔹 texto negro */
+  left: 5%; 
+  transform: translateY(-50%); 
+  text-align: left; 
+  color: #000000;
   z-index: 2;
   padding: 0 20px;
 }
+
 
 .texto-superpuesto h1:first-child {
   font-family: "Poppins", sans-serif;

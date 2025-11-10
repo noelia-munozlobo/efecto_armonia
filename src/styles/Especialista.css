@@ -1,0 +1,246 @@
+.especialista {
+  padding: 30px;
+  background-color: #fefefe;
+  font-family: 'Poppins', sans-serif;
+  color: #3b2f2f;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: #3b2f2f;
+  margin-bottom: 15px;
+}
+
+section {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(59, 47, 47, 0.15);
+  padding: 25px;
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+section > * {
+  margin-top: 15px;
+}
+
+input, textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 16px;
+  margin: 0 auto;
+  border: 1px solid #d4cfcf;
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #3b2f2f;
+  resize: vertical;
+  transition: border 0.3s ease;
+  display: block;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+  border-color: #f9a66c;
+  outline: none;
+}
+
+.info-personal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.botones-horario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.botones-horario button {
+  background-color: #e8e3e3;
+  color: #3b2f2f;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botones-horario button.activo {
+  background-color: #f9a66c;
+  color: #fff;
+  font-weight: bold;
+}
+
+.botones-horario button:hover {
+  background-color: #d8cfcf;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  background-color: #f3f3f3;
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  color: #3b2f2f;
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(59, 47, 47, 0.15);
+  font-family: 'Poppins', sans-serif;
+  margin: auto;
+  border: none;
+}
+
+.react-calendar__navigation button {
+  color: #3b2f2f;
+  font-weight: 600;
+  background: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: 4px;
+}
+
+.react-calendar__tile {
+  padding: 12px 0;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.react-calendar__tile--active {
+  background: #f9a66c !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.resaltado {
+  background-color: #f9a66c !important;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #6f5f5f;
+  font-size: 0.85rem;
+}
+
+.calendario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.fechas-seleccionadas {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.fechas-seleccionadas ul {
+  padding-left: 20px;
+  color: #3b2f2f;
+}
+
+.guardar {
+  margin-top: 15px;
+  background-color: #8e7d7d;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.guardar:hover {
+  background-color: #6f5f5f;
+}
+
+@media (max-width: 768px) {
+  input, button, textarea {
+    font-size: 0.95rem;
+  }
+
+  .react-calendar {
+    max-width: 100%;
+  }
+
+  section {
+    padding: 20px;
+    margin: 30px auto;
+  }
+}
+.limpiar {
+  margin-top: 10px;
+  background-color: #d8cfcf;
+  color: #3b2f2f;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.limpiar:hover {
+  background-color: #cbb8b8;
+}
+
+.confirmar {
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: #6abf69;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirmar:hover {
+  background-color: #519e50;
+}
+
+.eliminar {
+  margin-top: 10px;
+  background-color: #e57373;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.eliminar:hover {
+  background-color: #d32f2f;
+}
+
+
