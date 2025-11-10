@@ -1,17 +1,15 @@
 .info-general {
   padding: 3rem 2rem;
-  color: #2e7d6f;
+  color: #2E7D6F;
   font-family: 'Roboto', sans-serif;
   line-height: 1.8;
   text-align: center;
 }
-
 .info-general h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: #388e7d;
+  color: #388E7D;
 }
-
 .info-general p {
   font-size: 1.1rem;
   margin-bottom: 2rem;
@@ -19,8 +17,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-
 .perfil-pilar {
   display: flex;
   flex-wrap: wrap;
@@ -30,27 +26,21 @@
   margin-top: 2rem;
   text-align: left;
 }
-
 .perfil-pilar img {
   max-width: 280px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  align-self: center; 
+  align-self: center;
 }
-
 .texto-pilar {
   max-width: 600px;
 }
-
 .texto-pilar h2 {
   font-size: 1.6rem;
   margin-bottom: 1rem;
-  color: #2e7d6f;
+  color: #2E7D6F;
 }
-
 .texto-pilar p {
   font-size: 1.1rem;
-  color: #4e6e63;
+  color: #4E6E63;
 }
-
-

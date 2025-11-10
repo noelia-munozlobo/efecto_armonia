@@ -2,72 +2,60 @@
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #d0f0e0; 
+  background-color: #D0F0E0;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-family: 'Roboto', sans-serif;
 }
-
 .Sesion-container h2 {
   text-align: center;
-  color: #2e7d6f;
+  color: #2E7D6F;
   margin-bottom: 1.5rem;
 }
-
-
 .campoNombre {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
-
 .campoNombre label {
   margin-bottom: 0.3rem;
-  color: #2e7d6f;
+  color: #2E7D6F;
   font-weight: 500;
 }
-
 .campoNombre input {
   padding: 0.5rem;
-  border: 1px solid #a0d6b4;
+  border: 1px solid #A0D6B4;
   border-radius: 6px;
   outline: none;
 }
-
 .campoNombre input:focus {
-  border-color: #2e7d6f;
-  box-shadow: 0 0 4px #a0d6b4;
+  border-color: #2E7D6F;
+  box-shadow: 0 0 4px #A0D6B4;
 }
-
-
 .campoContraseña {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
-
 .campoContraseña label {
   margin-bottom: 0.3rem;
-  color: #2e7d6f;
+  color: #2E7D6F;
   font-weight: 500;
 }
-
 .campoContraseña input {
   padding: 0.5rem;
-  border: 1px solid #a0d6b4;
+  border: 1px solid #A0D6B4;
   border-radius: 6px;
   outline: none;
 }
-
 .campoContraseña input:focus {
-  border-color: #2e7d6f;
-  box-shadow: 0 0 4px #a0d6b4;
+  border-color: #2E7D6F;
+  box-shadow: 0 0 4px #A0D6B4;
 }
-
 .boton-Inicio {
   width: 100%;
   padding: 0.6rem;
-  background-color: #a0d6b4;
+  background-color: #A0D6B4;
   color: white;
   border: none;
   border-radius: 8px;
@@ -75,7 +63,6 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .boton-Inicio:hover {
-  background-color: #81c784;
+  background-color: #81C784;
 }

@@ -14,12 +14,12 @@ h2, h3 {
 }
 
 section {
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 6px 18px rgba(59, 47, 47, 0.15);
-  padding: 25px;
-  margin: 40px auto;
-  max-width: 800px;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
 }
 
 section > * {
