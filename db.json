@@ -125,6 +125,13 @@
       "nombreUsuario": "Luis",
       "idCurso": "9e98",
       "nombreCurso": "10 cosas que puedes hacer si tienes ansiedad"
+    },
+    {
+      "id": "40df",
+      "idUsuario": "2243",
+      "nombreUsuario": "Fede",
+      "idCurso": "9e22",
+      "nombreCurso": "Inteligencia Emocional en el Aula"
     }
   ],
   "especialistas": [
@@ -135,6 +142,27 @@
       "especialidad": "Psicologia Infantil",
       "descripcion": "",
       "id": "a1b2"
+    }
+  ],
+  "horarios": [
+    {
+      "id": "adea",
+      "nombre": "",
+      "especialidad": "",
+      "contacto": "",
+      "descripcion": "",
+      "horarios": [],
+      "fechas": [
+        "2025-11-26",
+        "2025-11-27",
+        "2025-11-28",
+        "2025-11-29",
+        "2025-12-01",
+        "2025-12-03",
+        "2025-12-17",
+        "2025-12-23",
+        "2025-12-26"
+      ]
     }
   ]
 }

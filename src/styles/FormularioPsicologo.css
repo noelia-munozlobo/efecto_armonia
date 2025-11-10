@@ -2,45 +2,40 @@
   max-width: 500px;
   margin: 40px auto;
   padding: 24px;
-  background-color: #d0f0e0;
+  background-color: #D0F0E0;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(46, 125, 111, 0.15);
   font-family: 'Poppins', sans-serif;
 }
-
 .formulario-psicologo h2 {
   text-align: center;
-  color: #2e7d6f;
+  color: #2E7D6F;
   margin-bottom: 20px;
   font-weight: 600;
 }
-
 .formulario-psicologo form {
   display: flex;
   flex-direction: column;
 }
-
 .formulario-psicologo label {
   margin-top: 12px;
   font-weight: 500;
-  color: #2e7d6f;
+  color: #2E7D6F;
 }
-
 .formulario-psicologo input,
 .formulario-psicologo select,
 .formulario-psicologo textarea {
   margin-top: 6px;
   padding: 10px;
-  border: 1px solid #b2dfdb;
+  border: 1px solid #B2DFDB;
   border-radius: 6px;
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
 }
-
 .formulario-psicologo button {
   margin-top: 20px;
   padding: 12px;
-  background-color: #2e7d6f;
+  background-color: #2E7D6F;
   color: white;
   border: none;
   border-radius: 6px;
@@ -48,7 +43,17 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .formulario-psicologo button:hover {
-  background-color: #1b5e56;
+  background-color: #1B5E56;
 }
+
+
+
+
+
+
+
+
+
+
+
