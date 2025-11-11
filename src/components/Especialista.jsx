@@ -1,8 +1,7 @@
-
-import '../styles/Especialista.css';
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import '../styles/Especialista.css'
 
 const Especialista = () => {
   const [horariosSeleccionados, setHorariosSeleccionados] = useState([]);
