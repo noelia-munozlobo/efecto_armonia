@@ -1,25 +1,42 @@
+/* Fondo y centrado total */
+.pagina-contacto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f9f8;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Tarjeta de contacto */
 .contacto-container {
   max-width: 600px;
-  margin: 2rem auto;
+  width: 100%;
   padding: 2rem;
   background-color: #d0f0e0;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-family: 'Roboto', sans-serif;
   text-align: center;
+  box-sizing: border-box;
 }
 
+/* Título */
 .contacto-container h2 {
   color: #2e7d6f;
   margin-bottom: 1rem;
+  font-size: 1.8rem;
 }
 
+/* Párrafos */
 .contacto-container p {
   color: #4e6e63;
   margin-bottom: 1rem;
   font-size: 1rem;
 }
 
+/* Información de contacto */
 .info-contacto p {
   margin: 0.5rem 0;
 }
@@ -35,8 +52,11 @@
   color: #1b5e55;
 }
 
+/* Mensaje final */
 .mensaje-final {
   margin-top: 2rem;
   font-style: italic;
   color: #388e7d;
 }
+
+

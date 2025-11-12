@@ -1,17 +1,32 @@
+/* ===== RESET ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ===== HEADER / NAVBAR ===== */
 .barra-navegacion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: 60px;      /* permite crecer sin cortar textos */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* ✅ mueve logo + menú hacia la izquierda */
   align-items: center;
   background-color: #D0F0E0;
   padding: 0.6rem 1.2rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: fixed;   /* <-- CAMBIADO */
-  top: 0;
+  gap: 2rem;             /* separación entre logo y menú */
+  flex-wrap: wrap;       /* ✅ permite salto de línea si hay muchos enlaces */
   z-index: 100;
-  width: 100%;       /* <-- AGREGA ESTO para evitar saltos */
-  flex-wrap: wrap;
 }
 
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -20,26 +35,30 @@
 .logo img {
   height: 32px;
   width: auto;
-  object-fit: contain;
 }
 .texto-logo h1 {
   margin: 0;
   font-size: 1rem;
   color: #2E7D6F;
-  font-family: 'Poppins', sans-serif;
 }
 .texto-logo p {
   margin: 0;
   font-size: 0.7rem;
   color: #4E6E63;
 }
+
+/* MENU ENLACES */
 .menu {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;           /* más espacio entre elementos */
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
+  transition: max-height 0.3s ease;
+  flex-wrap: wrap;      /* ✅ evita recortes */
+  justify-content: flex-start; /* ✅ mueve los links a la izquierda */
 }
+
 .menu a {
   text-decoration: none;
   color: #2E7D6F;
@@ -47,24 +66,54 @@
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .menu a:hover {
   background-color: #A0D6B4;
   color: white;
 }
+
 .menu span {
   color: #81C784;
   font-weight: bold;
 }
+
+/* BOTÓN HAMBURGUESA (MÓVIL) */
+.toggle-menu {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #2E7D6F;
+  cursor: pointer;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .barra-navegacion {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 0; /* evita espacios grandes en mobile */
   }
-  .menu {
+
+  .toggle-menu {
+    display: block;
     margin-top: 0.5rem;
-    flex-wrap: wrap;
   }
+
+  .menu {
+    flex-direction: column;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .menu.activo {
+    max-height: 500px;
+  }
+
   .menu a {
-    margin: 0.2rem 0;
+    margin: 0.4rem 0;
+    width: 100%;
+    text-align: center;
   }
 }

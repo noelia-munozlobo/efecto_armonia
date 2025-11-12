@@ -140,8 +140,16 @@
       "correo": "mariLopez@gmail.com",
       "telefono": "555-1234",
       "especialidad": "Psicologia Infantil",
-      "descripcion": "",
+      "descripcion": "bla bla bla",
       "id": "a1b2"
+    },
+    {
+      "id": "719e",
+      "nombre": "Esteban Rojas Salas",
+      "correo": "rojassalas@gmail.com",
+      "telefono": "7177-8598",
+      "especialidad": "Psicologia Educativa",
+      "descripcion": "bla bla bla"
     }
   ],
   "horarios": [

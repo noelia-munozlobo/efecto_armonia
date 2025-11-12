@@ -1,24 +1,17 @@
-import { useEffect, useState } from "react";
-import { getData } from "../services/fetch";
-import '../styles/AdminSuscritos.css';
+return (
+  <div className="contenedor-suscritos">
+    <h2>Lista de Suscripciones</h2>
+    {suscritos.length > 0 ? (
+      <ul className="lista-suscritos">
+        {suscritos.map((s, idx) => (
+          <li key={idx}>
+            <strong>{s.nombre}</strong> - {s.email}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p className="sin-suscritos">No hay suscripciones registradas.</p>
+    )}
+  </div>
+);
 
-const ListaSuscritos = () => {
-  const [suscritos, setSuscritos] = useState([]);
-
-  // se obtienen las suscripciones 
-  useEffect(() => {
-    const fetchSuscritos = async () => {
-      const data = await getData('suscripciones');
-      setSuscritos(data || []);
-    };
-    fetchSuscritos();
-  }, []);
-
-  return (
-<div>
-  
-</div>
-  );
-};
-
-export default ListaSuscritos;

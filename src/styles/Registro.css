@@ -1,37 +1,62 @@
+.pagina-registro {
+  min-height: calc(100vh - 80px); /* deja espacio por el header fijo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f9f8;
+  padding-top: 80px; /* evita que el header lo tape */
+}
+body {
+  height: 100vh;
+}
+
+/* Tarjeta de registro */
 .registro-container {
   max-width: 400px;
-  margin: 2rem auto;
+  width: 100%;
+  margin: 0 auto;
   padding: 2rem;
   background-color: #D0F0E0;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
+
+/* Título centrado y con espacio */
 .registro-container h2 {
   text-align: center;
   color: #2E7D6F;
   margin-bottom: 1.5rem;
+  font-size: 1.6rem;
 }
+
+/* Campo de entrada */
 .campo {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
+
 .campo label {
   margin-bottom: 0.3rem;
   color: #2E7D6F;
   font-weight: 500;
 }
+
 .campo input {
   padding: 0.5rem;
   border: 1px solid #A0D6B4;
   border-radius: 6px;
   outline: none;
 }
+
 .campo input:focus {
   border-color: #2E7D6F;
   box-shadow: 0 0 4px #A0D6B4;
 }
+
+/* Botón de registro */
 .boton-registro {
   width: 100%;
   padding: 0.6rem;
@@ -43,6 +68,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .boton-registro:hover {
   background-color: #81C784;
 }

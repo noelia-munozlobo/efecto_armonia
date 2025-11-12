@@ -33,10 +33,11 @@ const Sesion = () => {
     }
   };
 
-  return (
-    <div className="registro-container">
+ return (
+  <div className="pagina-sesion">  
+    <div className="sesion-container">  
       <h2>Inicio de Sesión</h2>
-      {/* Formulario controlado con estados */}
+
       <form>
         <div className="campo">
           <label htmlFor="nombre">Nombre</label>
@@ -60,11 +61,13 @@ const Sesion = () => {
           />
         </div>
 
-        {/* Botón que dispara la verificación de usuario */}
-        <button type="button" onClick={getUsers} className="boton-registro">Iniciar Sesión</button>
+        <button type="button" onClick={getUsers} className="boton-Inicio">
+          Iniciar Sesión
+        </button>
       </form>
     </div>
-  );
+  </div>
+);
 };
 
 export default Sesion;
