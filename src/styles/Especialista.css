@@ -2,13 +2,12 @@
 .especialista {
   max-width: 1000px;
   width: 100%;
-  margin: 4rem auto; /* Aumenta el espacio superior */
+  margin: 4rem auto;
   padding: 2rem;
   font-family: 'Poppins', sans-serif;
   color: #3b2f2f;
   box-sizing: border-box;
 }
-
 
 /* Títulos */
 .especialista h2, .especialista h3 {
@@ -50,13 +49,13 @@ section {
 }
 
 .botones-horario button.activo {
-  background-color: #f9a66c;
-  color: #fff;
+  background-color: #D0F0E0;
+  color: #2E7D6F;
   font-weight: bold;
 }
 
 .botones-horario button:hover {
-  background-color: #d8cfcf;
+  background-color: #C2E8D4;
 }
 
 /* Calendario centrado */
@@ -111,45 +110,19 @@ section {
   border-radius: 12px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #D0F0E0;
+  color: #2E7D6F;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
   display: inline-block;
 }
 
-.guardar {
-  background-color: #8e7d7d;
-  color: #fff;
-}
-
-.guardar:hover {
-  background-color: #6f5f5f;
-}
-
-.limpiar {
-  background-color: #d8cfcf;
-  color: #3b2f2f;
-}
-
-.limpiar:hover {
-  background-color: #cbb8b8;
-}
-
-.confirmar {
-  background-color: #6abf69;
-  color: #fff;
-  margin-right: 10px;
-}
-
-.confirmar:hover {
-  background-color: #519e50;
-}
-
-.eliminar {
-  background-color: #e57373;
-  color: #fff;
-}
-
+.guardar:hover,
+.limpiar:hover,
+.confirmar:hover,
 .eliminar:hover {
-  background-color: #d32f2f;
+  background-color: #B8E5D0;
+  color: #1E5E50;
 }
 
 /* Citas solicitadas */
@@ -160,18 +133,34 @@ section {
 }
 
 .citas li {
-  background-color: #f3f3f3;
+  background-color: #ffffff;
+  border: 2px solid #D0F0E0;
   margin: 8px 0;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  color: #3b2f2f;
+  color: #2E7D6F;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between; /* ✅ texto a la izquierda, botones a la derecha */
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .citas li strong {
   font-weight: 600;
   margin-bottom: 4px;
 }
+
+/* Contenedor del texto de la cita */
+.cita-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor de botones al lado derecho */
+.cita-botones {
+  display: flex;
+  gap: 0.6rem;
+}
+
+
