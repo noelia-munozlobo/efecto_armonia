@@ -9,6 +9,7 @@ class Mentorias(models.Model):
     ]
 
     fecha = models.DateField(verbose_name="Fecha de la mentoría")
+    hora = models.TimeField(verbose_name="Hora de la mentoría")
     motivo = models.CharField(max_length=200)
     estado = models.CharField(max_length=20, choices=ESTADO_OPCIONES, default='pendiente')
 
