@@ -17,7 +17,7 @@ async function postData(endpoint, obj) {
 
  async function getData(endpoint) {
   try {
-    const response = await fetch(`http://localhost:3001/${endpoint}`);
+    const response = await fetch(`http://127.0.0.1:8000/${endpoint}`);
     if (!response.ok) {
       throw new Error('Error al obtener los datos');
     }

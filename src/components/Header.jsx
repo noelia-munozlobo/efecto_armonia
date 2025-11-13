@@ -19,7 +19,7 @@ const Header = () => {
         <span>|</span>
         <Link to="/recursos">Recursos</Link>
         <span>|</span>
-         <Link to="PagPsicologos">Especialistas</Link>
+         <Link to="/PagPsicologos">Especialistas</Link>
         <span>|</span>
         <Link to="/contacto">Contacto</Link>
         <span>|</span>

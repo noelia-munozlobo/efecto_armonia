@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-
+CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'usuarios.Usuario'
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'efectoarmonia_bd',
         'USER': 'root',
-        'PASSWORD': 'fio123',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '3306',
     }
