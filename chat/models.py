@@ -1,6 +1,5 @@
 from django.db import models
 from usuarios.models import Usuario
-from django.utils import timezone
 
 class Chat(models.Model):
     # Usuario que envía el mensaje
@@ -18,7 +17,7 @@ class Chat(models.Model):
     )
 
     contenido = models.TextField(verbose_name="Contenido del mensaje")
-    fecha_envio = models.DateTimeField(default=timezone.now)
+    fecha_envio = models.DateTimeField(auto_now_add=True)
     leido = models.BooleanField(default=False)
 
     def __str__(self):

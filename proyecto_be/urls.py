@@ -8,4 +8,5 @@ urlpatterns = [
     path('mentorias/', include('mentorias.urls')),
     path('horarios/', include('horarios.urls')),
     path('chat/', include('chat.urls')),
+    path('comentarios/', include('comentarios.urls')),
 ]

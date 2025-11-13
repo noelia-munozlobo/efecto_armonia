@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'mentorias',
     'horarios',
     'chat',
+    'comentarios',
 ]
 
 MIDDLEWARE = [
