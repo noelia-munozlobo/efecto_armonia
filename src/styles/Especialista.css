@@ -10,15 +10,19 @@
 }
 
 /* Títulos */
-.especialista h2, .especialista h3 {
+.especialista h2, 
+.especialista h3 {
   font-family: 'Playfair Display', serif;
   color: #3b2f2f;
   text-align: center;
   margin-bottom: 1rem;
 }
 
-/* Tarjetas para cada sección */
-section {
+/* Tarjetas dentro del panel del especialista */
+.especialista .tarjeta-horarios,
+.especialista .tarjeta-calendario,
+.especialista .citas,
+.especialista .tarjeta-acciones {
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(59, 47, 47, 0.1);
@@ -29,7 +33,7 @@ section {
 }
 
 /* Botones de horario */
-.botones-horario {
+.especialista .botones-horario {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -37,7 +41,7 @@ section {
   margin-top: 1rem;
 }
 
-.botones-horario button {
+.especialista .botones-horario button {
   background-color: #e8e3e3;
   color: #3b2f2f;
   border: none;
@@ -48,18 +52,18 @@ section {
   transition: background-color 0.3s ease;
 }
 
-.botones-horario button.activo {
+.especialista .botones-horario button.activo {
   background-color: #D0F0E0;
   color: #2E7D6F;
   font-weight: bold;
 }
 
-.botones-horario button:hover {
+.especialista .botones-horario button:hover {
   background-color: #C2E8D4;
 }
 
 /* Calendario centrado */
-.react-calendar {
+.especialista .react-calendar {
   margin: 0 auto;
   max-width: 600px;
   background: #fff;
@@ -70,18 +74,18 @@ section {
 }
 
 /* Fechas seleccionadas */
-.fechas-seleccionadas {
+.especialista .fechas-seleccionadas {
   margin-top: 2rem;
   text-align: center;
 }
 
-.fechas-seleccionadas h4 {
+.especialista .fechas-seleccionadas h4 {
   margin-bottom: 1rem;
   font-size: 1.1rem;
   font-weight: 600;
 }
 
-.fechas-seleccionadas ul {
+.especialista .fechas-seleccionadas ul {
   list-style: none;
   padding-left: 0;
   margin-top: 1rem;
@@ -90,7 +94,7 @@ section {
   align-items: center;
 }
 
-.fechas-seleccionadas li {
+.especialista .fechas-seleccionadas li {
   background-color: #f3f3f3;
   margin: 8px 0;
   padding: 10px 14px;
@@ -103,7 +107,10 @@ section {
 }
 
 /* Botones generales */
-.guardar, .limpiar, .confirmar, .eliminar {
+.especialista .guardar, 
+.especialista .limpiar, 
+.especialista .confirmar, 
+.especialista .eliminar {
   margin-top: 10px;
   padding: 10px 16px;
   border: none;
@@ -117,22 +124,22 @@ section {
   display: inline-block;
 }
 
-.guardar:hover,
-.limpiar:hover,
-.confirmar:hover,
-.eliminar:hover {
+.especialista .guardar:hover,
+.especialista .limpiar:hover,
+.especialista .confirmar:hover,
+.especialista .eliminar:hover {
   background-color: #B8E5D0;
   color: #1E5E50;
 }
 
 /* Citas solicitadas */
-.citas ul {
+.especialista .citas ul {
   list-style: none;
   padding-left: 0;
   margin-top: 1rem;
 }
 
-.citas li {
+.especialista .citas li {
   background-color: #ffffff;
   border: 2px solid #D0F0E0;
   margin: 8px 0;
@@ -141,26 +148,27 @@ section {
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   color: #2E7D6F;
   display: flex;
-  justify-content: space-between; /* ✅ texto a la izquierda, botones a la derecha */
+  justify-content: space-between; /* texto a la izquierda, botones a la derecha */
   align-items: center;
   flex-wrap: wrap;
 }
 
-.citas li strong {
+.especialista .citas li strong {
   font-weight: 600;
   margin-bottom: 4px;
 }
 
 /* Contenedor del texto de la cita */
-.cita-info {
+.especialista .cita-info {
   display: flex;
   flex-direction: column;
 }
 
 /* Contenedor de botones al lado derecho */
-.cita-botones {
+.especialista .cita-botones {
   display: flex;
   gap: 0.6rem;
 }
+
 
 

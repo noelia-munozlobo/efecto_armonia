@@ -4,21 +4,29 @@ import { getData } from '../services/fetch';
 
 const Psicologos = () => {
   const [especialistas, setEspecialistas] = useState([]);
-  const [filtro, setFiltro] = useState('todos');
+  const [filtro, setFiltro] = useState("todos");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchEspecialistas = async () => {
-      const data = await getData('especialistas');
+      setLoading(true);
+      const data = await getData("especialistas");
       setEspecialistas(data || []);
+      setLoading(false);
     };
     fetchEspecialistas();
   }, []);
+  
+  console.log("Estado de especialistas:", especialistas);
 
   const filtrarEspecialistas = () => {
-    return filtro === 'todos'
-      ? especialistas
-      : especialistas.filter(e => e.especialidad === filtro);
+    if (filtro === "todos") return especialistas;
+    return especialistas.filter((e) => e.especialidad === filtro);
   };
+
+  if (loading) {
+    return <p className="loading">Cargando especialistas...</p>;
+  }
 
   return (
     <div className="psicologos-container">
@@ -35,15 +43,19 @@ const Psicologos = () => {
       <section className="lista-psicologos">
         <h2>Especialistas registrados</h2>
         <div className="bloques">
-          {filtrarEspecialistas().map((e) => (
-            <div key={e.id} className="bloque">
-              <h4>{e.nombre}</h4>
-              <p><strong>Especialidad:</strong> {e.especialidad}</p>
-              <p><strong>Teléfono:</strong> {e.telefono}</p>
-              <p><strong>Correo:</strong> {e.correo}</p>
-              <p className="descripcion">{e.descripcion}</p>
-            </div>
-          ))}
+          {filtrarEspecialistas().length > 0 ? (
+            filtrarEspecialistas().map((e) => (
+              <div key={e.id} className="bloque">
+                <h4>{e.nombre}</h4>
+                <p><strong>Especialidad:</strong> {e.especialidad}</p>
+                <p><strong>Teléfono:</strong> {e.telefono}</p>
+                <p><strong>Correo:</strong> {e.correo}</p>
+                <p className="descripcion">{e.descripcion}</p>
+              </div>
+            ))
+          ) : (
+            <p className="no-resultados">No hay especialistas para esta categoría.</p>
+          )}
         </div>
       </section>
     </div>
@@ -51,4 +63,3 @@ const Psicologos = () => {
 };
 
 export default Psicologos;
-
