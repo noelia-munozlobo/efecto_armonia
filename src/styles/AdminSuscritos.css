@@ -1,1 +1,38 @@
+.contenedor-suscritos {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #f5f9f8;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-family: 'Segoe UI', sans-serif;
+  color: #2f3e3e;
+  text-align: center;
+}
+
+.contenedor-suscritos h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #4a7c59;
+}
+
+.lista-suscritos {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-suscritos li {
+  background-color: #ffffff;
+  border: 1px solid #dbe5db;
+  border-radius: 8px;
+  padding: 0.8rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.sin-suscritos {
+  font-style: italic;
+  color: #888;
+  margin-top: 1rem;
+}
 

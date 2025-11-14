@@ -2,47 +2,32 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Recursos.css';
 import { getData, postData } from '../services/fetch';
 
+
 const Recursos = () => {
   const [recursos, setRecursos] = useState([]);
   const [filtro, setFiltro] = useState('todos');
   const [orden, setOrden] = useState('asc');
-  const [alerta, setAlerta] = useState(false); 
+  const [alerta, setAlerta] = useState(false);
   const [data, setData] = useState([]);
-  // Carga los recursos 
+  // Carga los recursos
   useEffect(() => {
     const fetchRecursos = async () => {
       const info = await getData('recursos/crear-recurso/');
       setRecursos(info || []);
       setData(info || []);
-
     };
     fetchRecursos();
   }, []);
-
   // Filtra y ordena los recursos
   const filtrarRecursos = () => {
     let filtrados = filtro === 'todos'
       ? recursos
       : recursos.filter(r => r.tipo === filtro);
-
     return orden === 'asc'
       ? [...filtrados].sort((a, b) => (a.precio || 0) - (b.precio || 0))
       : [...filtrados].sort((a, b) => (b.precio || 0) - (a.precio || 0));
   };
-
-  // Registra la suscripción del usuario a un curso
-  async function seguirCurso(idCurso, nombreCurso) {
-    const objCurso = {
-      idUsuario: JSON.parse(localStorage.getItem("usuarios")).id,
-      nombreUsuario: JSON.parse(localStorage.getItem("usuarios")).nombre,
-      idCurso: idCurso,
-      nombreCurso: nombreCurso
-    };
-    await postData('suscripciones', objCurso);
-    setAlerta(true); 
-    setTimeout(() => setAlerta(false), 2000); // Muestra alerta temporal
-  }
-
+  
   return (
     <div className="recursos-container">
       <aside className="filtro">
@@ -54,7 +39,6 @@ const Recursos = () => {
           <option value="recurso">Recursos</option>
         </select>
       </aside>
-
       <section className="lista-recursos">
         <h2>Recursos disponibles</h2>
         {alerta && (
@@ -68,8 +52,7 @@ const Recursos = () => {
               <h3>No hay recursos disponibles</h3>
             </>
           )}
-        </div> 
-
+        </div>
         {/* Muestra los recursos filtrados y ordenados */}
         <div className="bloques">
           {filtrarRecursos().map((r) => (
@@ -87,5 +70,4 @@ const Recursos = () => {
     </div>
   );
 };
-
 export default Recursos;

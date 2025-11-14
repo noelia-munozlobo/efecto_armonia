@@ -7,6 +7,8 @@ import PagRecursos from '../pages/PagRecursos';
 import PagAdmin from '../pages/PagAdmin';
 import PagCliente from '../pages/PagCliente';
 import PagEspecialista from '../pages/PagEspecialista';
+import PagPsicologos from '../pages/PagPsicologos';
+import RecursosVista from '../pages/RecursosVista';
 
 
 const Routing = () => (
@@ -20,6 +22,8 @@ const Routing = () => (
       <Route path="/PagAdmin" element={<PagAdmin />} />
       <Route path="/PagCliente" element={<PagCliente/>} />
       <Route path="/PagEspecialista" element={<PagEspecialista/>} />
+      <Route path="/PagPsicologos" element={<PagPsicologos/>} />
+      <Route path="/RecursosVista" element={<RecursosVista/>} />
       
     </Routes>
   </Router>

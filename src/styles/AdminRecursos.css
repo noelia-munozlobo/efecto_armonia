@@ -1,0 +1,102 @@
+/* AdminRecursos.css - estilo Efecto Armonía */
+
+.lista-recursos {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.lista-recursos h2 {
+  text-align: center;
+  color: #4a7c59;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.bloques {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.bloque {
+  background-color: #ffffff;
+  border: 1px solid #dbe5db;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 280px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.bloque:hover {
+  transform: scale(1.02);
+}
+
+.bloque h4 {
+  color: #2f5d62;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.bloque p {
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
+}
+
+.bloque input,
+.bloque textarea,
+.bloque select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid #cce3d8;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #fefefe;
+}
+
+.bloque button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #4a7c59;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.bloque button:hover {
+  background-color: #3b5f47;
+}
+
+.lista-mentorias {
+  background-color: #eef5ec;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.lista-mentorias h2 {
+  color: #4a7c59;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.lista-mentorias ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.lista-mentorias li {
+  background-color: #ffffff;
+  border: 1px solid #dbe5db;
+  border-radius: 8px;
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}

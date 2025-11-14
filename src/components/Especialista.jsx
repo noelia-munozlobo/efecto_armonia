@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../styles/Especialista.css'
+import '../styles/Especialista.css';
 
 const Especialista = () => {
   const [horariosSeleccionados, setHorariosSeleccionados] = useState([]);
@@ -69,8 +69,9 @@ const Especialista = () => {
     <div className="especialista">
       <h2>Panel del Especialista</h2>
 
-      <section className="horarios">
-        <h3>Selecciona tus horarios disponibles</h3>
+      {/* Tarjeta de horarios */}
+      <section className="tarjeta-horarios">
+        <h3> Selecciona tus horarios disponibles</h3>
         <div className="botones-horario">
           {horariosDisponibles.map((horario, i) => (
             <button
@@ -84,8 +85,9 @@ const Especialista = () => {
         </div>
       </section>
 
-      <section className="calendario">
-        <h3>Selecciona tus fechas disponibles</h3>
+      {/* Tarjeta de calendario */}
+      <section className="tarjeta-calendario">
+        <h3> Selecciona tus fechas disponibles</h3>
         <Calendar
           onClickDay={toggleFecha}
           value={null}
@@ -106,20 +108,28 @@ const Especialista = () => {
         </div>
       </section>
 
+      {/* Tarjeta de citas */}
       <section className="citas">
-        <h3>Solicitudes de Citas</h3>
-        <ul>
-          {citasSolicitadas.map((cita, i) => (
-            <li key={i}>
-              <strong>{cita.nombre}</strong> – {cita.fecha} ({cita.motivo})<br />
-              <button className="confirmar" onClick={() => confirmarCita(i)}>Confirmar</button>
-              <button className="eliminar" onClick={() => eliminarCita(i)}>Eliminar</button>
-            </li>
-          ))}
-        </ul>
-      </section>
+  <h3>Solicitudes de Citas</h3>
+  <ul>
+    {citasSolicitadas.map((cita, i) => (
+      <li key={i}>
+        <div className="cita-info">
+          <strong>{cita.nombre}</strong> – {cita.fecha} ({cita.motivo})
+        </div>
+        <div className="cita-botones">
+          <button className="confirmar" onClick={() => confirmarCita(i)}>Confirmar</button>
+          <button className="eliminar" onClick={() => eliminarCita(i)}>Eliminar</button>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>
 
-      <section>
+
+      {/* Tarjeta de acciones */}
+      <section className="tarjeta-acciones">
+        <h3>Acciones generales</h3>
         <button className="limpiar" onClick={limpiarTodo}>Limpiar todo</button>
       </section>
     </div>
@@ -127,3 +137,4 @@ const Especialista = () => {
 };
 
 export default Especialista;
+

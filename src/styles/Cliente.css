@@ -1,7 +1,6 @@
 .pagina-cliente {
   padding: 2rem;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #fdfaf4; 
   color: #2f3e3e; 
 }
 
@@ -22,7 +21,7 @@ input[type="date"] {
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
-  background-color: #e0f4f1; 
+ ; 
   color: #2f3e3e;
 }
 
@@ -102,3 +101,20 @@ input[type="date"] {
 .mentoriaBtn:hover {
   background: #4c6793;
 }
+
+.pagina-cliente {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2f3e3e; 
+
+  /* NUEVO: centrado horizontal */
+  max-width: 800px;
+  margin: 0 auto;
+
+  /* NUEVO: centrado vertical opcional */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+

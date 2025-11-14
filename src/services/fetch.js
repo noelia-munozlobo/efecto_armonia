@@ -15,21 +15,20 @@ async function postData(endpoint, obj) {
   }
 }
 
-async function getData(endpoint) {
+ async function getData(endpoint) {
   try {
-    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    const respuesta = await peticion.json();
-    console.log(respuesta);
-    return respuesta;
+    const response = await fetch(`http://127.0.0.1:8000/${endpoint}`);
+    if (!response.ok) {
+      throw new Error('Error al obtener los datos');
+    }
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error(error);
+    console.error('Error en getData:', error);
+    return [];
   }
-}
+};
+
 
 async function putData(endpoint, obj) {
   try {
@@ -95,6 +94,9 @@ async function obtenerMentorias() {
     return resultado;
   } catch (error) {
     console.error("Error al obtener las mentorías:", error);
+  
   }
 }
+
+
 export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias }

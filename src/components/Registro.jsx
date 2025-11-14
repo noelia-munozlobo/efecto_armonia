@@ -36,7 +36,8 @@ const Registro = () => {
     }
   };
 
-  return (
+    return (
+  <div className="pagina-registro">
     <div className="registro-container">
       <h2>Registro</h2>
       <form>
@@ -101,18 +102,15 @@ const Registro = () => {
           />
         </div>
 
-        <button
-          type="button"
-          onClick={agregarUsuario}
-          className="boton-registro"
-        >
+        <button type="button" onClick={agregarUsuario} className="boton-registro">
           Registrarse
         </button>
-
       </form>
     </div>
-  );
-};
+  </div>
+); 
+}
+
 
 export default Registro;
 

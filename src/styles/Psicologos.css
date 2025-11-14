@@ -1,0 +1,127 @@
+/* Contenedor principal */
+.psicologos-container {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: #3b2f2f;
+  box-sizing: border-box;
+}
+
+/* Filtro lateral o superior */
+.filtro {
+  text-align: center;
+  background-color: #ffffff;
+  border: 2px solid #D0F0E0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 6px 18px rgba(59, 47, 47, 0.1);
+}
+
+.filtro h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+  color: #2E7D6F;
+  font-size: 1.4rem;
+}
+
+.filtro select {
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: 1.5px solid #B8E5D0;
+  background-color: #F8FDFB;
+  color: #2E7D6F;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filtro select:hover {
+  background-color: #E9FAF1;
+}
+
+/* Título principal */
+.lista-psicologos h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: #2E7D6F;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+/* Grid de especialistas */
+.lista-psicologos .bloques {
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Cada tarjeta (bloque) */
+.bloque {
+  background-color: #ffffff;
+  border: 2px solid #D0F0E0;
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bloque:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+/* Título del especialista */
+.bloque h4 {
+  color: #2E7D6F;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Texto de info */
+.bloque p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.bloque strong {
+  color: #3b2f2f;
+}
+
+/* Descripción */
+.descripcion {
+  margin-top: 0.8rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Mensajes de carga y sin resultados */
+.loading,
+.no-resultados {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  color: #2E7D6F;
+  background-color: #F3FBF7;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1.5px solid #D0F0E0;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .psicologos-container {
+    padding: 1.2rem;
+  }
+
+  .filtro {
+    padding: 1rem;
+  }
+
+  .bloque {
+    padding: 1.2rem;
+  }
+}

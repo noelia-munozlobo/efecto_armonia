@@ -58,6 +58,13 @@
       "tipo": "charla",
       "nombre": "clarla sobre autoestima",
       "descripcion": "charla 2"
+    },
+    {
+      "id": "e838",
+      "tipo": "charla",
+      "nombre": "Etapas del Duelo",
+      "descripcion": "Charla para conocer mas acerca del duelo.",
+      "informacion": ""
     }
   ],
   "mentorias": [
@@ -136,12 +143,28 @@
   ],
   "especialistas": [
     {
-      "nombre": "Dra. Maria Lopez",
-      "correo": "mariLopez@gmail.com",
-      "telefono": "555-1234",
+      "id": "1",
+      "nombre": "Ana López",
+      "especialidad": "Psicologia Clínica",
+      "telefono": "8888-5555",
+      "correo": "ana@example.com",
+      "descripcion": "Especialista en ansiedad, depresión y terapia individual."
+    },
+    {
+      "id": "2",
+      "nombre": "Carlos Rojas",
       "especialidad": "Psicologia Infantil",
-      "descripcion": "",
-      "id": "a1b2"
+      "telefono": "8877-4444",
+      "correo": "carlos@example.com",
+      "descripcion": "Experto en desarrollo infantil y manejo emocional en niños."
+    },
+    {
+      "id": "3",
+      "nombre": "Laura Martínez",
+      "especialidad": "Psicologia Educativa",
+      "telefono": "8899-3333",
+      "correo": "laura@example.com",
+      "descripcion": "Psicóloga enfocada en orientación vocacional y aprendizaje."
     }
   ],
   "horarios": [

@@ -25,7 +25,7 @@ const FormularioPsicologo = () => {
       setNombre('');
       setCorreo('');
       setTelefono('');
-      setEspecialidad('Clínica');
+      setEspecialidad('Psicologia Clínica');
       setDescripcion('');
       alert("El especialista fue registrado");
     } catch (error) {
@@ -71,11 +71,11 @@ const FormularioPsicologo = () => {
           onChange={(e) => setEspecialidad(e.target.value)}
           required
         >
-          <option value="Clínica">Clínica</option>
-          <option value="Educativa">Educativa</option>
-          <option value="Organizacional">Organizacional</option>
-          <option value="Social">Social</option>
-          <option value="Infantojuvenil">Infantojuvenil</option>
+          <option value="Clínica">Psicologia Clínica</option>
+          <option value="Educativa">Psicologia Educativa</option>
+          <option value="Organizacional">Psicologia Organizacional</option>
+          <option value="Social">Psicologia Social</option>
+          <option value="Infantojuvenil">Psicologia Infantil</option>
         </select>
 
         <label htmlFor="descripcion">Descripción / Enfoque</label>

@@ -35,8 +35,9 @@ const Sesion = () => {
     alert("Credenciales incorrectas");
   };
 
-  return (
-    <div className="registro-container">
+ return (
+  <div className="pagina-sesion">  
+    <div className="sesion-container">  
       <h2>Inicio de Sesión</h2>
       <form>
         <div className="campo">
@@ -66,7 +67,8 @@ const Sesion = () => {
         </button>
       </form>
     </div>
-  );
+  </div>
+);
 };
 
 export default Sesion;
