@@ -1,84 +1,81 @@
-.Sesion-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #D0F0E0;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  font-family: 'Roboto', sans-serif;
-}
-
-/* Contenedor que centra la página */
+/* Fondo general */
 .pagina-sesion {
-  min-height: calc(100vh - 50px); /* ajusta al alto del header */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 50px; /* evita que quede debajo del header */
-  background-color: #f5f9f8;
-}
-
-.sesion-container {
-  max-width: 400px;
-  width: 100%;
-  padding: 2rem;
-  background-color: #D0F0E0;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  min-height: 100vh;
+  background-color: #F0F9F7;
   font-family: 'Roboto', sans-serif;
+  padding: 1rem;
 }
 
-.campoNombre {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-.campoNombre label {
-  margin-bottom: 0.3rem;
-  color: #2E7D6F;
-  font-weight: 500;
-}
-.campoNombre input {
-  padding: 0.5rem;
-  border: 1px solid #A0D6B4;
-  border-radius: 6px;
-  outline: none;
-}
-.campoNombre input:focus {
-  border-color: #2E7D6F;
-  box-shadow: 0 0 4px #A0D6B4;
-}
-.campoContraseña {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-.campoContraseña label {
-  margin-bottom: 0.3rem;
-  color: #2E7D6F;
-  font-weight: 500;
-}
-.campoContraseña input {
-  padding: 0.5rem;
-  border: 1px solid #A0D6B4;
-  border-radius: 6px;
-  outline: none;
-}
-.campoContraseña input:focus {
-  border-color: #2E7D6F;
-  box-shadow: 0 0 4px #A0D6B4;
-}
-.boton-Inicio {
+/* Caja del formulario */
+.sesion-box {
+  background-color: white;
+  border: 1px solid #CCE7D6;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 1.5rem;
   width: 100%;
-  padding: 0.6rem;
+  max-width: 400px;
+}
+
+/* Título */
+.sesion-titulo {
+  text-align: center;
+  color: #2E7D6F;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+/* Formulario */
+.sesion-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Campo individual */
+.sesion-campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.sesion-campo label {
+  margin-bottom: 0.3rem;
+  color: #2E7D6F;
+  font-size: 0.85rem;
+}
+
+.sesion-campo input {
+  padding: 0.5rem;
+  border: 1px solid #A0D6B4;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.sesion-campo input:focus {
+  border-color: #2E7D6F;
+  outline: none;
+}
+
+/* Botón */
+.sesion-boton {
   background-color: #A0D6B4;
   color: white;
   border: none;
+  padding: 0.6rem 1rem;
   border-radius: 8px;
-  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
 }
-.boton-Inicio:hover {
+
+.sesion-boton:hover {
   background-color: #81C784;
+  transform: translateY(-2px);
 }
+
+
+

@@ -3,7 +3,6 @@
   width: 100%;
   height: 400px; /* Tamaño tipo banner */
   overflow: hidden;
-  border-radius: 0 0 25px 25px;
   box-shadow: 0 6px 18px rgba(59, 47, 47, 0.25);
 }
 .fondo-img {
@@ -19,34 +18,38 @@
 .texto-superpuesto {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #000000; /* :diamante_azul_pequeño: texto negro */
+  left: 10%; /* lo acercamos a la izquierda sin desbordar */
+  transform: translateY(-50%); /* ya no centramos horizontalmente */
+  text-align: left; /* <-- alineación a la izquierda */
+  color: #000000;
   z-index: 2;
-  padding: 0 20px;
+  padding: 0 10px;
 }
+
 .texto-superpuesto h1:first-child {
   font-family: "Poppins", sans-serif;
-  font-size: 1.5rem; /* “Bienvenido” más pequeño */
+  font-size: 1.5rem;
   letter-spacing: 2px;
   margin-bottom: 5px;
   text-transform: uppercase;
 }
+
 .texto-superpuesto h1:last-of-type {
   font-family: "Playfair Display", serif;
-  font-size: 3rem; /* “A EFECTO ARMONIA” más grande */
+  font-size: 3rem;
   font-weight: 700;
   letter-spacing: 3px;
   margin-bottom: 15px;
 }
+
 .texto-superpuesto p {
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
-  color: #222; /* gris oscuro, combina mejor con fondo claro */
+  color: #222;
   font-weight: 300;
   letter-spacing: 0.5px;
 }
+
 /* Responsive */
 @media (max-width: 768px) {
   .imagen-fondo {

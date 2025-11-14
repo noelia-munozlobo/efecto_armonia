@@ -8,7 +8,6 @@ const Sesion = () => {
   const [contraseña, setContraseña] = useState('');
   const navigate = useNavigate();
 
-  // Verifica si el usuario existe y redirige según su rol
   const getUsers = async () => {
     const usuarios = await getData("usuarios");
 
@@ -35,40 +34,40 @@ const Sesion = () => {
     alert("Credenciales incorrectas");
   };
 
- return (
-  <div className="pagina-sesion">  
-    <div className="sesion-container">  
-      <h2>Inicio de Sesión</h2>
-      <form>
-        <div className="campo">
-          <label htmlFor="correo">Correo electrónico</label>
-          <input
-            type="email"
-            id="correo"
-            name="correo"
-            required
-            onChange={(e) => setCorreo(e.target.value)}
-          />
-        </div>
+  return (
+    <div className="pagina-sesion">  
+      <div className="sesion-box">  
+        <h2 className="sesion-titulo">Inicio de Sesión</h2>
+        <form className="sesion-form">
+          <div className="sesion-campo">
+            <label htmlFor="correo">Correo electrónico</label>
+            <input
+              type="email"
+              id="correo"
+              name="correo"
+              required
+              onChange={(e) => setCorreo(e.target.value)}
+            />
+          </div>
 
-        <div className="campo">
-          <label htmlFor="contraseña">Contraseña</label>
-          <input
-            type="password"
-            id="contraseña"
-            name="contraseña"
-            required
-            onChange={(e) => setContraseña(e.target.value)}
-          />
-        </div>
+          <div className="sesion-campo">
+            <label htmlFor="contraseña">Contraseña</label>
+            <input
+              type="password"
+              id="contraseña"
+              name="contraseña"
+              required
+              onChange={(e) => setContraseña(e.target.value)}
+            />
+          </div>
 
-        <button type="button" onClick={getUsers} className="boton-registro">
-          Iniciar Sesión
-        </button>
-      </form>
+          <button type="button" onClick={getUsers} className="sesion-boton">
+            Iniciar Sesión
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Sesion;

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'horarios',
     'chat',
     'comentarios',
+    'rest_framework_simplejwt',
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
