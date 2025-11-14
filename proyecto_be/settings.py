@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'chat',
     'comentarios',
 ]
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

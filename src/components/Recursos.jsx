@@ -7,12 +7,14 @@ const Recursos = () => {
   const [filtro, setFiltro] = useState('todos');
   const [orden, setOrden] = useState('asc');
   const [alerta, setAlerta] = useState(false); 
-
+  const [data, setData] = useState([]);
   // Carga los recursos 
   useEffect(() => {
     const fetchRecursos = async () => {
-      const data = await getData('recursos');
-      setRecursos(data || []);
+      const info = await getData('recursos/crear-recurso/');
+      setRecursos(info || []);
+      setData(info || []);
+
     };
     fetchRecursos();
   }, []);
@@ -60,6 +62,14 @@ const Recursos = () => {
             ¡Te has suscrito correctamente!
           </div>
         )}
+        <div className="orden">
+          {data.length == 0 && (
+            <>
+              <h3>No hay recursos disponibles</h3>
+            </>
+          )}
+        </div> 
+
         {/* Muestra los recursos filtrados y ordenados */}
         <div className="bloques">
           {filtrarRecursos().map((r) => (
@@ -68,7 +78,7 @@ const Recursos = () => {
               <p>Tipo: {r.tipo}</p>
               <p>{r.descripcion}</p>
               <button
-                onClick={() => seguirCurso(r.id, r.nombre)}
+                onClick={() => localStorage.setItem("id_recurso",r.id)}
               >Seguir</button>
             </div>
           ))}

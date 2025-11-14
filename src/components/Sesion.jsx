@@ -4,48 +4,49 @@ import { getData } from '../services/fetch';
 import { useNavigate } from 'react-router-dom';
 
 const Sesion = () => {
-  const [nombre, setNombre] = useState('');
+  const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
   const navigate = useNavigate();
 
-  // Verifica si el usuario existe y redirige según su tipo
+  // Verifica si el usuario existe y redirige según su rol
   const getUsers = async () => {
     const usuarios = await getData("usuarios");
 
-    const usuarioValido = usuarios.find(
-      (usuario) => usuario.nombre === nombre && usuario.contraseña === contraseña && usuario.tipoUsuario == "usuario"
+    const usuarioCliente = usuarios.find(
+      (usuario) => usuario.email === correo && usuario.password === contraseña && usuario.rol === "cliente"
     );
 
-    const usuarioValidoAdmin = usuarios.find(
-      (usuario) => usuario.nombre === nombre && usuario.contraseña === contraseña && usuario.tipoUsuario == "admin"
+    const usuarioAdmin = usuarios.find(
+      (usuario) => usuario.email === correo && usuario.password === contraseña && usuario.rol === "admin"
     );
 
-    if (usuarioValido) {
-      navigate("/PagCliente"); // Redirige a vista cliente
-      localStorage.setItem("usuarios", JSON.stringify(usuarioValido));
+    if (usuarioCliente) {
+      navigate("/PagCliente");
+      localStorage.setItem("usuarios", JSON.stringify(usuarioCliente));
       return;
     }
 
-    if (usuarioValidoAdmin) {
-      navigate("/PagAdmin"); // Redirige a vista admin
-      localStorage.setItem("usuarios", JSON.stringify(usuarioValidoAdmin));
+    if (usuarioAdmin) {
+      navigate("/PagAdmin");
+      localStorage.setItem("usuarios", JSON.stringify(usuarioAdmin));
       return;
     }
+
+    alert("Credenciales incorrectas");
   };
 
   return (
     <div className="registro-container">
       <h2>Inicio de Sesión</h2>
-      {/* Formulario controlado con estados */}
       <form>
         <div className="campo">
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="correo">Correo electrónico</label>
           <input
-            type="text"
-            id="nombre"
-            name="nombre"
+            type="email"
+            id="correo"
+            name="correo"
             required
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setCorreo(e.target.value)}
           />
         </div>
 
@@ -60,13 +61,12 @@ const Sesion = () => {
           />
         </div>
 
-        {/* Botón que dispara la verificación de usuario */}
-        <button type="button" onClick={getUsers} className="boton-registro">Iniciar Sesión</button>
+        <button type="button" onClick={getUsers} className="boton-registro">
+          Iniciar Sesión
+        </button>
       </form>
     </div>
   );
 };
 
 export default Sesion;
-
-

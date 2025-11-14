@@ -4,26 +4,32 @@ import { postData } from '../services/fetch';
 import { useNavigate } from 'react-router-dom';
 
 const Registro = () => {
-  // Estados para capturar los datos del formulario
-  const [nombre, setNombre] = useState('');
+  const [nombreUsuario, setNombreUsuario] = useState('');
   const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [telefono, setTelefono] = useState('');
+
   const navigate = useNavigate();
 
-  // Envía los datos del nuevo usuario y redirige a la página de sesión
   const agregarUsuario = async (e) => {
     e.preventDefault();
+
     const obj = {
-      nombre,
-      correo,
-      contraseña,
-      tipoUsuario: "usuario"
+      username: nombreUsuario,
+      email: correo,
+      password: contraseña,
+      first_name: firstName,
+      last_name: lastName,
+      telefono: telefono,
+      rol: "cliente"
     };
 
     try {
-      const respuesta = await postData("usuarios", obj);
+      const respuesta = await postData("usuarios/crear-usuario/", obj);
       console.log('Respuesta del servidor:', respuesta);
-      navigate("/sesion"); // Redirección tras registro 
+      navigate("/sesion");
     } catch (error) {
       console.error('Error al registrar:', error);
       alert('Hubo un problema al enviar el registro');
@@ -34,14 +40,44 @@ const Registro = () => {
     <div className="registro-container">
       <h2>Registro</h2>
       <form>
+
         <div className="campo">
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="username">Nombre de usuario</label>
           <input
             type="text"
-            id="nombre"
-            name="nombre"
+            id="username"
             required
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setNombreUsuario(e.target.value)}
+          />
+        </div>
+
+        <div className="campo">
+          <label htmlFor="firstName">Nombre</label>
+          <input
+            type="text"
+            id="firstName"
+            required
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+
+        <div className="campo">
+          <label htmlFor="lastName">Apellidos</label>
+          <input
+            type="text"
+            id="lastName"
+            required
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
+
+        <div className="campo">
+          <label htmlFor="telefono">Teléfono</label>
+          <input
+            type="text"
+            id="telefono"
+            required
+            onChange={(e) => setTelefono(e.target.value)}
           />
         </div>
 
@@ -50,7 +86,6 @@ const Registro = () => {
           <input
             type="email"
             id="correo"
-            name="correo"
             required
             onChange={(e) => setCorreo(e.target.value)}
           />
@@ -61,15 +96,23 @@ const Registro = () => {
           <input
             type="password"
             id="contraseña"
-            name="contraseña"
             required
             onChange={(e) => setContraseña(e.target.value)}
           />
         </div>
-        <button type="button" onClick={agregarUsuario} className="boton-registro">Registrarse</button>
+
+        <button
+          type="button"
+          onClick={agregarUsuario}
+          className="boton-registro"
+        >
+          Registrarse
+        </button>
+
       </form>
     </div>
   );
 };
 
 export default Registro;
+

@@ -1,6 +1,6 @@
 async function postData(endpoint, obj) {
   try {
-    const peticion = await fetch(`http://localhost:3001/${endpoint}`, {
+    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -17,7 +17,7 @@ async function postData(endpoint, obj) {
 
 async function getData(endpoint) {
   try {
-    const peticion = await fetch(`http://localhost:3001/${endpoint}`, {
+    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json"
@@ -33,7 +33,7 @@ async function getData(endpoint) {
 
 async function putData(endpoint, obj) {
   try {
-    const peticion = await fetch(`http://localhost:3001/${endpoint}`, {
+    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
@@ -50,7 +50,7 @@ async function putData(endpoint, obj) {
 
 async function deleteData(endpoint) {
   try {
-    const peticion = await fetch(`http://localhost:3001/${endpoint}`, {
+    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json"
@@ -66,7 +66,7 @@ async function deleteData(endpoint) {
 
 async function enviarRecurso(recurso, nuevoRecurso) {
   try {
-    const respuesta = await fetch(`http://localhost:3001/${recurso}`, {
+    const respuesta = await fetch(`http://127.0.0.1:8000/${recurso}`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -84,7 +84,7 @@ async function enviarRecurso(recurso, nuevoRecurso) {
 
 async function obtenerMentorias() {
   try {
-    const respuesta = await fetch(`http://localhost:3001/mentorias`, {
+    const respuesta = await fetch(`http://127.0.0.1:8000/mentorias/`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json"
