@@ -22,13 +22,9 @@ class UsuarioLoginView(APIView):
             token = RefreshToken.for_user(usuario)
             return Response({
                 "token": str(token.access_token),
-                "usuario": {
-                    "id": usuario.id,
-                    "username": usuario.username,
-                    "email": usuario.email,
-                    "rol": usuario.rol
-                },
-                "mensaje": "Inicio de sesión exitoso"
+                "mensaje": "Inicio de sesión exitoso",
+                "rol": usuario.rol,
+                "usuario": UsuarioSerializer(usuario).data
             })
         else:
             return Response({

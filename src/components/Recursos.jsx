@@ -12,7 +12,7 @@ const Recursos = () => {
   // Carga los recursos
   useEffect(() => {
     const fetchRecursos = async () => {
-      const info = await getData('recursos/crear-recurso/');
+      const info = await getData('recursos/crear-recurso');
       setRecursos(info || []);
       setData(info || []);
     };
@@ -62,7 +62,7 @@ const Recursos = () => {
               <p>{r.descripcion}</p>
               <button
                 onClick={() => localStorage.setItem("id_recurso",r.id)}
-              >Seguir</button>
+              >Ver Más</button>
             </div>
           ))}
         </div>

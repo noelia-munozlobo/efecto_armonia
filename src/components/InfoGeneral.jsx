@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/InfoGeneral.css';
-import Pilar from '../assets/Pilar.png'; 
+
 
 //Informacion general sobre el proyecto
 const InfoGeneral = () => (

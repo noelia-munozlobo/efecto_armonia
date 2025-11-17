@@ -1,63 +1,81 @@
-.recursos-container {
+/* Página de registro */
+.pagina-registro {
   display: flex;
-  gap: 2rem;
-  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F0F9F7;
   font-family: 'Roboto', sans-serif;
 }
-.filtro {
-  width: 220px;
-  background-color: #F0F9F7;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+/* Contenedor principal */
+.registro-container {
+  background-color: white;
+  border: 1px solid #CCE7D6;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 2rem 3rem;
+  max-width: 900px;
+  width: 100%;
 }
-.filtro h3 {
+
+/* Título */
+.registro-container h2 {
+  text-align: center;
+  color: #2E7D6F;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+/* Formulario en dos columnas */
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* dos columnas iguales */
+  gap: 2rem 2.5rem; /* espacio entre filas y columnas */
+}
+
+/* Cada campo */
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
   margin-bottom: 0.5rem;
   color: #2E7D6F;
+  font-weight: 500;
 }
-.filtro select {
-  width: 100%;
-  padding: 0.4rem;
-  margin-bottom: 1rem;
-  border-radius: 6px;
+
+.campo input {
+  padding: 0.7rem;
   border: 1px solid #A0D6B4;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s ease;
 }
-.lista-recursos {
-  flex: 1;
+
+.campo input:focus {
+  border-color: #2E7D6F;
+  outline: none;
 }
-.lista-recursos h2 {
-  color: #2E7D6F;
-  margin-bottom: 1rem;
-}
-.bloques {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.bloque {
-  background-color: transparent;
-  border: none;
-  padding: 1rem;
-  width: 220px;
-  text-align: left;
-}
-.bloque h4 {
-  color: #2E7D6F;
-  margin-bottom: 0.3rem;
-}
-.bloque p {
-  margin: 0.2rem 0;
-  color: #4E6E63;
-}
-.bloque button {
-  margin-top: 0.5rem;
+
+/* Botón ocupa toda la fila */
+.boton-registro {
+  grid-column: span 2; /* que se extienda a lo ancho de las dos columnas */
   background-color: #A0D6B4;
   color: white;
   border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
+  padding: 1rem;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.25s ease;
+  margin-top: 1rem;
 }
-.bloque button:hover {
+
+.boton-registro:hover {
   background-color: #81C784;
+  transform: translateY(-2px);
 }
+

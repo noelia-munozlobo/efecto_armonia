@@ -1,84 +1,97 @@
-.Sesion-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #D0F0E0;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  font-family: 'Roboto', sans-serif;
-}
-
-/* Contenedor que centra la página */
-.pagina-sesion {
-  min-height: calc(100vh - 50px); /* ajusta al alto del header */
+/* Fondo general */
+.armonía-pagina {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 50px; /* evita que quede debajo del header */
-  background-color: #f5f9f8;
-}
-
-.sesion-container {
-  max-width: 400px;
-  width: 100%;
-  padding: 2rem;
-  background-color: #D0F0E0;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  min-height: 100vh;
+  background-color: #E6F4F1;
   font-family: 'Roboto', sans-serif;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-.campoNombre {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-.campoNombre label {
-  margin-bottom: 0.3rem;
-  color: #2E7D6F;
-  font-weight: 500;
-}
-.campoNombre input {
-  padding: 0.5rem;
-  border: 1px solid #A0D6B4;
-  border-radius: 6px;
-  outline: none;
-}
-.campoNombre input:focus {
-  border-color: #2E7D6F;
-  box-shadow: 0 0 4px #A0D6B4;
-}
-.campoContraseña {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-.campoContraseña label {
-  margin-bottom: 0.3rem;
-  color: #2E7D6F;
-  font-weight: 500;
-}
-.campoContraseña input {
-  padding: 0.5rem;
-  border: 1px solid #A0D6B4;
-  border-radius: 6px;
-  outline: none;
-}
-.campoContraseña input:focus {
-  border-color: #2E7D6F;
-  box-shadow: 0 0 4px #A0D6B4;
-}
-.boton-Inicio {
+/* Caja del formulario */
+.armonía-caja {
+  background-color: #FFFFFF;
+  border: 1px solid #B8E2D0;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 2rem;
   width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título */
+.armonía-titulo {
+  color: #2E7D6F;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Formulario */
+.armonía-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+/* Campo individual */
+.armonía-campo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.armonía-etiqueta {
+  font-size: 0.9rem;
+  color: #2E7D6F;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.armonía-input {
   padding: 0.6rem;
+  border: 1px solid #A0D6B4;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.armonía-input:focus {
+  border-color: #2E7D6F;
+  outline: none;
+}
+
+/* Botón */
+.armonía-boton {
   background-color: #A0D6B4;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 0.7rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
 }
-.boton-Inicio:hover {
+
+.armonía-boton:hover {
   background-color: #81C784;
+  transform: translateY(-2px);
 }
+
+
+
+
+
+
+
