@@ -62,7 +62,7 @@ const Recursos = () => {
               <p>{r.descripcion}</p>
               <button
                 onClick={() => localStorage.setItem("id_recurso",r.id)}
-              >Seguir</button>
+              >Ver Más</button>
             </div>
           ))}
         </div>

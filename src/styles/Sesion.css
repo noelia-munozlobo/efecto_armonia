@@ -1,81 +1,97 @@
 /* Fondo general */
-.pagina-sesion {
+.armonía-pagina {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #F0F9F7;
+  background-color: #E6F4F1;
   font-family: 'Roboto', sans-serif;
   padding: 1rem;
+  box-sizing: border-box;
 }
 
 /* Caja del formulario */
-.sesion-box {
-  background-color: white;
-  border: 1px solid #CCE7D6;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  padding: 1.5rem;
+.armonía-caja {
+  background-color: #FFFFFF;
+  border: 1px solid #B8E2D0;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 2rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Título */
-.sesion-titulo {
-  text-align: center;
+.armonía-titulo {
   color: #2E7D6F;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
 }
 
 /* Formulario */
-.sesion-form {
+.armonía-formulario {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
+  width: 100%;
 }
 
 /* Campo individual */
-.sesion-campo {
+.armonía-campo {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-.sesion-campo label {
-  margin-bottom: 0.3rem;
+.armonía-etiqueta {
+  font-size: 0.9rem;
   color: #2E7D6F;
-  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
 }
 
-.sesion-campo input {
-  padding: 0.5rem;
+.armonía-input {
+  padding: 0.6rem;
   border: 1px solid #A0D6B4;
-  border-radius: 6px;
-  font-size: 0.85rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.sesion-campo input:focus {
+.armonía-input:focus {
   border-color: #2E7D6F;
   outline: none;
 }
 
 /* Botón */
-.sesion-boton {
+.armonía-boton {
   background-color: #A0D6B4;
   color: white;
   border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
+  padding: 0.7rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
   font-weight: 500;
-  transition: background 0.2s ease;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
 }
 
-.sesion-boton:hover {
+.armonía-boton:hover {
   background-color: #81C784;
   transform: translateY(-2px);
 }
+
+
+
+
 
 
 

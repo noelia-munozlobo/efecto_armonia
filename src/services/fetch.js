@@ -15,12 +15,9 @@ async function postData(endpoint, obj) {
   }
 }
 
- async function getData(endpoint) {
+async function getData(endpoint) {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/${endpoint}`);
-    if (!response.ok) {
-      throw new Error('Error al obtener los datos');
-    }
+    const response = await fetch(`http://127.0.0.1:8000/${endpoint}/`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -98,5 +95,19 @@ async function obtenerMentorias() {
   }
 }
 
+const loginUsuario = async (username, password) => {
+  const response = await fetch("http://127.0.0.1:8000/login/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username, password })
+  });
 
-export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias }
+  return response.json();
+};
+
+
+
+
+export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias, loginUsuario };
