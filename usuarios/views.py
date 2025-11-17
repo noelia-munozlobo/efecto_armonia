@@ -12,24 +12,28 @@ class UsuarioCreateView(ListCreateAPIView):
     serializer_class = UsuarioSerializer
 
 class UsuarioLoginView(APIView):
-    def post(self,request):
+    def post(self, request):
         nombre_usuario = request.data.get("username")
         password = request.data.get("password")
 
-
-        usuario = authenticate(username=nombre_usuario,password=password)
+        usuario = authenticate(username=nombre_usuario, password=password)
 
         if usuario is not None:
             token = RefreshToken.for_user(usuario)
             return Response({
                 "token": str(token.access_token),
+                "usuario": {
+                    "id": usuario.id,
+                    "username": usuario.username,
+                    "email": usuario.email,
+                    "rol": usuario.rol
+                },
                 "mensaje": "Inicio de sesión exitoso"
             })
         else:
             return Response({
                 "error": "Credenciales inválidas"
-            },status=401)
-
+            }, status=401)
 
 
 # Obtener, actualizar o eliminar un usuario específico por su ID
