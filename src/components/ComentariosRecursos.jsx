@@ -11,7 +11,7 @@ function ComentariosRecursos() {
 
   const cargarComentarios = async () => {
     try {
-      await postData('comentarios', nuevoComentario);
+      await postData('comentarios', {});
       setComentarios(data);
     } catch (error) {
       console.error('Error al cargar comentarios:', error);

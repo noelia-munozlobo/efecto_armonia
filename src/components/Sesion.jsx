@@ -11,7 +11,8 @@ const Sesion = () => {
   const iniciarSesion = async () => {
 
     const respuesta = await loginUsuario(username, contraseña);
-
+    console.log(respuesta);
+    
     if (respuesta.token) {
       // Guardar token
       localStorage.setItem("token", respuesta.token);
@@ -19,9 +20,9 @@ const Sesion = () => {
       // Guardar info usuario
       localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
 
-      if (respuesta.usuario.rol === "cliente") {
+      if (respuesta.rol === "cliente") {
         navigate("/PagCliente");
-      } else if (respuesta.usuario.rol === "admin") {
+      } else if (respuesta.rol === "admin") {
         navigate("/PagAdmin");
       }
 

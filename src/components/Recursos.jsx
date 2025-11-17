@@ -12,7 +12,7 @@ const Recursos = () => {
   // Carga los recursos
   useEffect(() => {
     const fetchRecursos = async () => {
-      const info = await getData('recursos/crear-recurso/');
+      const info = await getData('recursos/crear-recurso');
       setRecursos(info || []);
       setData(info || []);
     };

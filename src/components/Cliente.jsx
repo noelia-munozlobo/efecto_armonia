@@ -12,10 +12,7 @@ const Cliente = () => {
   useEffect(() => {
     async function traerDatos() {
       const usuario = JSON.parse(localStorage.getItem("usuarios"));
-      const suscripciones = await getData("suscripciones");
-      const recursosData = await getData("recursos");
-      const misSuscripciones = suscripciones.filter((u) => u.idUsuario === usuario.id);
-      setEventos(misSuscripciones);
+      const recursosData = await getData("recursos/crear-recurso");
       setRecursos(recursosData || []);
     }
     traerDatos();
