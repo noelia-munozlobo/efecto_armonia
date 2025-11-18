@@ -1,3 +1,4 @@
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -5,6 +6,9 @@ from usuarios.models import Usuario
 from .models import Especialista
 from .serializers import EspecialistaSerializer
 
+# ------------------------------
+# 1. Crear especialista (con cambio de rol)
+# ------------------------------
 class CrearEspecialista(APIView):
     def post(self, request):
         correo = request.data.get("correo")
@@ -20,7 +24,7 @@ class CrearEspecialista(APIView):
         usuario.rol = "especialista"
         usuario.save()
 
-        # 3. Crear el especialista
+        # 3. Crear especialista
         data = request.data.copy()
         data["usuario"] = usuario.id
 
@@ -31,4 +35,11 @@ class CrearEspecialista(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class EspecialistaListCreateView(ListCreateAPIView):
+    queryset = Especialista.objects.all()
+    serializer_class = EspecialistaSerializer
 
+class EspecialistaDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Especialista.objects.all()
+    serializer_class = EspecialistaSerializer
+    lookup_field = 'id'

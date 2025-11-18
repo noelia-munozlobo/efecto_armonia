@@ -1,33 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../styles/FormularioPsicologo.css';
-import { enviarRecurso } from "../services/fetch";
+import { enviarRecurso, getData } from "../services/fetch";
 
 const FormularioPsicologo = () => {
+
+  const [usuarios, setUsuarios] = useState([]);
+
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [especialidad, setEspecialidad] = useState('Clínica');
+  const [especialidad, setEspecialidad] = useState('Psicología Clínica');
   const [descripcion, setDescripcion] = useState('');
+
+  // 🔹 Cargar lista de usuarios al iniciar
+  useEffect(() => {
+    const cargarUsuarios = async () => {
+      const resultado = await getData("usuarios/usuarios/rol/cliente");
+      setUsuarios(resultado);
+    };
+    cargarUsuarios();
+  }, []);
 
   const enviarFormulario = async (evento) => {
     evento.preventDefault();
 
     const nuevoEspecialista = {
-      nombre,
-      correo,
+      correo, // el backend usa este correo para ubicar al usuario
+      nombre_completo: nombre,
       telefono,
       especialidad,
-      descripcion,
+      descripcion
     };
 
     try {
-      const respuesta = await enviarRecurso("especialistas", nuevoEspecialista);
+      const respuesta = await enviarRecurso("especialistas/crear-especialista/", nuevoEspecialista);
+
+      if (respuesta.error) {
+        alert(respuesta.error);
+        return;
+      }
+
       setNombre('');
       setCorreo('');
       setTelefono('');
-      setEspecialidad('Psicologia Clínica');
+      setEspecialidad('Psicología Clínica');
       setDescripcion('');
-      alert("El especialista fue registrado");
+
+      alert("Especialista registrado con éxito");
+
     } catch (error) {
       console.error("Error al registrar el especialista:", error);
     }
@@ -36,7 +56,9 @@ const FormularioPsicologo = () => {
   return (
     <div className="formulario-psicologo">
       <h2>Registrar Psicólogo Especialista</h2>
+
       <form onSubmit={enviarFormulario}>
+
         <label htmlFor="nombre">Nombre completo</label>
         <input
           type="text"
@@ -46,14 +68,21 @@ const FormularioPsicologo = () => {
           required
         />
 
-        <label htmlFor="correo">Correo electrónico</label>
-        <input
-          type="email"
+        <label htmlFor="correo">Seleccione el correo del usuario</label>
+        <select
           id="correo"
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
           required
-        />
+        >
+          <option value="">Seleccione un usuario</option>
+
+          {usuarios.map((u) => (
+            <option key={u.id} value={u.email}>
+              {u.email} — {u.first_name} {u.last_name1}
+            </option>
+          ))}
+        </select>
 
         <label htmlFor="telefono">Teléfono</label>
         <input
@@ -71,11 +100,10 @@ const FormularioPsicologo = () => {
           onChange={(e) => setEspecialidad(e.target.value)}
           required
         >
-          <option value="Clínica">Psicologia Clínica</option>
-          <option value="Educativa">Psicologia Educativa</option>
-          <option value="Organizacional">Psicologia Organizacional</option>
-          <option value="Social">Psicologia Social</option>
-          <option value="Infantojuvenil">Psicologia Infantil</option>
+          <option value="Psicología Clínica">Psicología Clínica</option>
+          <option value="Psicología Organizacional">Psicología Organizacional</option>
+          <option value="Neuropsicología">Neuropsicología</option>
+          <option value="Psicopedagogía">Psicopedagogía</option>
         </select>
 
         <label htmlFor="descripcion">Descripción / Enfoque</label>
@@ -94,3 +122,4 @@ const FormularioPsicologo = () => {
 };
 
 export default FormularioPsicologo;
+
