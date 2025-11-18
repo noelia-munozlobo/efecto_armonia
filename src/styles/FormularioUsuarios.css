@@ -1,0 +1,114 @@
+.pagina-registro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+  background: linear-gradient(180deg, #f7fbf9 0%, #eef8f3 100%);
+  font-family: 'Poppins', sans-serif;
+}
+
+.registro-container {
+  width: 100%;
+  max-width: 520px;
+  background-color: #D0F0E0;
+  border-radius: 12px;
+  padding: 26px;
+  box-shadow: 0 0 12px rgba(46, 125, 111, 0.12);
+  color: #2E7D6F;
+}
+
+.registro-container h2 {
+  margin: 0 0 14px 0;
+  color: #2E7D6F;
+  font-weight: 600;
+  text-align: center;
+}
+
+.registro-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Campo individual */
+.campo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.campo label {
+  font-weight: 500;
+  color: #2E7D6F;
+  margin-bottom: 6px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Inputs y select */
+.campo input,
+.campo select {
+  padding: 10px 12px;
+  border: 1px solid #B2DFDB;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #ffffff;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: none;
+  border-color: #2E7D6F;
+  box-shadow: 0 0 0 4px rgba(46,125,111,0.06);
+}
+
+/* Placeholder color */
+.campo input::placeholder {
+  color: #9fbfb0;
+}
+
+/* Botón principal */
+.boton-registro {
+  margin-top: 8px;
+  padding: 12px;
+  background-color: #2E7D6F;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.22s ease, transform 0.08s ease;
+}
+
+.boton-registro:hover {
+  background-color: #1B5E56;
+  transform: translateY(-1px);
+}
+
+/* Mensajes de ayuda / error (ocultos por defecto) */
+.form-help {
+  font-size: 13px;
+  color: #4e6e63;
+  margin-top: 6px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .registro-container {
+    padding: 18px;
+  }
+
+  .campo input,
+  .campo select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .boton-registro {
+    padding: 11px;
+    font-size: 15px;
+  }
+}

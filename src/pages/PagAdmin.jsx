@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AdminRecursos from '../components/AdminRecursos';
 import AdminEspecialistas from '../components/AdminEspecialistas';
+import FormularioUsuarios from '../components/FormularioUsuarios';
 
 const PagAdmin = () => {
   return (
@@ -12,6 +13,7 @@ const PagAdmin = () => {
         <Header/>
         <FormularioPsicologo/>
         <FormularioAdmin/>
+        <FormularioUsuarios/>
         <AdminEspecialistas/>
         <AdminRecursos/>
         <Footer/>
