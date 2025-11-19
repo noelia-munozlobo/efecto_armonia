@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import AdminRecursos from '../components/AdminRecursos';
 import AdminEspecialistas from '../components/AdminEspecialistas';
 import FormularioUsuarios from '../components/FormularioUsuarios';
+import VistaUsuarios from '../components/VistaUsuarios';
 
 const PagAdmin = () => {
   return (
@@ -16,6 +17,7 @@ const PagAdmin = () => {
         <FormularioUsuarios/>
         <AdminEspecialistas/>
         <AdminRecursos/>
+        <VistaUsuarios/>
         <Footer/>
     </div>
   )

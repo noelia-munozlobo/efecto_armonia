@@ -1,7 +1,3 @@
-// ===============================
-// PETICIONES GENERALES JSON
-// ===============================
-
 async function postData(endpoint, obj) {
   try {
     const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
@@ -91,10 +87,6 @@ async function enviarRecurso(endpoint, data, isFormData = false) {
   }
 }
 
-// ===============================
-// OBTENER MENTORIAS
-// ===============================
-
 async function obtenerMentorias() {
   try {
     const respuesta = await fetch(`http://127.0.0.1:8000/mentorias/`, {
@@ -109,11 +101,6 @@ async function obtenerMentorias() {
     console.error("Error al obtener las mentorías:", error);
   }
 }
-
-// ===============================
-// LOGIN USUARIO
-// ===============================
-
 const loginUsuario = async (username, password) => {
   const response = await fetch("http://127.0.0.1:8000/usuarios/login/", {
     method: "POST",
@@ -126,16 +113,5 @@ const loginUsuario = async (username, password) => {
   return response.json();
 };
 
-// ===============================
-// EXPORTS
-// ===============================
 
-export {
-  postData,
-  getData,
-  putData,
-  deleteData,
-  enviarRecurso,
-  obtenerMentorias,
-  loginUsuario
-};
+export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias, loginUsuario };

@@ -16,7 +16,7 @@ const AdminRecursos = () => {
 
   // Obtiene los recursos del db.json
   const cargarRecursos = async () => {
-    const data = await getData("recursos");
+    const data = await getData("recursos/crear-recurso");
     setRecursos(data || []);
   };
 

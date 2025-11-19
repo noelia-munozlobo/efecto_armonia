@@ -19,7 +19,7 @@ const Sesion = () => {
 
       // Guardar info usuario
       localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
-
+      localStorage.setItem("usuarioId", respuesta.id);
       if (respuesta.rol === "cliente") {
         navigate("/PagCliente");
       } else if (respuesta.rol === "admin") {

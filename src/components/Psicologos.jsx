@@ -8,16 +8,14 @@ const Psicologos = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchEspecialistas = async () => {
-      setLoading(true);
-      const data = await getData("especialistas");
-      setEspecialistas(data || []);
-      setLoading(false);
-    };
-    fetchEspecialistas();
-  }, []);
-  
-  console.log("Estado de especialistas:", especialistas);
+  const fetchEspecialistas = async () => {
+    setLoading(true);
+    const data = await getData("especialistas");
+    setEspecialistas(data || []);
+    setLoading(false);
+  };
+  fetchEspecialistas();
+}, []);
 
   const filtrarEspecialistas = () => {
     if (filtro === "todos") return especialistas;

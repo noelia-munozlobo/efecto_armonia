@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import '../styles/FormularioPsicologo.css';
-import { enviarRecurso, getData } from "../services/fetch";
+import { enviarRecurso } from "../services/fetch";
 
 const FormularioPsicologo = () => {
 
@@ -55,58 +55,48 @@ const FormularioPsicologo = () => {
   };
 
   return (
-   <div id="pagina-psicologo">
-  <div id="psicologo-container">
-    <h2 id="psicologo-titulo">Registrar Psicólogo Especialista</h2>
+    <div className="formulario-psicologo">
+      <h2>Registrar Psicólogo Especialista</h2>
 
-    <form id="psicologo-form" onSubmit={enviarFormulario}>
+      <form onSubmit={enviarFormulario}>
 
-      <div className="psicologo-campo">
-        <label htmlFor="psicologo-nombre">Nombre completo</label>
+        <label htmlFor="nombre">Nombre completo</label>
         <input
           type="text"
-          id="psicologo-nombre"
+          id="nombre"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
           required
         />
-      </div>
 
-      <div className="psicologo-campo">
-        <label htmlFor="psicologo-correo">Seleccione el correo del usuario</label>
+        <label htmlFor="correo">Seleccione el correo del usuario</label>
         <select
-          id="psicologo-correo"
+          id="correo"
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
           required
         >
           <option value="">Seleccione un usuario</option>
+
           {usuarios.map((u) => (
             <option key={u.id} value={u.email}>
               {u.email} — {u.first_name} {u.last_name1}
             </option>
           ))}
         </select>
-      </div>
 
-      <div className="psicologo-campo">
-        <label htmlFor="psicologo-telefono">Teléfono</label>
+        <label htmlFor="telefono">Teléfono</label>
         <input
           type="tel"
-          id="psicologo-telefono"
+          id="telefono"
           value={telefono}
-          onChange={(e) => setTelefono(e.target.value.replace(/[^\d+ ]/g, ''))}
+          onChange={(e) => setTelefono(e.target.value)}
           required
-          inputMode="tel"
-          pattern="^[0-9+ ]{6,20}$"
-          title="Ingresa entre 6 y 20 dígitos, puedes incluir + y espacios"
         />
-      </div>
 
-      <div className="psicologo-campo">
-        <label htmlFor="psicologo-especialidad">Especialidad</label>
+        <label htmlFor="especialidad">Especialidad</label>
         <select
-          id="psicologo-especialidad"
+          id="especialidad"
           value={especialidad}
           onChange={(e) => setEspecialidad(e.target.value)}
           required
@@ -116,23 +106,20 @@ const FormularioPsicologo = () => {
           <option value="Neuropsicología">Neuropsicología</option>
           <option value="Psicopedagogía">Psicopedagogía</option>
         </select>
-      </div>
 
-      <div className="psicologo-campo">
-        <label htmlFor="psicologo-descripcion">Descripción / Enfoque</label>
+        <label htmlFor="descripcion">Descripción / Enfoque</label>
         <textarea
-          id="psicologo-descripcion"
+          id="descripcion"
           value={descripcion}
           onChange={(e) => setDescripcion(e.target.value)}
           rows="4"
           required
         />
-      </div>
 
-      <button type="submit" id="psicologo-boton">Registrar</button>
-    </form>
-  </div>
-</div>
-  )};
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+  );
+};
 
 export default FormularioPsicologo;

@@ -5,6 +5,7 @@ from rest_framework import status
 from usuarios.models import Usuario
 from .models import Especialista
 from .serializers import EspecialistaSerializer
+from rest_framework.parsers import MultiPartParser, FormParser
 
 # ------------------------------
 # 1. Crear especialista (con cambio de rol)
@@ -43,3 +44,19 @@ class EspecialistaDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Especialista.objects.all()
     serializer_class = EspecialistaSerializer
     lookup_field = 'id'
+
+class RecursoPorId(ListCreateAPIView):
+    serializer_class = EspecialistaSerializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get_queryset(self):
+        id = self.kwargs["id"]
+        return Especialista.objects.filter(id=id)
+    
+class RecursoPorEscpecialidad(ListCreateAPIView):
+    serializer_class = EspecialistaSerializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get_queryset(self):
+        especialidad = self.kwargs["especialidad"]
+        return Especialista.objects.filter(especialidad=especialidad)
