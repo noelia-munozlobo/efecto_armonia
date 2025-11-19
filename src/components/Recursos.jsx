@@ -29,45 +29,52 @@ const Recursos = () => {
   };
   
   return (
-    <div className="recursos-container">
-      <aside className="filtro">
-        <h3>Filtrar por</h3>
-        <select onChange={(e) => setFiltro(e.target.value)}>
-          <option value="todos">Todos</option>
-          <option value="curso">Cursos</option>
-          <option value="charla">Charlas</option>
-          <option value="recurso">Recursos</option>
-        </select>
-      </aside>
-      <section className="lista-recursos">
-        <h2>Recursos disponibles</h2>
-        {alerta && (
-          <div className="alerta-suscrito">
-            ¡Te has suscrito correctamente!
-          </div>
-        )}
-        <div className="orden">
-          {data.length == 0 && (
-            <>
-              <h3>No hay recursos disponibles</h3>
-            </>
-          )}
+<div className="recursos-page">
+  <div className="recursos-layout">
+    {/* Filtro a la izquierda */}
+    <aside className="recursos-filtro">
+      <h3>Filtrar por</h3>
+      <select onChange={(e) => setFiltro(e.target.value)}>
+        <option value="todos">Todos</option>
+        <option value="curso">Cursos</option>
+        <option value="charla">Charlas</option>
+        <option value="recurso">Recursos</option>
+      </select>
+    </aside>
+
+    {/* Contenido a la derecha */}
+    <section className="recursos-contenido">
+      <h2 className="recursos-titulo">Recursos disponibles</h2>
+
+      {alerta && (
+        <div className="recursos-alerta">¡Te has suscrito correctamente!</div>
+      )}
+
+      {data.length === 0 ? (
+        <h3 className="recursos-vacio">No hay recursos disponibles</h3>
+      ) : (
+        <div className="recursos-bloques">
+          {filtrarRecursos().map((r, index) => {
+            const uniqueId = `${r.id}-${index}-${r.nombre || r.titulo}`;
+            return (
+              <div key={uniqueId} className="recursos-bloque">
+                <h4 className="recursos-subtitulo">{r.nombre || r.titulo}</h4>
+                <p className="recursos-tipo">Tipo: {r.tipo}</p>
+                <p className="recursos-descripcion">{r.descripcion}</p>
+                <button
+                  className="recursos-boton"
+                  onClick={() => localStorage.setItem("recurso_unico", uniqueId)}
+                >
+                  Ver Más
+                </button>
+              </div>
+            );
+          })}
         </div>
-        {/* Muestra los recursos filtrados y ordenados */}
-        <div className="bloques">
-          {filtrarRecursos().map((r) => (
-            <div key={r.id} className="bloque">
-              <h4>{r.nombre || r.titulo}</h4>
-              <p>Tipo: {r.tipo}</p>
-              <p>{r.descripcion}</p>
-              <button
-                onClick={() => localStorage.setItem("id_recurso",r.id)}
-              >Ver Más</button>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
-  );
-};
-export default Recursos;
+      )}
+    </section>
+  </div>
+</div>
+
+  )}   
+ export default Recursos
