@@ -1,129 +1,163 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/FormularioUsuarios.css';
 import { postData } from '../services/fetch';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const FormularioUsuarios = () => {
-  const [nombreUsuario, setNombreUsuario] = useState('');
-  const [correo, setCorreo] = useState('');
-  const [contraseña, setContraseña] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [telefono, setTelefono] = useState('');
-  const [rol, setRol] = useState('');
-
+  const { id } = useParams(); // ← OBTENER ID
   const navigate = useNavigate();
 
-  const agregarUsuario = async (e) => {
-    e.preventDefault();
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    telefono: '',
+    rol: '',
+  });
 
-    const obj = {
-      username: nombreUsuario,
-      email: correo,
-      password: contraseña,
-      first_name: firstName,
-      last_name: lastName,
-      telefono: telefono,
-      rol: rol
-    };
-
+  // Cargar datos del usuario
+  const cargarUsuario = async () => {
     try {
-      const respuesta = await postData("usuarios/crear-usuario/", obj);
-      console.log('Respuesta del servidor:', respuesta);
-      navigate("/sesion");
+      const resp = await fetch(`http://127.0.0.1:8000/usuarios/usuario/${id}/`);
+      const data = await resp.json();
+
+      setForm({
+        username: data.username,
+        email: data.email,
+        password: '', // vacía por seguridad
+        first_name: data.first_name,
+        last_name: `${data.last_name1} ${data.last_name2}`,
+        telefono: data.telefono,
+        rol: data.rol,
+      });
+
     } catch (error) {
-      console.error('Error al registrar:', error);
-      alert('Hubo un problema al enviar el registro');
+      console.log("Error cargando usuario:", error);
     }
   };
 
-    return (
-  <div className="pagina-registro">
-    <div className="registro-container">
-      <h2>Actualizacion de Usuarios</h2>
-      <form>
+  useEffect(() => {
+    if (id) cargarUsuario();
+  }, [id]);
 
-        <div className="campo">
-          <label htmlFor="username">Nombre de usuario</label>
-          <input
-            type="text"
-            id="username"
-            required
-            onChange={(e) => setNombreUsuario(e.target.value)}
-          />
-        </div>
 
-        <div className="campo">
-          <label htmlFor="firstName">Nombre</label>
-          <input
-            type="text"
-            id="firstName"
-            required
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </div>
+  // Actualizar usuario (PUT)
+  const actualizarUsuario = async (e) => {
+    e.preventDefault();
 
-        <div className="campo">
-          <label htmlFor="lastName">Apellidos</label>
-          <input
-            type="text"
-            id="lastName"
-            required
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
+    const obj = {
+      username: form.username,
+      email: form.email,
+      password: form.password, 
+      first_name: form.first_name,
+      last_name: form.last_name,
+      telefono: form.telefono,
+      rol: form.rol
+    };
 
-        <div className="campo">
-          <label htmlFor="telefono">Teléfono</label>
-          <input
-            type="text"
-            id="telefono"
-            required
-            onChange={(e) => setTelefono(e.target.value)}
-          />
-        </div>
+    try {
+      const respuesta = await fetch(`http://127.0.0.1:8000/usuarios/usuario/${id}/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj)
+      });
 
-        <div className="campo">
-          <label htmlFor="correo">Correo electrónico</label>
-          <input
-            type="email"
-            id="correo"
-            required
-            onChange={(e) => setCorreo(e.target.value)}
-          />
-        </div>
+      if (!respuesta.ok) throw new Error("Error al actualizar");
 
-        <div className="campo">
-          <label htmlFor="contraseña">Contraseña</label>
-          <input
-            type="password"
-            id="contraseña"
-            required
-            onChange={(e) => setContraseña(e.target.value)}
-          />
-        </div>
+      alert("Usuario actualizado");
+      navigate("/usuarios");
 
-           <div className="campo">
-          <label htmlFor="Rol">Rol</label>
-          <select name="rol" id="rol">
-            <option value="Clinte">Cliente</option>
-            <option value="Admin">Admin</option>
-            onChange={(e) => setRol(e.target.value)}
-          </select>
-            
-          
-        </div>
+    } catch (error) {
+      console.error('Error al actualizar:', error);
+      alert('Hubo un problema al actualizar el usuario');
+    }
+  };
 
-        <button type="button" onClick={agregarUsuario} className="boton-registro">
-          Registrar Usuario
-        </button>
-      </form>
+
+  return (
+    <div className="pagina-registro">
+      <div className="registro-container">
+        <h2>Editar Usuario</h2>
+
+        <form onSubmit={actualizarUsuario}>
+
+          <div className="campo">
+            <label>Nombre de usuario</label>
+            <input
+              type="text"
+              value={form.username}
+              onChange={(e) => setForm({ ...form, username: e.target.value })}
+            />
+          </div>
+
+          <div className="campo">
+            <label>Nombre</label>
+            <input
+              type="text"
+              value={form.first_name}
+              onChange={(e) => setForm({ ...form, first_name: e.target.value })}
+            />
+          </div>
+
+          <div className="campo">
+            <label>Apellidos</label>
+            <input
+              type="text"
+              value={form.last_name}
+              onChange={(e) => setForm({ ...form, last_name: e.target.value })}
+            />
+          </div>
+
+          <div className="campo">
+            <label>Teléfono</label>
+            <input
+              type="text"
+              value={form.telefono}
+              onChange={(e) => setForm({ ...form, telefono: e.target.value })}
+            />
+          </div>
+
+          <div className="campo">
+            <label>Correo</label>
+            <input
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+          </div>
+
+          <div className="campo">
+            <label>Contraseña (dejar vacío para no cambiar)</label>
+            <input
+              type="password"
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+            />
+          </div>
+
+          <div className="campo">
+            <label>Rol</label>
+            <select
+              value={form.rol}
+              onChange={(e) => setForm({ ...form, rol: e.target.value })}
+            >
+              <option value="Cliente">Cliente</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </div>
+
+          <button type="submit" className="boton-registro">
+            Actualizar Usuario
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
-); 
-}
-
+  );
+};
 
 export default FormularioUsuarios;
-
 

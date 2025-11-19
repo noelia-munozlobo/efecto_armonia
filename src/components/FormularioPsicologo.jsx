@@ -5,14 +5,10 @@ import { enviarRecurso, getData } from "../services/fetch";
 const FormularioPsicologo = () => {
 
   const [usuarios, setUsuarios] = useState([]);
-
-  const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
-  const [telefono, setTelefono] = useState('');
   const [especialidad, setEspecialidad] = useState('Psicología Clínica');
   const [descripcion, setDescripcion] = useState('');
 
-  // 🔹 Cargar lista de usuarios al iniciar
   useEffect(() => {
     const cargarUsuarios = async () => {
       const resultado = await getData("usuarios/usuarios/rol/cliente");
@@ -26,8 +22,6 @@ const FormularioPsicologo = () => {
 
     const nuevoEspecialista = {
       correo, // el backend usa este correo para ubicar al usuario
-      nombre_completo: nombre,
-      telefono,
       especialidad,
       descripcion
     };
@@ -40,9 +34,7 @@ const FormularioPsicologo = () => {
         return;
       }
 
-      setNombre('');
       setCorreo('');
-      setTelefono('');
       setEspecialidad('Psicología Clínica');
       setDescripcion('');
 
@@ -59,15 +51,6 @@ const FormularioPsicologo = () => {
 
       <form onSubmit={enviarFormulario}>
 
-        <label htmlFor="nombre">Nombre completo</label>
-        <input
-          type="text"
-          id="nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          required
-        />
-
         <label htmlFor="correo">Seleccione el correo del usuario</label>
         <select
           id="correo"
@@ -83,15 +66,6 @@ const FormularioPsicologo = () => {
             </option>
           ))}
         </select>
-
-        <label htmlFor="telefono">Teléfono</label>
-        <input
-          type="tel"
-          id="telefono"
-          value={telefono}
-          onChange={(e) => setTelefono(e.target.value)}
-          required
-        />
 
         <label htmlFor="especialidad">Especialidad</label>
         <select

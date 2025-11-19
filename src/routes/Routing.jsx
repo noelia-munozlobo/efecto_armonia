@@ -9,6 +9,7 @@ import PagCliente from '../pages/PagCliente';
 import PagEspecialista from '../pages/PagEspecialista';
 import PagPsicologos from '../pages/PagPsicologos';
 import RecursosVista from '../pages/RecursosVista';
+import FormularioUsuarios from '../components/FormularioUsuarios';
 
 
 const Routing = () => (
@@ -24,6 +25,7 @@ const Routing = () => (
       <Route path="/PagEspecialista" element={<PagEspecialista/>} />
       <Route path="/PagPsicologos" element={<PagPsicologos/>} />
       <Route path="/RecursosVista" element={<RecursosVista/>} />
+      <Route path="/editar-usuario/:id" element={<FormularioUsuarios />} />
       
     </Routes>
   </Router>

@@ -24,6 +24,7 @@ class UsuarioLoginView(APIView):
                 "token": str(token.access_token),
                 "mensaje": "Inicio de sesión exitoso",
                 "rol": usuario.rol,
+                "id": usuario.id,
                 "usuario": UsuarioSerializer(usuario).data
             })
         else:
@@ -45,3 +46,21 @@ class UsuarioPorRolView(ListAPIView):
     def get_queryset(self):
         rol = self.kwargs['rol']  # toma el rol desde la URL
         return Usuario.objects.filter(rol=rol)
+
+class UsuarioEditarView(APIView):
+    def patch(self,request):
+        id_usuario = request.data.get("id")
+        nombre_usuario = request.data.get("username")
+        email = request.data.get("email")
+        rol = request.data.get("rol")
+        
+        usuario = Usuario.objects.get(id=id_usuario)
+        usuario.username = nombre_usuario
+        usuario.email = email
+        usuario.rol = rol
+        usuario.save()
+        return Response({
+            "mensaje": "Usuario actualizado exitosamente",
+            "usuario": UsuarioSerializer(usuario).data
+        })
+    

@@ -18,13 +18,13 @@ const AdminEspecialistas = () => {
   }, []);
 
   const cargarEspecialistas = async () => {
-    const data = await getData("usuarios/especialistas");
+    const data = await getData("especialista");
     setEspecialistas(data || []);
   };
 
   const eliminarEspecialista = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar este especialista?")) {
-      await deleteData("especialistas/" + id);
+      await deleteData("especialista/" + id);
       cargarEspecialistas();
     }
   };
@@ -56,7 +56,7 @@ const AdminEspecialistas = () => {
   };
 
   const guardarCambios = async (id) => {
-    await putData("especialistas/" + id, formulario);
+    await putData("especialistas" + id, formulario);
     setEditando(null);
     cargarEspecialistas();
   };

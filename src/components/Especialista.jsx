@@ -19,8 +19,24 @@ const Especialista = () => {
     );
   };
 
+  // formatea Date (local) a YYYY-MM-DD
+  const formatDateLocal = (date) => {
+    if (!(date instanceof Date)) date = new Date(date);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  // parsea un string YYYY-MM-DD a Date local (00:00:00 local)
+  const parseLocalDate = (dateStr) => {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  };
+
+  // toggle usando fecha local (evita desplazamiento por zona horaria)
   const toggleFecha = (date) => {
-    const fechaStr = date.toISOString().split('T')[0];
+    const fechaStr = formatDateLocal(date);
     setFechasSeleccionadas((prev) =>
       prev.includes(fechaStr) ? prev.filter(f => f !== fechaStr) : [...prev, fechaStr]
     );
@@ -69,7 +85,6 @@ const Especialista = () => {
     <div className="especialista">
       <h2>Panel del Especialista</h2>
 
-      {/* Tarjeta de horarios */}
       <section className="tarjeta-horarios">
         <h3> Selecciona tus horarios disponibles</h3>
         <div className="botones-horario">
@@ -78,6 +93,7 @@ const Especialista = () => {
               key={i}
               className={horariosSeleccionados.includes(horario) ? 'activo' : ''}
               onClick={() => toggleHorario(horario)}
+              type="button"
             >
               {horario}
             </button>
@@ -85,56 +101,54 @@ const Especialista = () => {
         </div>
       </section>
 
-      {/* Tarjeta de calendario */}
       <section className="tarjeta-calendario">
         <h3> Selecciona tus fechas disponibles</h3>
         <Calendar
           onClickDay={toggleFecha}
-          value={null}
           locale="es-CR"
+          // tileClassName compara usando formatDateLocal para evitar UTC
           tileClassName={({ date }) => {
-            const fechaStr = date.toISOString().split('T')[0];
+            const fechaStr = formatDateLocal(date);
             return fechasSeleccionadas.includes(fechaStr) ? 'resaltado' : null;
           }}
+          // Para que la selección visual use fechas locales si quieres pasar value:
+          // value={fechasSeleccionadas.length ? fechasSeleccionadas.map(parseLocalDate) : null}
         />
         <div className="fechas-seleccionadas">
           <h4>Fechas seleccionadas:</h4>
           <ul>
             {fechasSeleccionadas.map((f, i) => (
-              <li key={i}>{new Date(f).toLocaleDateString('es-CR')}</li>
+              // renderiza con parseLocalDate para asegurar 00:00 local antes de toLocaleDateString
+              <li key={i}>{parseLocalDate(f).toLocaleDateString('es-CR')}</li>
             ))}
           </ul>
-          <button className="guardar" onClick={guardarHorario}>Guardar horario</button>
+          <button className="guardar" onClick={guardarHorario} type="button">Guardar horario</button>
         </div>
       </section>
 
-      {/* Tarjeta de citas */}
       <section className="citas">
-  <h3>Solicitudes de Citas</h3>
-  <ul>
-    {citasSolicitadas.map((cita, i) => (
-      <li key={i}>
-        <div className="cita-info">
-          <strong>{cita.nombre}</strong> – {cita.fecha} ({cita.motivo})
-        </div>
-        <div className="cita-botones">
-          <button className="confirmar" onClick={() => confirmarCita(i)}>Confirmar</button>
-          <button className="eliminar" onClick={() => eliminarCita(i)}>Eliminar</button>
-        </div>
-      </li>
-    ))}
-  </ul>
-</section>
+        <h3>Solicitudes de Citas</h3>
+        <ul>
+          {citasSolicitadas.map((cita, i) => (
+            <li key={i}>
+              <div className="cita-info">
+                <strong>{cita.nombre}</strong> – {cita.fecha} ({cita.motivo})
+              </div>
+              <div className="cita-botones">
+                <button className="confirmar" onClick={() => confirmarCita(i)} type="button">Confirmar</button>
+                <button className="eliminar" onClick={() => eliminarCita(i)} type="button">Eliminar</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-
-      {/* Tarjeta de acciones */}
       <section className="tarjeta-acciones">
         <h3>Acciones generales</h3>
-        <button className="limpiar" onClick={limpiarTodo}>Limpiar todo</button>
+        <button className="limpiar" onClick={limpiarTodo} type="button">Limpiar todo</button>
       </section>
     </div>
   );
 };
 
 export default Especialista;
-
