@@ -25,6 +25,9 @@ const Sesion = () => {
       } else if (respuesta.rol === "admin") {
         navigate("/PagAdmin");
       }
+      else if (respuesta.rol === "especialista") {
+        navigate("/PagPsicologos");
+      }
 
     } else {
       alert("Credenciales incorrectas");

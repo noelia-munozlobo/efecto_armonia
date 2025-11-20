@@ -6,4 +6,6 @@ class EspecialistaSerializer(ModelSerializer):
         model = Especialista
         fields = '__all__'
 
+        
+
 

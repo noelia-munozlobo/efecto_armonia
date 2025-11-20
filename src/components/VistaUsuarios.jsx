@@ -54,6 +54,8 @@ const VistaUsuarios = () => {
                             <h3>{u.first_name} {u.last_name1} {u.last_name2}</h3>
 
                             <p><strong>Usuario:</strong> {u.username}</p>
+                            <p><strong>Nombre:</strong> {u.first_name}</p>
+                            <p><strong>Apellidos: </strong>{u.last_name}</p>
                             <p><strong>Correo:</strong> {u.email}</p>
                             <p><strong>Rol:</strong> {u.rol}</p>
                             <p><strong>Teléfono:</strong> {u.telefono}</p>

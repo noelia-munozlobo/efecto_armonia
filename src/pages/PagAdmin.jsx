@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AdminRecursos from '../components/AdminRecursos';
 import AdminEspecialistas from '../components/AdminEspecialistas';
-import FormularioUsuarios from '../components/FormularioUsuarios';
 import VistaUsuarios from '../components/VistaUsuarios';
 
 const PagAdmin = () => {
@@ -14,7 +13,6 @@ const PagAdmin = () => {
         <Header/>
         <FormularioPsicologo/>
         <FormularioAdmin/>
-        <FormularioUsuarios/>
         <AdminEspecialistas/>
         <AdminRecursos/>
         <VistaUsuarios/>

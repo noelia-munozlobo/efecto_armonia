@@ -37,13 +37,26 @@ async function putData(endpoint, obj) {
       body: JSON.stringify(obj)
     });
 
-    const respuesta = await peticion.json();
-    console.log(respuesta);
+    // ⬇️ LEER LA RESPUESTA RAW PARA VER EL ERROR REAL
+    const raw = await peticion.text();
+    console.log("RAW PUT RESPONSE:", raw);
+    console.log("STATUS:", peticion.status);
+
+    // Intentamos parsear JSON (por si sí es JSON)
+    let respuesta;
+    try {
+      respuesta = JSON.parse(raw);
+    } catch {
+      respuesta = raw; // si no es json, devolvemos texto
+    }
+
     return respuesta;
+
   } catch (error) {
-    console.error(error);
+    console.error("Error en putData:", error);
   }
 }
+
 
 async function deleteData(endpoint) {
   try {
@@ -113,5 +126,8 @@ const loginUsuario = async (username, password) => {
   return response.json();
 };
 
+// ===============================
+// EXPORTS
+// ===============================
 
 export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias, loginUsuario };
