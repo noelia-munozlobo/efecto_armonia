@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/FormularioUsuarios.css';
-import { postData } from '../services/fetch';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const FormularioUsuarios = () => {
-  const { id } = useParams(); // ← OBTENER ID
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -12,7 +11,8 @@ const FormularioUsuarios = () => {
     email: '',
     password: '',
     first_name: '',
-    last_name: '',
+    last_name1: '',
+    last_name2: '',
     telefono: '',
     rol: '',
   });
@@ -23,12 +23,16 @@ const FormularioUsuarios = () => {
       const resp = await fetch(`http://127.0.0.1:8000/usuarios/usuario/${id}/`);
       const data = await resp.json();
 
+      // Dividir el apellido en 2 partes
+      const [ap1 = '', ap2 = ''] = data.last_name?.split(" ") || [];
+
       setForm({
         username: data.username,
         email: data.email,
-        password: '', // vacía por seguridad
+        password: '',
         first_name: data.first_name,
-        last_name: `${data.last_name1} ${data.last_name2}`,
+        last_name1: ap1,
+        last_name2: ap2,
         telefono: data.telefono,
         rol: data.rol,
       });
@@ -43,19 +47,23 @@ const FormularioUsuarios = () => {
   }, [id]);
 
 
-  // Actualizar usuario (PUT)
+  // Actualizar usuario
   const actualizarUsuario = async (e) => {
     e.preventDefault();
 
     const obj = {
       username: form.username,
       email: form.email,
-      password: form.password, 
       first_name: form.first_name,
-      last_name: form.last_name,
+      last_name: `${form.last_name1} ${form.last_name2}`.trim(),
       telefono: form.telefono,
       rol: form.rol
     };
+
+    // Solo enviar contraseña si el usuario escribió una
+    if (form.password.trim() !== "") {
+      obj.password = form.password;
+    }
 
     try {
       const respuesta = await fetch(`http://127.0.0.1:8000/usuarios/usuario/${id}/`, {
@@ -69,7 +77,7 @@ const FormularioUsuarios = () => {
       if (!respuesta.ok) throw new Error("Error al actualizar");
 
       alert("Usuario actualizado");
-      navigate("/usuarios");
+      navigate("/PagAdmin");
 
     } catch (error) {
       console.error('Error al actualizar:', error);
@@ -104,11 +112,20 @@ const FormularioUsuarios = () => {
           </div>
 
           <div className="campo">
-            <label>Apellidos</label>
+            <label>Primer Apellido</label>
             <input
               type="text"
-              value={form.last_name}
-              onChange={(e) => setForm({ ...form, last_name: e.target.value })}
+              value={form.last_name1}
+              onChange={(e) => setForm({ ...form, last_name1: e.target.value })}
+            />
+          </div>
+
+          <div className="campo">
+            <label>Segundo Apellido</label>
+            <input
+              type="text"
+              value={form.last_name2}
+              onChange={(e) => setForm({ ...form, last_name2: e.target.value })}
             />
           </div>
 
@@ -145,8 +162,9 @@ const FormularioUsuarios = () => {
               value={form.rol}
               onChange={(e) => setForm({ ...form, rol: e.target.value })}
             >
-              <option value="Cliente">Cliente</option>
-              <option value="Admin">Admin</option>
+              <option value="cliente">Cliente</option>
+              <option value="admin">Admin</option>
+              <option value="especialista">Especialista</option>
             </select>
           </div>
 
@@ -160,4 +178,3 @@ const FormularioUsuarios = () => {
 };
 
 export default FormularioUsuarios;
-
