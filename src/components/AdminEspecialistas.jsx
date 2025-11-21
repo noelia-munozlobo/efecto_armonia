@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getData, deleteData, putData } from "../services/fetch";
-import "../styles/AdminRecursos.css"; // reutilizamos estilos
+import "../styles/AdminRecursos.css";
 
 const AdminEspecialistas = () => {
   const [especialistas, setEspecialistas] = useState([]);
   const [editando, setEditando] = useState(null);
   const [formulario, setFormulario] = useState({
-    nombre: "",
     correo: "",
     telefono: "",
     especialidad: "",
@@ -24,7 +23,7 @@ const AdminEspecialistas = () => {
 
   const eliminarEspecialista = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar este especialista?")) {
-      await deleteData("especialista/" + id);
+      await deleteData("especialistas/" + id + "/");
       cargarEspecialistas();
     }
   };
@@ -32,7 +31,6 @@ const AdminEspecialistas = () => {
   const editarEspecialista = (esp) => {
     setEditando(esp.id);
     setFormulario({
-      nombre: esp.nombre || "",
       correo: esp.correo || "",
       telefono: esp.telefono || "",
       especialidad: esp.especialidad || "",
@@ -43,7 +41,6 @@ const AdminEspecialistas = () => {
   const cancelarEdicion = () => {
     setEditando(null);
     setFormulario({
-      nombre: "",
       correo: "",
       telefono: "",
       especialidad: "",
@@ -56,7 +53,7 @@ const AdminEspecialistas = () => {
   };
 
   const guardarCambios = async (id) => {
-    await putData("especialistas" + id, formulario);
+    await putData("especialistas/especialistas/" + id + "/", formulario);
     setEditando(null);
     cargarEspecialistas();
   };
@@ -64,28 +61,27 @@ const AdminEspecialistas = () => {
   return (
     <div className="lista-recursos">
       <h2>Especialistas Registrados</h2>
+
       <div className="bloques">
         {especialistas.map((esp) =>
           editando === esp.id ? (
             <div key={esp.id} className="bloque">
-              <input
-                name="nombre"
-                value={formulario.nombre}
-                onChange={actualizarFormulario}
-                placeholder="Nombre completo"
-              />
+              <p><strong>{esp.nombre}</strong></p>
+
               <input
                 name="correo"
                 value={formulario.correo}
                 onChange={actualizarFormulario}
                 placeholder="Correo"
               />
+
               <input
                 name="telefono"
                 value={formulario.telefono}
                 onChange={actualizarFormulario}
                 placeholder="Teléfono"
               />
+
               <select
                 name="especialidad"
                 value={formulario.especialidad}
@@ -96,6 +92,7 @@ const AdminEspecialistas = () => {
                 <option value="Neuropsicología">Neuropsicología</option>
                 <option value="Psicopedagogía">Psicopedagogía</option>
               </select>
+
               <textarea
                 name="descripcion"
                 value={formulario.descripcion}
@@ -103,16 +100,19 @@ const AdminEspecialistas = () => {
                 placeholder="Descripción"
                 rows={2}
               />
+
               <button onClick={() => guardarCambios(esp.id)}>Guardar</button>
               <button onClick={cancelarEdicion}>Cancelar</button>
             </div>
           ) : (
             <div key={esp.id} className="bloque">
-              <h4>{esp.name}</h4>
+              <h4>{esp.nombre_completo}</h4>
+              <p><strong>Usuario: {esp.usuario}</strong></p>
               <p><strong>Especialidad:</strong> {esp.especialidad}</p>
               <p><strong>Correo:</strong> {esp.correo}</p>
               <p><strong>Teléfono:</strong> {esp.telefono}</p>
               <p>{esp.descripcion}</p>
+
               <button onClick={() => editarEspecialista(esp)}>Editar</button>
               <button onClick={() => eliminarEspecialista(esp.id)}>Eliminar</button>
             </div>
@@ -124,3 +124,4 @@ const AdminEspecialistas = () => {
 };
 
 export default AdminEspecialistas;
+

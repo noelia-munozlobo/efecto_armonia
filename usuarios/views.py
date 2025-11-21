@@ -6,6 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
+from especialista.models import Especialista
 
 class UsuarioCreateView(ListCreateAPIView):
     queryset = Usuario.objects.all()
@@ -32,11 +33,32 @@ class UsuarioLoginView(APIView):
                 "error": "Credenciales inválidas"
             }, status=401)
 
-
-# Obtener, actualizar o eliminar un usuario específico por su ID
 class UsuarioCrud(RetrieveUpdateDestroyAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
+
+    def update(self, request, *args, **kwargs):
+        # 1. Obtener el usuario
+        usuario = self.get_object()
+        rol_anterior = usuario.rol
+
+        # 2. Ejecutar la actualización normal
+        response = super().update(request, *args, **kwargs)
+
+        # 3. Ver si el rol cambió
+        nuevo_rol = request.data.get("rol", usuario.rol)
+
+        # 4. Si dejó de ser especialista, eliminarlo de especialistas
+        if rol_anterior == "especialista" and nuevo_rol != "especialista":
+            try:
+                especialista = Especialista.objects.get(usuario=usuario)
+                especialista.delete()
+                print("✔ Especialista eliminado automáticamente")
+            except Especialista.DoesNotExist:
+                pass  # No había registro, no pasa nada
+
+        return response
+
 
 
 # Filtrar usuarios por rol (por ejemplo: admin, cliente o especialista)

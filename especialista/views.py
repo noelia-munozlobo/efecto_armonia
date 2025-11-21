@@ -41,8 +41,6 @@ class CrearEspecialista(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
 class EspecialistaListCreateView(ListCreateAPIView):
     queryset = Especialista.objects.all()
     serializer_class = EspecialistaSerializer

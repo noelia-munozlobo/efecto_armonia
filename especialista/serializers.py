@@ -4,8 +4,6 @@ from .models import Especialista
 class EspecialistaSerializer(serializers.ModelSerializer):
     correo = serializers.EmailField(source="usuario.email", read_only=True)
     telefono = serializers.CharField(source="usuario.telefono", read_only=True)
-
-    # 👉 Nuevo: nombre completo directo del usuario
     nombre_completo = serializers.SerializerMethodField()
 
     def get_nombre_completo(self, obj):
