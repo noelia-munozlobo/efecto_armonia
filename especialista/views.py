@@ -11,32 +11,36 @@ class CrearEspecialista(APIView):
     def post(self, request):
         correo = request.data.get("correo")
 
-        # 1. Buscar usuario existente
+        # Verificar usuario
         try:
             usuario = Usuario.objects.get(email=correo)
         except Usuario.DoesNotExist:
-            return Response({"error": "El correo no existe como usuario."},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "El correo no existe como usuario."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
-        # 2. Cambiar rol del usuario
+        # Cambiar rol
         usuario.rol = "especialista"
         usuario.save()
 
-        # 3. Preparar data para crear especialista
+        # Preparar data
         data = request.data.copy()
         data["usuario"] = usuario.id
-
-        # Quitar el "correo" porque no es un campo del modelo
-        if "correo" in data:
-            del data["correo"]
+        
+        # Se elimina "correo" porque no pertenece al modelo
+        data.pop("correo", None)
 
         serializer = EspecialistaSerializer(data=data)
         if serializer.is_valid():
             especialista = serializer.save()
-            return Response(EspecialistaSerializer(especialista).data, 
-                            status=status.HTTP_201_CREATED)
+            return Response(
+                EspecialistaSerializer(especialista).data,
+                status=status.HTTP_201_CREATED
+            )
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class EspecialistaListCreateView(ListCreateAPIView):
@@ -46,7 +50,19 @@ class EspecialistaListCreateView(ListCreateAPIView):
 class EspecialistaDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Especialista.objects.all()
     serializer_class = EspecialistaSerializer
-    lookup_field = 'id'
+
+    def update(self, request, *args, **kwargs):
+        especialista = self.get_object()
+        usuario = especialista.usuario
+
+        # si viene teléfono, actualízalo
+        telefono_nuevo = request.data.get("telefono")
+        if telefono_nuevo:
+            usuario.telefono = telefono_nuevo
+            usuario.save()
+
+        return super().update(request, *args, **kwargs)
+
 
 class RecursoPorId(ListCreateAPIView):
     serializer_class = EspecialistaSerializer

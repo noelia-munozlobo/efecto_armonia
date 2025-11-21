@@ -122,8 +122,4 @@ const loginUsuario = async (username, password) => {
   return response.json();
 };
 
-// ===============================
-// EXPORTS
-// ===============================
-
 export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias, loginUsuario };

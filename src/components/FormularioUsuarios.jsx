@@ -164,7 +164,6 @@ const FormularioUsuarios = () => {
             >
               <option value="cliente">Cliente</option>
               <option value="admin">Admin</option>
-              <option value="especialista">Especialista</option>
             </select>
           </div>
 

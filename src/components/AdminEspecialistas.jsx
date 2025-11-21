@@ -91,11 +91,10 @@ const AdminEspecialistas = () => {
                 value={formulario.especialidad}
                 onChange={actualizarFormulario}
               >
-                <option value="Clínica">Clínica</option>
-                <option value="Educativa">Educativa</option>
-                <option value="Organizacional">Organizacional</option>
-                <option value="Social">Social</option>
-                <option value="Infantojuvenil">Infantojuvenil</option>
+                <option value="Psicología Clínica">Psicología Clínica</option>
+                <option value="Psicología Organizacional">Psicología Organizacional</option>
+                <option value="Neuropsicología">Neuropsicología</option>
+                <option value="Psicopedagogía">Psicopedagogía</option>
               </select>
               <textarea
                 name="descripcion"
@@ -109,7 +108,7 @@ const AdminEspecialistas = () => {
             </div>
           ) : (
             <div key={esp.id} className="bloque">
-              <h4>{esp.nombre}</h4>
+              <h4>{esp.name}</h4>
               <p><strong>Especialidad:</strong> {esp.especialidad}</p>
               <p><strong>Correo:</strong> {esp.correo}</p>
               <p><strong>Teléfono:</strong> {esp.telefono}</p>

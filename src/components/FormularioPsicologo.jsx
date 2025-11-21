@@ -6,7 +6,6 @@ const FormularioPsicologo = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [correo, setCorreo] = useState("");
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
-
   const [especialidad, setEspecialidad] = useState("Psicología Clínica");
   const [descripcion, setDescripcion] = useState("");
 
@@ -30,9 +29,7 @@ const FormularioPsicologo = () => {
       correo,
       especialidad,
       descripcion,
-
-      // Estos campos son requeridos por el backend
-      nombre_completo: `${usuarioSeleccionado.first_name} ${usuarioSeleccionado.last_name1}`,
+      nombre_completo: `${usuarioSeleccionado.first_name} ${usuarioSeleccionado.last_name}`,
       telefono: usuarioSeleccionado.phone,
     };
 
@@ -46,8 +43,7 @@ const FormularioPsicologo = () => {
         alert(respuesta.error);
         return;
       }
-
-      // Reset campos
+      
       setCorreo("");
       setUsuarioSeleccionado(null);
       setEspecialidad("Psicología Clínica");

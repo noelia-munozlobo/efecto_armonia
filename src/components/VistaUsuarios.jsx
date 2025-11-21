@@ -51,7 +51,7 @@ const VistaUsuarios = () => {
                 <div className="grid-usuarios">
                     {usuarios.map((u) => (
                         <div key={u.id} className="card-usuario">
-                            <h3>{u.first_name} {u.last_name1} {u.last_name2}</h3>
+                            <h3>{u.first_name} {u.last_name}</h3>
 
                             <p><strong>Usuario:</strong> {u.username}</p>
                             <p><strong>Nombre:</strong> {u.first_name}</p>
