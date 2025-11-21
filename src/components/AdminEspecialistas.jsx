@@ -18,7 +18,7 @@ const AdminEspecialistas = () => {
   }, []);
 
   const cargarEspecialistas = async () => {
-    const data = await getData("especialista");
+    const data = await getData("especialistas/especialistas");
     setEspecialistas(data || []);
   };
 

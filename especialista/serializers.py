@@ -1,10 +1,21 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import Especialista
 
-class EspecialistaSerializer(ModelSerializer):
+class EspecialistaSerializer(serializers.ModelSerializer):
+    correo = serializers.EmailField(source="usuario.email", read_only=True)
+
     class Meta:
         model = Especialista
-        fields = '__all__'
+        fields = [
+            "id",
+            "usuario",
+            "correo",            
+            "nombre_completo",
+            "telefono",
+            "especialidad",
+            "descripcion",
+        ]
+
 
         
 

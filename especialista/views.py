@@ -7,9 +7,6 @@ from .models import Especialista
 from .serializers import EspecialistaSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 
-# ------------------------------
-# 1. Crear especialista (con cambio de rol)
-# ------------------------------
 class CrearEspecialista(APIView):
     def post(self, request):
         correo = request.data.get("correo")
@@ -25,16 +22,22 @@ class CrearEspecialista(APIView):
         usuario.rol = "especialista"
         usuario.save()
 
-        # 3. Crear especialista
+        # 3. Preparar data para crear especialista
         data = request.data.copy()
         data["usuario"] = usuario.id
 
+        # Quitar el "correo" porque no es un campo del modelo
+        if "correo" in data:
+            del data["correo"]
+
         serializer = EspecialistaSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            especialista = serializer.save()
+            return Response(EspecialistaSerializer(especialista).data, 
+                            status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class EspecialistaListCreateView(ListCreateAPIView):
     queryset = Especialista.objects.all()

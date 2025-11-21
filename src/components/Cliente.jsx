@@ -30,7 +30,7 @@ const Cliente = () => {
       fecha: fechaSeleccionada,
       texto: textoMentoria
     }
-    await postData('mentorias', objMentoria);
+    await postData('mentorias/crear-mentorias/', objMentoria);
   };
 
   // Obtiene los recursos que el usuario ha seguido según sus suscripciones

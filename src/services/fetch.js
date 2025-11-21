@@ -72,10 +72,6 @@ async function deleteData(endpoint) {
   }
 }
 
-// ===============================
-// 🚀 ENVÍO DE RECURSOS (SOPORTA FORM DATA E IMÁGENES)
-// ===============================
-
 async function enviarRecurso(endpoint, data, isFormData = false) {
   try {
     let options = {
@@ -102,7 +98,7 @@ async function enviarRecurso(endpoint, data, isFormData = false) {
 
 async function obtenerMentorias() {
   try {
-    const respuesta = await fetch(`http://127.0.0.1:8000/mentorias/`, {
+    const respuesta = await fetch(`http://127.0.0.1:8000/mentorias/crear-mentorias/`, {
       method: "GET"
     });
 

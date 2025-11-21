@@ -10,7 +10,7 @@ const Psicologos = () => {
   useEffect(() => {
   const fetchEspecialistas = async () => {
     setLoading(true);
-    const data = await getData("especialistas");
+    const data = await getData("especialistas/especialistas");
     setEspecialistas(data || []);
     setLoading(false);
   };
@@ -44,7 +44,7 @@ const Psicologos = () => {
           {filtrarEspecialistas().length > 0 ? (
             filtrarEspecialistas().map((e) => (
               <div key={e.id} className="bloque">
-                <h4>{e.nombre}</h4>
+                <h4>{e.nombre_completo}</h4>
                 <p><strong>Especialidad:</strong> {e.especialidad}</p>
                 <p><strong>Teléfono:</strong> {e.telefono}</p>
                 <p><strong>Correo:</strong> {e.correo}</p>
