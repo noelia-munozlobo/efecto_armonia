@@ -8,14 +8,14 @@ const Psicologos = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const fetchEspecialistas = async () => {
-    setLoading(true);
-    const data = await getData("especialistas/especialistas");
-    setEspecialistas(data || []);
-    setLoading(false);
-  };
-  fetchEspecialistas();
-}, []);
+    const fetchEspecialistas = async () => {
+      setLoading(true);
+      const data = await getData("especialistas/especialistas");
+      setEspecialistas(data || []);
+      setLoading(false);
+    };
+    fetchEspecialistas();
+  }, []);
 
   const filtrarEspecialistas = () => {
     if (filtro === "todos") return especialistas;
@@ -32,9 +32,10 @@ const Psicologos = () => {
         <h3>Filtrar por especialidad</h3>
         <select onChange={(e) => setFiltro(e.target.value)}>
           <option value="todos">Todos</option>
-          <option value="Psicologia Infantil">Psicología Infantil</option>
-          <option value="Psicologia Clínica">Psicología Clínica</option>
-          <option value="Psicologia Educativa">Psicología Educativa</option>
+          <option value="Psicología Clínica">Psicología Clínica</option>
+          <option value="Psicología Organizacional">Psicología Organizacional</option>
+          <option value="Neuropsicología">Neuropsicología</option>
+          <option value="Psicopedagogía">Psicopedagogía</option>
         </select>
       </aside>
 
