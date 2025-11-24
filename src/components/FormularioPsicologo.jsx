@@ -9,6 +9,7 @@ const FormularioPsicologo = () => {
   const [especialidad, setEspecialidad] = useState("Psicología Clínica");
   const [descripcion, setDescripcion] = useState("");
 
+  // 🔹 Cargar lista de usuarios al iniciar
   useEffect(() => {
     const cargarUsuarios = async () => {
       const resultado = await getData("usuarios/usuarios/rol/cliente");
@@ -51,7 +52,8 @@ const FormularioPsicologo = () => {
 
       alert("Especialista registrado con éxito");
     } catch (error) {
-      console.error("Error al registrar el especialista:", error);
+      console.error('Error al registrar el especialista:', error);
+      alert('No se pudo registrar el especialista');
     }
   };
 
@@ -82,6 +84,15 @@ const FormularioPsicologo = () => {
             </option>
           ))}
         </select>
+
+        <label htmlFor="telefono">Teléfono</label>
+        <input
+          type="tel"
+          id="telefono"
+          value={telefono}
+          onChange={(e) => setTelefono(e.target.value)}
+          required
+        />
 
         <label htmlFor="especialidad">Especialidad</label>
         <select

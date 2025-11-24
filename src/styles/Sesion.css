@@ -2,13 +2,15 @@
 .armonía-pagina {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* evita que se pegue arriba */
   min-height: 100vh;
   background-color: #E6F4F1;
   font-family: 'Roboto', sans-serif;
-  padding: 1rem;
+  padding-top: 100px; /* igual o mayor que el alto del header */
+  padding-bottom: 2rem;
   box-sizing: border-box;
 }
+
 
 /* Caja del formulario */
 .armonía-caja {

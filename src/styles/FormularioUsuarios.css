@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 28px 16px;
-  background: linear-gradient(180deg, #f7fbf9 0%, #eef8f3 100%);
+  background: transparent; /* fondo quitado */
   font-family: 'Poppins', sans-serif;
 }
 
@@ -17,6 +17,7 @@
   box-shadow: 0 0 12px rgba(46, 125, 111, 0.12);
   color: #2E7D6F;
 }
+
 
 .registro-container h2 {
   margin: 0 0 14px 0;

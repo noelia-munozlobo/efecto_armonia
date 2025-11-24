@@ -37,80 +37,84 @@ const Registro = () => {
   };
 
     return (
-  <div className="pagina-registro">
-    <div className="registro-container">
-      <h2>Registro</h2>
-      <form>
-
-        <div className="campo">
-          <label htmlFor="username">Nombre de usuario</label>
+  <div className="armonía-pagina">
+  <div className="armonía-caja">
+    <h2 className="armonía-titulo">Registro</h2>
+    <form className="armonía-formulario" onSubmit={agregarUsuario}>
+      <div className="armonía-grid">
+        <div className="armonía-campo">
+          <label htmlFor="username" className="armonía-etiqueta">Nombre de usuario</label>
           <input
             type="text"
             id="username"
+            className="armonía-input"
             required
             onChange={(e) => setNombreUsuario(e.target.value)}
           />
         </div>
 
-        <div className="campo">
-          <label htmlFor="firstName">Nombre</label>
+        <div className="armonía-campo">
+          <label htmlFor="firstName" className="armonía-etiqueta">Nombre</label>
           <input
             type="text"
             id="firstName"
+            className="armonía-input"
             required
             onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
 
-        <div className="campo">
-          <label htmlFor="lastName">Apellidos</label>
+        <div className="armonía-campo">
+          <label htmlFor="lastName" className="armonía-etiqueta">Apellidos</label>
           <input
             type="text"
             id="lastName"
+            className="armonía-input"
             required
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
 
-        <div className="campo">
-          <label htmlFor="telefono">Teléfono</label>
+        <div className="armonía-campo">
+          <label htmlFor="telefono" className="armonía-etiqueta">Teléfono</label>
           <input
             type="text"
             id="telefono"
+            className="armonía-input"
             required
             onChange={(e) => setTelefono(e.target.value)}
           />
         </div>
 
-        <div className="campo">
-          <label htmlFor="correo">Correo electrónico</label>
+        <div className="armonía-campo">
+          <label htmlFor="correo" className="armonía-etiqueta">Correo electrónico</label>
           <input
             type="email"
             id="correo"
+            className="armonía-input"
             required
             onChange={(e) => setCorreo(e.target.value)}
           />
         </div>
 
-        <div className="campo">
-          <label htmlFor="contraseña">Contraseña</label>
+        <div className="armonía-campo">
+          <label htmlFor="contraseña" className="armonía-etiqueta">Contraseña</label>
           <input
             type="password"
             id="contraseña"
+            className="armonía-input"
             required
             onChange={(e) => setContraseña(e.target.value)}
           />
         </div>
+      </div>
 
-        <button type="button" onClick={agregarUsuario} className="boton-registro">
-          Registrarse
-        </button>
-      </form>
-    </div>
+      <button type="submit" className="armonía-boton">
+        Registrarse
+      </button>
+    </form>
   </div>
-); 
-}
-
-
+</div>
+    )};
 export default Registro;
 

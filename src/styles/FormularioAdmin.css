@@ -59,5 +59,37 @@
   background-color: #81c784;
 }
 
+/* Tarjeta de preview dentro del formulario */
+.admin-card-preview {
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #a0d6b4;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 0 12px rgba(46, 125, 111, 0.12);
+  text-align: center;
+  color: #2e7d6f;
+}
+
+.admin-card-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.admin-card-preview h4 {
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.admin-card-preview p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #4e6e63;
+}
+
 
 

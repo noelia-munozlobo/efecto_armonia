@@ -56,82 +56,91 @@ const FormularioAdmin = () => {
 
   return (
     <div className="admin-form-container">
-      <h2 className="admin-form-title">Agregar recurso</h2>
+  <h2 className="admin-form-title">Agregar recurso</h2>
 
-      <form
-        onSubmit={enviarFormulario}
-        className="admin-form"
-        encType="multipart/form-data"
-      >
-
-        <div className="admin-form-group">
-          <label className="admin-form-label">Nombre del Recurso</label>
-          <input
-            type="text"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-            className="admin-form-input"
-          />
-        </div>
-
-        <div className="admin-form-group">
-          <label className="admin-form-label">Tipo</label>
-          <select
-            value={tipo}
-            onChange={(e) => setTipo(e.target.value)}
-            required
-            className="admin-form-input"
-          >
-            <option value="charla">Charla</option>
-            <option value="taller">Taller</option>
-            <option value="articulo">Artículo</option>
-          </select>
-        </div>
-
-        <div className="admin-form-group">
-          <label className="admin-form-label">Descripción</label>
-          <textarea
-            value={descripcion}
-            onChange={(e) => setDescripcion(e.target.value)}
-            required
-            rows="4"
-            className="admin-form-input"
-          ></textarea>
-        </div>
-
-        <div className="admin-form-group">
-          <label className="admin-form-label">Usuario Autor</label>
-          <select
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            required
-            className="admin-form-input"
-          >
-            <option value="">Seleccione un especialista</option>
-            {usuarios.map((u) => (
-              <option key={u.id} value={u.id}>
-                {u.first_name} {u.last_name1}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="admin-form-group">
-          <label className="admin-form-label">Imagen del Recurso</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImagen(e.target.files[0])}
-            className="admin-form-input"
-          />
-        </div>
-
-        <button type="submit" className="admin-form-button">
-          Guardar
-        </button>
-      </form>
+  <form
+    onSubmit={enviarFormulario}
+    className="admin-form"
+    encType="multipart/form-data"
+  >
+    <div className="admin-form-group">
+      <label className="admin-form-label">Nombre del Recurso</label>
+      <input
+        type="text"
+        value={nombre}
+        onChange={(e) => setNombre(e.target.value)}
+        required
+        className="admin-form-input"
+      />
     </div>
+
+    <div className="admin-form-group">
+      <label className="admin-form-label">Tipo</label>
+      <select
+        value={tipo}
+        onChange={(e) => setTipo(e.target.value)}
+        required
+        className="admin-form-input"
+      >
+        <option value="charla">Charla</option>
+        <option value="taller">Taller</option>
+        <option value="articulo">Artículo</option>
+      </select>
+    </div>
+
+    <div className="admin-form-group">
+      <label className="admin-form-label">Descripción</label>
+      <textarea
+        value={descripcion}
+        onChange={(e) => setDescripcion(e.target.value)}
+        required
+        rows="4"
+        className="admin-form-input"
+      ></textarea>
+    </div>
+
+    <div className="admin-form-group">
+      <label className="admin-form-label">Usuario Autor</label>
+      <select
+        value={usuario}
+        onChange={(e) => setUsuario(e.target.value)}
+        required
+        className="admin-form-input"
+      >
+        <option value="">Seleccione un especialista</option>
+        {usuarios.map((u) => (
+          <option key={u.id} value={u.id}>
+            {u.first_name} {u.last_name1}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <div className="admin-form-group">
+      <label className="admin-form-label">Imagen del Recurso</label>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImagen(e.target.files[0])}
+        className="admin-form-input"
+      />
+    </div>
+
+    {imagen && (
+      <div className="admin-card-preview">
+        <img src={URL.createObjectURL(imagen)} alt="Vista previa del recurso" />
+        <h4>{nombre || "Título del recurso"}</h4>
+        <p>Tipo: {tipo}</p>
+        <p>{descripcion || "Descripción breve del recurso"}</p>
+      </div>
+    )}
+
+    <button type="submit" className="admin-form-button">
+      Guardar
+    </button>
+  </form>
+</div>
+
   );
 };
 

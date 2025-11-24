@@ -9,21 +9,19 @@ html, body {
 
 /* ===== HEADER / NAVBAR ===== */
 .barra-navegacion {
-  position: fixed;
+  position: sticky;       /* ✅ se queda arriba pero no se superpone */
   top: 0;
-  left: 0;
-  right: 0;
   width: 100%;
-  min-height: 60px;      /* permite crecer sin cortar textos */
+  min-height: 70px;       /* un poco más alto para respirar */
   display: flex;
-  justify-content: flex-start; /* ✅ mueve logo + menú hacia la izquierda */
+  justify-content: flex-start;
   align-items: center;
   background-color: #D0F0E0;
-  padding: 0.6rem 1.2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  gap: 2rem;             /* separación entre logo y menú */
-  flex-wrap: wrap;       /* ✅ permite salto de línea si hay muchos enlaces */
-  z-index: 100;
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  gap: 2rem;
+  flex-wrap: wrap;
+  z-index: 1000;          /* asegura que quede encima si hay scroll */
 }
 
 /* LOGO */
@@ -33,17 +31,17 @@ html, body {
   gap: 0.5rem;
 }
 .logo img {
-  height: 32px;
+  height: 36px;
   width: auto;
 }
 .texto-logo h1 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #2E7D6F;
 }
 .texto-logo p {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #4E6E63;
 }
 
@@ -51,19 +49,19 @@ html, body {
 .menu {
   display: flex;
   align-items: center;
-  gap: 0.8rem;           /* más espacio entre elementos */
+  gap: 1rem;
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
   transition: max-height 0.3s ease;
-  flex-wrap: wrap;      /* ✅ evita recortes */
-  justify-content: flex-start; /* ✅ mueve los links a la izquierda */
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .menu a {
   text-decoration: none;
   color: #2E7D6F;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -82,7 +80,7 @@ html, body {
   display: none;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #2E7D6F;
   cursor: pointer;
 }
@@ -92,7 +90,7 @@ html, body {
   .barra-navegacion {
     flex-direction: column;
     align-items: stretch;
-    gap: 0; /* evita espacios grandes en mobile */
+    gap: 0;
   }
 
   .toggle-menu {
