@@ -148,7 +148,7 @@ const FormularioUsuarios = () => {
           </div>
 
           <div className="campo">
-            <label>Contraseña (dejar vacío para no cambiar)</label>
+            <label>Contraseña</label>
             <input
               type="password"
               value={form.password}

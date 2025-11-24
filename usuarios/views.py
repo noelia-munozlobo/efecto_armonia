@@ -86,3 +86,27 @@ class UsuarioEditarView(APIView):
             "usuario": UsuarioSerializer(usuario).data
         })
     
+
+class UsuariosDisponiblesParaEspecialista(APIView):
+    def get(self, request):
+        # Obtener IDs de usuarios que ya son especialistas
+        usuarios_especialistas_ids = Especialista.objects.values_list('usuario_id', flat=True)
+        
+        # Filtrar usuarios que NO son especialistas
+        usuarios_disponibles = Usuario.objects.exclude(id__in=usuarios_especialistas_ids)
+        
+        # Serializar los datos
+        data = [
+            {
+                "id": u.id,
+                "email": u.email,
+                "username": u.username,
+                "first_name": u.first_name,
+                "last_name": u.last_name or u.last_name1 if hasattr(u, 'last_name1') else u.last_name,
+                "rol": u.rol
+            }
+            for u in usuarios_disponibles
+        ]
+        
+        return Response(data)
+    

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UsuarioCreateView, UsuarioCrud, UsuarioPorRolView, UsuarioLoginView, UsuarioEditarView
+from .views import UsuarioCreateView, UsuarioCrud, UsuarioPorRolView, UsuarioLoginView, UsuarioEditarView, UsuariosDisponiblesParaEspecialista
 urlpatterns = [
     path("usuarios/", UsuarioCreateView.as_view()), 
     path("crear-usuario/", UsuarioCreateView.as_view()),
@@ -7,4 +7,5 @@ urlpatterns = [
     path("usuarios/rol/<str:rol>/", UsuarioPorRolView.as_view()),
     path('login/', UsuarioLoginView.as_view(), name='token_obtain_pair'),
     path("editar-usuario/", UsuarioEditarView.as_view()),
+    path("usuarios-disponibles/", UsuariosDisponiblesParaEspecialista.as_view()),
 ]

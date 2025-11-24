@@ -29,31 +29,22 @@ async function getData(endpoint) {
 
 async function putData(endpoint, obj) {
   try {
-    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(obj)
-    });
+    const formData = new FormData();
 
-    // ⬇️ LEER LA RESPUESTA RAW PARA VER EL ERROR REAL
-    const raw = await peticion.text();
-    console.log("RAW PUT RESPONSE:", raw);
-    console.log("STATUS:", peticion.status);
-
-    // Intentamos parsear JSON (por si sí es JSON)
-    let respuesta;
-    try {
-      respuesta = JSON.parse(raw);
-    } catch {
-      respuesta = raw; // si no es json, devolvemos texto
+    for (let key in obj) {
+      formData.append(key, obj[key]);
     }
 
-    return respuesta;
+    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
+      method: "PUT",
+      body: formData, 
+    });
 
+    const respuesta = await peticion.json();
+    console.log("RAW PUT RESPONSE:", respuesta);
+    return respuesta;
   } catch (error) {
-    console.error("Error en putData:", error);
+    console.error(error);
   }
 }
 

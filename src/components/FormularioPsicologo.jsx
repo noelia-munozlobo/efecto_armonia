@@ -9,7 +9,6 @@ const FormularioPsicologo = () => {
   const [especialidad, setEspecialidad] = useState("Psicología Clínica");
   const [descripcion, setDescripcion] = useState("");
 
-  // 🔹 Cargar lista de usuarios al iniciar
   useEffect(() => {
     const cargarUsuarios = async () => {
       const resultado = await getData("usuarios/usuarios/rol/cliente");
@@ -30,8 +29,8 @@ const FormularioPsicologo = () => {
       correo,
       especialidad,
       descripcion,
-      nombre_completo: `${usuarioSeleccionado.first_name} ${usuarioSeleccionado.last_name}`,
-      telefono: usuarioSeleccionado.phone,
+      nombre_completo: `${usuarioSeleccionado.first_name} ${usuarioSeleccionado.last_name1}`,
+
     };
 
     try {
@@ -44,7 +43,7 @@ const FormularioPsicologo = () => {
         alert(respuesta.error);
         return;
       }
-      
+
       setCorreo("");
       setUsuarioSeleccionado(null);
       setEspecialidad("Psicología Clínica");
@@ -52,72 +51,76 @@ const FormularioPsicologo = () => {
 
       alert("Especialista registrado con éxito");
     } catch (error) {
-      console.error('Error al registrar el especialista:', error);
-      alert('No se pudo registrar el especialista');
+      console.error("Error al registrar el especialista:", error);
+      alert("No se pudo registrar el especialista");
     }
   };
 
   return (
-    <div className="formulario-psicologo">
-      <h2>Registrar Psicólogo Especialista</h2>
+    <div id="pagina-psicologo">
+      <div id="psicologo-container">
+        <h2 id="psicologo-titulo">Registrar Psicólogo Especialista</h2>
 
-      <form onSubmit={enviarFormulario}>
-        <label htmlFor="correo">Seleccione el correo del usuario</label>
+        <form id="psicologo-form" onSubmit={enviarFormulario}>
 
-        <select
-          id="correo"
-          value={correo}
-          onChange={(e) => {
-            const valor = e.target.value;
-            setCorreo(valor);
+          {/* Selección de usuario */}
+          <div className="psicologo-campo">
+            <label htmlFor="correo">Seleccione el correo del usuario</label>
+            <select
+              id="correo"
+              value={correo}
+              onChange={(e) => {
+                const valor = e.target.value;
+                setCorreo(valor);
 
-            const user = usuarios.find((u) => u.email === valor);
-            setUsuarioSeleccionado(user || null);
-          }}
-          required
-        >
-          <option value="">Seleccione un usuario</option>
+                const user = usuarios.find((u) => u.email === valor);
+                setUsuarioSeleccionado(user || null);
+              }}
+              required
+            >
+              <option value="">Seleccione un usuario</option>
+              {usuarios.map((u) => (
+                <option key={u.id} value={u.email}>
+                  {u.email} — {u.first_name} {u.last_name1}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          {usuarios.map((u) => (
-            <option key={u.id} value={u.email}>
-              {u.email} — {u.first_name} {u.last_name1}
-            </option>
-          ))}
-        </select>
 
-        <label htmlFor="telefono">Teléfono</label>
-        <input
-          type="tel"
-          id="telefono"
-          value={telefono}
-          onChange={(e) => setTelefono(e.target.value)}
-          required
-        />
+          {/* Especialidad */}
+          <div className="psicologo-campo">
+            <label htmlFor="especialidad">Especialidad</label>
+            <select
+              id="especialidad"
+              value={especialidad}
+              onChange={(e) => setEspecialidad(e.target.value)}
+              required
+            >
+              <option value="Psicología Clínica">Psicología Clínica</option>
+              <option value="Psicología Organizacional">Psicología Organizacional</option>
+              <option value="Neuropsicología">Neuropsicología</option>
+              <option value="Psicopedagogía">Psicopedagogía</option>
+            </select>
+          </div>
 
-        <label htmlFor="especialidad">Especialidad</label>
-        <select
-          id="especialidad"
-          value={especialidad}
-          onChange={(e) => setEspecialidad(e.target.value)}
-          required
-        >
-          <option value="Psicología Clínica">Psicología Clínica</option>
-          <option value="Psicología Organizacional">Psicología Organizacional</option>
-          <option value="Neuropsicología">Neuropsicología</option>
-          <option value="Psicopedagogía">Psicopedagogía</option>
-        </select>
+          {/* Descripción */}
+          <div className="psicologo-campo">
+            <label htmlFor="descripcion">Descripción / Enfoque</label>
+            <textarea
+              id="descripcion"
+              value={descripcion}
+              onChange={(e) => setDescripcion(e.target.value)}
+              rows="4"
+              required
+            />
+          </div>
 
-        <label htmlFor="descripcion">Descripción / Enfoque</label>
-        <textarea
-          id="descripcion"
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-          rows="4"
-          required
-        />
-
-        <button type="submit">Registrar</button>
-      </form>
+          <button id="psicologo-boton" type="submit">
+            Registrar
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -4,44 +4,78 @@ from rest_framework.response import Response
 from rest_framework import status
 from usuarios.models import Usuario
 from .models import Especialista
-from .serializers import EspecialistaSerializer
+from .serializers import EspecialistaSerializer, EspecialistaCreateSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class CrearEspecialista(APIView):
     def post(self, request):
+        print("=" * 50)
+        print("DATOS RECIBIDOS:", request.data)
+        
         correo = request.data.get("correo")
+
+        if not correo:
+            return Response(
+                {"error": "El correo es obligatorio."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         # Verificar usuario
         try:
             usuario = Usuario.objects.get(email=correo)
+            print(f"Usuario encontrado: {usuario.id} - {usuario.email}")
         except Usuario.DoesNotExist:
+            print(f"Usuario NO encontrado: {correo}")
             return Response(
                 {"error": "El correo no existe como usuario."},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Cambiar rol
-        usuario.rol = "especialista"
-        usuario.save()
+        # Verificar si ya es especialista
+        if Especialista.objects.filter(usuario=usuario).exists():
+            print(f"Usuario ya es especialista: {usuario.email}")
+            return Response(
+                {"error": "Este usuario ya está registrado como especialista."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
-        # Preparar data
-        data = request.data.copy()
-        data["usuario"] = usuario.id
-        data.pop("correo", None)
+        # Preparar data para el serializer de creación
+        data = {
+            "usuario": usuario.id,
+            "especialidad": request.data.get("especialidad"),
+            "descripcion": request.data.get("descripcion", ""),
+        }
+        
+        print("Data para serializer:", data)
 
-        serializer = EspecialistaSerializer(data=data)
+        # Usar el serializer de creación
+        serializer = EspecialistaCreateSerializer(data=data)
         if serializer.is_valid():
+            print("Serializer válido, guardando...")
+            
+            # Cambiar rol del usuario
+            usuario.rol = "especialista"
+            usuario.save()
+            print(f"Rol cambiado a especialista para: {usuario.email}")
+            
+            # Crear especialista
             especialista = serializer.save()
+            print(f"Especialista creado con ID: {especialista.id}")
+            
+            # Retornar usando el serializer completo para la respuesta
             return Response(
                 EspecialistaSerializer(especialista).data,
                 status=status.HTTP_201_CREATED
             )
 
+        print("Errores del serializer:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class EspecialistaListCreateView(ListCreateAPIView):
     queryset = Especialista.objects.all()
     serializer_class = EspecialistaSerializer
+
 
 class EspecialistaDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Especialista.objects.all()
@@ -65,7 +99,7 @@ class EspecialistaDetailView(RetrieveUpdateDestroyAPIView):
                     )
                 
                 # Cambiar rol del usuario anterior a usuario normal
-                usuario_actual.rol = "usuario"
+                usuario_actual.rol = "cliente"
                 usuario_actual.save()
                 
                 # Asignar nuevo usuario y cambiar su rol
@@ -136,6 +170,7 @@ class RecursoPorId(ListCreateAPIView):
         id = self.kwargs["id"]
         return Especialista.objects.filter(id=id)
     
+
 class RecursoPorEscpecialidad(ListCreateAPIView):
     serializer_class = EspecialistaSerializer
     parser_classes = (MultiPartParser, FormParser)

@@ -2,10 +2,17 @@ from rest_framework import serializers
 from .models import Especialista
 from usuarios.models import Usuario
 
+# Serializer para CREAR especialistas (solo campos necesarios)
+class EspecialistaCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Especialista
+        fields = ['usuario', 'especialidad', 'descripcion']
+
+# Serializer para LISTAR/LEER especialistas (con todos los campos)
 class EspecialistaSerializer(serializers.ModelSerializer):
     correo = serializers.EmailField(source="usuario.email", read_only=True)
     telefono = serializers.CharField(source="usuario.telefono", read_only=True)
-    username = serializers.CharField(source="usuario.username", read_only=True)  # ← NUEVO
+    username = serializers.CharField(source="usuario.username", read_only=True)
     nombre_completo = serializers.SerializerMethodField()
     nombre = serializers.CharField(source="usuario.first_name", read_only=True)
     apellido = serializers.CharField(source="usuario.last_name", read_only=True)
@@ -20,7 +27,7 @@ class EspecialistaSerializer(serializers.ModelSerializer):
             "id",
             "usuario",
             "usuario_email",
-            "username",  # ← NUEVO
+            "username",
             "nombre",
             "apellido",
             "correo",
