@@ -1,18 +1,18 @@
 /* Fondo general */
-.armonía-pagina {
+.recuperar-pagina {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  background-color: #E6F4F1;
+  background-color: #E6F4F1; /* verde suave de armonía */
   font-family: 'Roboto', sans-serif;
   padding-top: 50px;
   padding-bottom: 2rem;
   box-sizing: border-box;
 }
 
-/* Caja del formulario */
-.armonía-caja {
+/* Caja principal */
+.recuperar-caja {
   background-color: #FFFFFF;
   border: 1px solid #B8E2D0;
   border-radius: 16px;
@@ -26,7 +26,7 @@
 }
 
 /* Título */
-.armonía-titulo {
+.recuperar-titulo {
   color: #2E7D6F;
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
@@ -34,43 +34,17 @@
   font-weight: 600;
 }
 
-/* Formulario */
-.armonía-formulario {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
-}
-
-/* Campos */
-.armonía-campo {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.armonía-etiqueta {
-  font-size: 0.9rem;
+/* Texto */
+.recuperar-texto {
+  font-size: 0.95rem;
   color: #2E7D6F;
-  margin-bottom: 0.4rem;
-  font-weight: 500;
-}
-
-.armonía-input {
-  padding: 0.6rem;
-  border: 1px solid #A0D6B4;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  width: 100%;
-}
-
-.armonía-input:focus {
-  border-color: #2E7D6F;
-  outline: none;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.4;
 }
 
 /* Botón */
-.armonía-boton {
+.recuperar-boton {
   background-color: #A0D6B4;
   color: white;
   border: none;
@@ -83,29 +57,30 @@
   width: 100%;
 }
 
-.armonía-boton:hover {
+.recuperar-boton:hover {
   background-color: #81C784;
   transform: translateY(-2px);
 }
 
-/* Link de recuperación */
-.armonía-recuperacion {
+/* Caja de contraseña generada */
+.contrasena-box {
   margin-top: 1rem;
-  font-size: 0.85rem;
+  padding: 0.8rem;
+  background-color: #F1F8E9;
+  border: 1px solid #C5E1A5;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1.1rem;
   text-align: center;
-  color: #555;
+  color: #2E7D32;
+  word-break: break-word;
 }
 
-.armonía-link {
+/* Link de regreso */
+.recuperar-link {
   color: #2E7D6F;
   cursor: pointer;
   text-decoration: underline;
 }
-
-
-
-
-
-
 
 

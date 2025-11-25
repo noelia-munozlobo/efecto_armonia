@@ -9,7 +9,6 @@ const Sesion = () => {
   const navigate = useNavigate();
 
   const iniciarSesion = async () => {
-
     const respuesta = await loginUsuario(username, contraseña);
     console.log(respuesta);
     
@@ -20,15 +19,14 @@ const Sesion = () => {
       // Guardar info usuario
       localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
       localStorage.setItem("usuarioId", respuesta.id);
+
       if (respuesta.rol === "cliente") {
         navigate("/PagCliente");
       } else if (respuesta.rol === "admin") {
         navigate("/PagAdmin");
-      }
-      else if (respuesta.rol === "especialista") {
+      } else if (respuesta.rol === "especialista") {
         navigate("/PagPsicologos");
       }
-
     } else {
       alert("Credenciales incorrectas");
     }
@@ -36,42 +34,53 @@ const Sesion = () => {
 
   return (
     <div className="armonía-pagina">
-  <div className="armonía-caja">
-    <form className="armonía-formulario">
-      <h2 className="armonía-titulo">Inicio de Sesión</h2>
+      <div className="armonía-caja">
+        <form className="armonía-formulario">
+          <h2 className="armonía-titulo">Inicio de Sesión</h2>
 
-      <div className="armonía-campo">
-        <label className="armonía-etiqueta">Nombre de usuario</label>
-        <input
-          type="text"
-          required
-          className="armonía-input"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+          <div className="armonía-campo">
+            <label className="armonía-etiqueta">Nombre de usuario</label>
+            <input
+              type="text"
+              required
+              className="armonía-input"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+
+          <div className="armonía-campo">
+            <label className="armonía-etiqueta">Contraseña</label>
+            <input
+              type="password"
+              required
+              className="armonía-input"
+              onChange={(e) => setContraseña(e.target.value)}
+            />
+          </div>
+
+          <button
+            type="button"
+            onClick={iniciarSesion}
+            className="armonía-boton"
+          >
+            Iniciar Sesión
+          </button>
+
+          {/*Aquí agregamos el enlace de recuperación */}
+          <p className="armonía-recuperacion">
+            ¿Olvidaste tu contraseña?{" "}
+            <span
+              className="armonía-link"
+              onClick={() => navigate("/recuperar-contrasena")}
+              style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+            >
+              Haz click aquí
+            </span>
+          </p>
+        </form>
       </div>
-
-      <div className="armonía-campo">
-        <label className="armonía-etiqueta">Contraseña</label>
-        <input
-          type="password"
-          required
-          className="armonía-input"
-          onChange={(e) => setContraseña(e.target.value)}
-        />
-      </div>
-
-      <button
-        type="button"
-        onClick={iniciarSesion}
-        className="armonía-boton"
-      >
-        Iniciar Sesión
-      </button>
-    </form>
-  </div>
-</div>
-)
-}
- ;
+    </div>
+  );
+};
 
 export default Sesion;
