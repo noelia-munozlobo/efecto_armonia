@@ -3,12 +3,14 @@ import Especialista from '../components/Especialista'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FormularioAdmin from '../components/FormularioAdmin';
+import VerHorario from '../components/VerHorario';
 
 const PagEspecialista = () => {
   return (
     <div>
          <Header />
         <Especialista/>
+        <VerHorario/>
         <FormularioAdmin/>
         <Footer />
     </div>

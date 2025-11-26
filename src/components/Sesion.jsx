@@ -12,21 +12,19 @@ const Sesion = () => {
 
     const respuesta = await loginUsuario(username, contraseña);
     console.log(respuesta);
-    
+
     if (respuesta.token) {
       // Guardar token
       localStorage.setItem("token", respuesta.token);
-
-      // Guardar info usuario
-      localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
-      localStorage.setItem("usuarioId", respuesta.id);
+      localStorage.setItem("usuario", JSON.stringify(respuesta.usuario)); // opcional
+      localStorage.setItem("usuarioId", respuesta.usuario.id); // <-- ESTA es la correcta
       if (respuesta.rol === "cliente") {
         navigate("/PagCliente");
       } else if (respuesta.rol === "admin") {
         navigate("/PagAdmin");
       }
       else if (respuesta.rol === "especialista") {
-        navigate("/PagPsicologos");
+        navigate("/PagEspecialista");
       }
 
     } else {
@@ -36,42 +34,42 @@ const Sesion = () => {
 
   return (
     <div className="armonía-pagina">
-  <div className="armonía-caja">
-    <form className="armonía-formulario">
-      <h2 className="armonía-titulo">Inicio de Sesión</h2>
+      <div className="armonía-caja">
+        <form className="armonía-formulario">
+          <h2 className="armonía-titulo">Inicio de Sesión</h2>
 
-      <div className="armonía-campo">
-        <label className="armonía-etiqueta">Nombre de usuario</label>
-        <input
-          type="text"
-          required
-          className="armonía-input"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+          <div className="armonía-campo">
+            <label className="armonía-etiqueta">Nombre de usuario</label>
+            <input
+              type="text"
+              required
+              className="armonía-input"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+
+          <div className="armonía-campo">
+            <label className="armonía-etiqueta">Contraseña</label>
+            <input
+              type="password"
+              required
+              className="armonía-input"
+              onChange={(e) => setContraseña(e.target.value)}
+            />
+          </div>
+
+          <button
+            type="button"
+            onClick={iniciarSesion}
+            className="armonía-boton"
+          >
+            Iniciar Sesión
+          </button>
+        </form>
       </div>
-
-      <div className="armonía-campo">
-        <label className="armonía-etiqueta">Contraseña</label>
-        <input
-          type="password"
-          required
-          className="armonía-input"
-          onChange={(e) => setContraseña(e.target.value)}
-        />
-      </div>
-
-      <button
-        type="button"
-        onClick={iniciarSesion}
-        className="armonía-boton"
-      >
-        Iniciar Sesión
-      </button>
-    </form>
-  </div>
-</div>
-)
+    </div>
+  )
 }
- ;
+  ;
 
 export default Sesion;

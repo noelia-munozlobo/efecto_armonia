@@ -1,152 +1,182 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import '../styles/Especialista.css';
+import React, { useState } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "../styles/Especialista.css";
+
+async function enviarRecurso(endpoint, data, isFormData = false) {
+  try {
+    let options = {
+      method: "POST",
+      body: data,
+    };
+
+    if (!isFormData) {
+      options.headers = { "Content-Type": "application/json" };
+      options.body = JSON.stringify(data);
+    }
+
+    const respuesta = await fetch(`http://127.0.0.1:8000/${endpoint}`, options);
+    const resultado = await respuesta.json();
+
+    console.log("Recurso guardado:", resultado);
+    return resultado;
+  } catch (error) {
+    console.error("Error al guardar el recurso:", error);
+  }
+}
 
 const Especialista = () => {
   const [horariosSeleccionados, setHorariosSeleccionados] = useState([]);
-  const [fechasSeleccionadas, setFechasSeleccionadas] = useState([]);
-  const [citasSolicitadas, setCitasSolicitadas] = useState([
-    { nombre: 'Ana López', fecha: '2025-11-24', motivo: 'Ansiedad' },
-    { nombre: 'Carlos Rojas', fecha: '2025-11-26', motivo: 'Duelo' },
-  ]);
+  const [horaInicio, setHoraInicio] = useState("09:00");
+  const [horaFin, setHoraFin] = useState("10:00");
 
-  const horariosDisponibles = ['9:00–10:00am', '10:00–11:00am', '2:00–3:00pm', '3:00–4:00pm'];
-
-  const toggleHorario = (horario) => {
-    setHorariosSeleccionados((prev) =>
-      prev.includes(horario) ? prev.filter(h => h !== horario) : [...prev, horario]
-    );
-  };
-
-  // formatea Date (local) a YYYY-MM-DD
   const formatDateLocal = (date) => {
     if (!(date instanceof Date)) date = new Date(date);
     const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
     return `${yyyy}-${mm}-${dd}`;
   };
 
-  // parsea un string YYYY-MM-DD a Date local (00:00:00 local)
   const parseLocalDate = (dateStr) => {
-    const [y, m, d] = dateStr.split('-').map(Number);
+    const [y, m, d] = dateStr.split("-").map(Number);
     return new Date(y, m - 1, d);
   };
 
-  // toggle usando fecha local (evita desplazamiento por zona horaria)
   const toggleFecha = (date) => {
     const fechaStr = formatDateLocal(date);
-    setFechasSeleccionadas((prev) =>
-      prev.includes(fechaStr) ? prev.filter(f => f !== fechaStr) : [...prev, fechaStr]
+
+    if (!horaInicio || !horaFin) {
+      alert("Selecciona hora de inicio y fin primero");
+      return;
+    }
+
+    if (horaInicio >= horaFin) {
+      alert("La hora de fin debe ser posterior a la de inicio");
+      return;
+    }
+
+    const indiceExistente = horariosSeleccionados.findIndex(
+      (h) => h.fecha === fechaStr
     );
-  };
 
-  const guardarHorario = async () => {
-    const nuevoRegistro = {
-      horarios: horariosSeleccionados,
-      fechas: fechasSeleccionadas
-    };
-
-    try {
-      const respuesta = await fetch('http://localhost:3001/horarios', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(nuevoRegistro)
-      });
-
-      if (respuesta.ok) {
-        alert('Horarios guardados correctamente en la base de datos');
-      } else {
-        alert('Error al guardar los horarios');
-      }
-    } catch (error) {
-      console.error('Error al conectar con el servidor:', error);
-      alert('No se pudo conectar con el servidor');
+    if (indiceExistente !== -1) {
+      const nuevos = horariosSeleccionados.filter((_, i) => i !== indiceExistente);
+      setHorariosSeleccionados(nuevos);
+    } else {
+      const nuevoHorario = {
+        fecha: fechaStr,
+        hora_inicio: horaInicio,
+        hora_fin: horaFin,
+      };
+      setHorariosSeleccionados([...horariosSeleccionados, nuevoHorario]);
     }
   };
 
+  const eliminarHorario = (index) => {
+    const nuevos = horariosSeleccionados.filter((_, i) => i !== index);
+    setHorariosSeleccionados(nuevos);
+  };
+
+const guardarHorario = async () => {
+  if (horariosSeleccionados.length === 0) {
+    alert("No hay horarios para guardar");
+    return;
+  }
+
+  const usuarioId = localStorage.getItem("usuarioId");
+
+  if (!usuarioId) {
+    alert("No se encontró el ID de usuario");
+    return;
+  }
+
+  try {
+    const promesas = horariosSeleccionados.map((horario) => {
+      return enviarRecurso("horarios/crear-horarios/", {
+        fecha: horario.fecha,
+        hora_inicio: horario.hora_inicio,
+        hora_fin: horario.hora_fin,
+        usuario: parseInt(usuarioId),
+      });
+    });
+
+    const resultados = await Promise.all(promesas);
+
+    // 🔥 Validación REAL: detecta si algún campo es un array (DRF errors)
+    const fallas = resultados.filter((r) => {
+      return r && Object.values(r).some((v) => Array.isArray(v));
+    });
+
+    if (fallas.length === 0) {
+      alert("Horarios guardados correctamente");
+      setHorariosSeleccionados([]);
+    } else {
+      console.log("Errores:", fallas);
+      alert("Algunos horarios no se guardaron. Revisa consola.");
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Ocurrió un error al guardar.");
+  }
+};
+
+
   const limpiarTodo = () => {
     setHorariosSeleccionados([]);
-    setFechasSeleccionadas([]);
+    setHoraInicio("09:00");
+    setHoraFin("10:00");
   };
 
-  const confirmarCita = (index) => {
-    alert(`Cita confirmada con ${citasSolicitadas[index].nombre}`);
-  };
-
-  const eliminarCita = (index) => {
-    const nuevasCitas = [...citasSolicitadas];
-    nuevasCitas.splice(index, 1);
-    setCitasSolicitadas(nuevasCitas);
+  const formatearFecha = (fechaStr) => {
+    return parseLocalDate(fechaStr).toLocaleDateString("es-CR", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
   return (
     <div className="especialista">
       <h2>Panel del Especialista</h2>
 
-      <section className="tarjeta-horarios">
-        <h3> Selecciona tus horarios disponibles</h3>
+      <div className="tarjeta-horarios">
+        <h3>Selecciona el horario disponible</h3>
+
         <div className="botones-horario">
-          {horariosDisponibles.map((horario, i) => (
-            <button
-              key={i}
-              className={horariosSeleccionados.includes(horario) ? 'activo' : ''}
-              onClick={() => toggleHorario(horario)}
-              type="button"
-            >
-              {horario}
-            </button>
-          ))}
+          <input type="time" value={horaInicio} onChange={(e) => setHoraInicio(e.target.value)} />
+          <input type="time" value={horaFin} onChange={(e) => setHoraFin(e.target.value)} />
         </div>
-      </section>
+      </div>
 
-      <section className="tarjeta-calendario">
-        <h3> Selecciona tus fechas disponibles</h3>
-        <Calendar
-          onClickDay={toggleFecha}
-          locale="es-CR"
-          // tileClassName compara usando formatDateLocal para evitar UTC
-          tileClassName={({ date }) => {
-            const fechaStr = formatDateLocal(date);
-            return fechasSeleccionadas.includes(fechaStr) ? 'resaltado' : null;
-          }}
-          // Para que la selección visual use fechas locales si quieres pasar value:
-          // value={fechasSeleccionadas.length ? fechasSeleccionadas.map(parseLocalDate) : null}
-        />
+      <div className="tarjeta-calendario">
+        <h3>Selecciona tus fechas disponibles</h3>
+        <Calendar onClickDay={toggleFecha} locale="es-CR" className="react-calendar" />
+      </div>
+
+      {horariosSeleccionados.length > 0 && (
         <div className="fechas-seleccionadas">
-          <h4>Fechas seleccionadas:</h4>
+          <h4>Horarios Seleccionados ({horariosSeleccionados.length})</h4>
+
           <ul>
-            {fechasSeleccionadas.map((f, i) => (
-              // renderiza con parseLocalDate para asegurar 00:00 local antes de toLocaleDateString
-              <li key={i}>{parseLocalDate(f).toLocaleDateString('es-CR')}</li>
-            ))}
+            {horariosSeleccionados
+              .sort((a, b) => new Date(a.fecha) - new Date(b.fecha))
+              .map((h, i) => (
+                <li key={i}>
+                  {formatearFecha(h.fecha)} — {h.hora_inicio} a {h.hora_fin}
+                  <button className="eliminar" onClick={() => eliminarHorario(i)}>
+                    Eliminar
+                  </button>
+                </li>
+              ))}
           </ul>
-          <button className="guardar" onClick={guardarHorario} type="button">Guardar horario</button>
+
+          <button className="guardar" onClick={guardarHorario}>Guardar Horarios</button>
+          <button className="limpiar" onClick={limpiarTodo}>Limpiar Todo</button>
         </div>
-      </section>
-
-      <section className="citas">
-        <h3>Solicitudes de Citas</h3>
-        <ul>
-          {citasSolicitadas.map((cita, i) => (
-            <li key={i}>
-              <div className="cita-info">
-                <strong>{cita.nombre}</strong> – {cita.fecha} ({cita.motivo})
-              </div>
-              <div className="cita-botones">
-                <button className="confirmar" onClick={() => confirmarCita(i)} type="button">Confirmar</button>
-                <button className="eliminar" onClick={() => eliminarCita(i)} type="button">Eliminar</button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="tarjeta-acciones">
-        <h3>Acciones generales</h3>
-        <button className="limpiar" onClick={limpiarTodo} type="button">Limpiar todo</button>
-      </section>
+      )}
     </div>
   );
 };
