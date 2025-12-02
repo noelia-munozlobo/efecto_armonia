@@ -11,21 +11,19 @@ const Sesion = () => {
   const iniciarSesion = async () => {
     const respuesta = await loginUsuario(username, contraseña);
     console.log(respuesta);
-    
+
     if (respuesta.token) {
       // Guardar token
       localStorage.setItem("token", respuesta.token);
-
-      // Guardar info usuario
-      localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
-      localStorage.setItem("usuarioId", respuesta.id);
-
+      localStorage.setItem("usuario", JSON.stringify(respuesta.usuario)); // opcional
+      localStorage.setItem("usuarioId", respuesta.usuario.id); // <-- ESTA es la correcta
       if (respuesta.rol === "cliente") {
         navigate("/PagCliente");
       } else if (respuesta.rol === "admin") {
         navigate("/PagAdmin");
-      } else if (respuesta.rol === "especialista") {
-        navigate("/PagPsicologos");
+      }
+      else if (respuesta.rol === "especialista") {
+        navigate("/PagEspecialista");
       }
     } else {
       alert("Credenciales incorrectas");
@@ -65,22 +63,11 @@ const Sesion = () => {
           >
             Iniciar Sesión
           </button>
-
-          {/*Aquí agregamos el enlace de recuperación */}
-          <p className="armonía-recuperacion">
-            ¿Olvidaste tu contraseña?{" "}
-            <span
-              className="armonía-link"
-              onClick={() => navigate("/recuperar-contrasena")}
-              style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
-            >
-              Haz click aquí
-            </span>
-          </p>
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
+  ;
 
 export default Sesion;
