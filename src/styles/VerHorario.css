@@ -1,8 +1,8 @@
 .ver-horario-container {
   padding: 25px;
-  background: #f9fafc; /* Fondo suave y limpio */
+  background: #fdfdfd; /* Fondo limpio */
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra ligera para armonía */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   max-width: 900px;
   margin: 0 auto;
 }
@@ -12,13 +12,13 @@ h2 {
   margin-bottom: 25px;
   font-family: 'Segoe UI', sans-serif;
   font-weight: 600;
-  color: #3a506b; /* Azul profundo, calmante */
+  color: #2a9d8f; /* Verde principal Armonía */
 }
 
 .no-horarios {
   text-align: center;
   font-style: italic;
-  color: #7a7a7a;
+  color: #6c757d;
   font-size: 1rem;
 }
 
@@ -39,7 +39,7 @@ h2 {
 }
 
 .tabla-horarios th {
-  background: linear-gradient(135deg, #6fb1fc, #4364f7); /* Degradado armonioso */
+  background: linear-gradient(135deg, #2a9d8f, #52b788); /* Verdes armoniosos */
   color: #fff;
   font-weight: 600;
 }
@@ -61,26 +61,26 @@ h2 {
 
 .acciones .btn:hover {
   opacity: 0.9;
-  transform: scale(1.05); /* Animación ligera */
+  transform: scale(1.05);
 }
 
-/* Botones con paleta Armonía */
+/* Botones con paleta verde Armonía */
 .btn.editar {
-  background: #fbc02d;
+  background: #95d5b2; /* Verde suave */
   color: #fff;
 }
 
 .btn.eliminar {
-  background: #e63946;
+  background: #40916c; /* Verde intenso */
   color: #fff;
 }
 
 .btn.guardar {
-  background: #2a9d8f;
+  background: #2a9d8f; /* Verde principal */
   color: #fff;
 }
 
 .btn.cancelar {
-  background: #6c757d;
+  background: #52b788; /* Verde secundario */
   color: #fff;
 }

@@ -10,4 +10,3 @@ class Horarios(models.Model):
 
     def __str__(self):
         return f"Horario de {self.usuario.username} el {self.fecha}"
-
