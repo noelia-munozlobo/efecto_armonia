@@ -6,11 +6,9 @@ class MentoriasSerializer(ModelSerializer):
     class Meta:
         model = Mentorias
         fields = '__all__'
-        read_only_fields = ['fecha', 'hora_inicio', 'hora_fin', 'usuario_horario']
+        read_only_fields = ['fecha', 'hora_inicio', 'hora_fin', 'usuario_especialista']
 
     def create(self, validated_data):
-        request = self.context.get("request")  # para obtener el usuario autenticado
-
         horario = validated_data.get('horario')
 
         if not horario:
@@ -21,11 +19,11 @@ class MentoriasSerializer(ModelSerializer):
         validated_data['hora_inicio'] = horario.hora_inicio
         validated_data['hora_fin'] = horario.hora_fin
 
-        # Usuario dueño del horario
-        validated_data['usuario_horario'] = horario.usuario  
+        # Usuario dueño del horario (el especialista/mentor)
+        validated_data['usuario_especialista'] = horario.usuario
 
-        # Usuario que crea la mentoría
-        validated_data['usuario_crea'] = request.user  
+        # Ya no necesitas request.user porque el frontend envía usuario_cliente
+        # validated_data['usuario_cliente'] ya viene del frontend
 
-        mentoría = Mentorias.objects.create(**validated_data)
-        return mentoría
+        mentoria = Mentorias.objects.create(**validated_data)
+        return mentoria

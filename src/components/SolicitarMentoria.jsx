@@ -4,6 +4,7 @@ const SolicitarMentoria = () => {
   const [horarios, setHorarios] = useState([]);
   const [motivo, setMotivo] = useState("");
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const usuarioCliente = Number(localStorage.getItem("usuarioId"));
 
@@ -23,16 +24,21 @@ const SolicitarMentoria = () => {
       return;
     }
 
+    if (!usuarioCliente) {
+      alert("No se encontró el usuario. Por favor inicia sesión nuevamente.");
+      return;
+    }
+
+    setLoading(true);
+
     try {
       const body = {
         motivo: motivo,
-        fecha: horarioSeleccionado.fecha,
-        hora_inicio: horarioSeleccionado.hora_inicio,
-        hora_fin: horarioSeleccionado.hora_fin,
-        usuario_especialista: horarioSeleccionado.usuario,
         usuario_cliente: usuarioCliente,
         horario: horarioSeleccionado.id,
       };
+
+      console.log("Enviando al servidor:", body);
 
       const resp = await fetch(
         "http://127.0.0.1:8000/mentorias/crear-mentorias/",
@@ -44,15 +50,23 @@ const SolicitarMentoria = () => {
       );
 
       if (resp.ok) {
+        const data = await resp.json();
+        console.log("Respuesta exitosa:", data);
         alert("Mentoría solicitada correctamente");
         setMotivo("");
         setHorarioSeleccionado(null);
+        obtenerHorarios();
       } else {
-        alert("Error al solicitar mentoría.");
+        const errorData = await resp.json();
+        console.error("Error del servidor:", errorData);
+        alert(`Error al solicitar mentoría: ${JSON.stringify(errorData)}`);
       }
 
     } catch (error) {
       console.error("Error:", error);
+      alert("Ocurrió un error al solicitar la mentoría. Revisa la consola.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -101,31 +115,42 @@ const SolicitarMentoria = () => {
 
       {horarioSeleccionado && (
         <div className="modal">
-          <h3>Solicitar mentoría</h3>
+          <div className="modal-contenido">
+            <h3>Solicitar mentoría</h3>
 
-          <p>
-            Para: <strong>{horarioSeleccionado.nombre_completo}</strong><br />
-            Fecha: <strong>{horarioSeleccionado.fecha}</strong> <br />
-            Hora: <strong>{horarioSeleccionado.hora_inicio} - {horarioSeleccionado.hora_fin}</strong>
-          </p>
+            <p>
+              Para: <strong>{horarioSeleccionado.nombre_completo}</strong><br />
+              Fecha: <strong>{horarioSeleccionado.fecha}</strong> <br />
+              Hora: <strong>{horarioSeleccionado.hora_inicio} - {horarioSeleccionado.hora_fin}</strong>
+            </p>
 
-          <textarea
-            placeholder="Motivo de la mentoría"
-            value={motivo}
-            onChange={(e) => setMotivo(e.target.value)}
-          />
+            <textarea
+              placeholder="Motivo de la mentoría"
+              value={motivo}
+              onChange={(e) => setMotivo(e.target.value)}
+              rows="4"
+            />
 
-          <div className="acciones">
-            <button className="btn guardar" onClick={solicitarMentoria}>
-              Enviar solicitud
-            </button>
+            <div className="acciones">
+              <button 
+                className="btn guardar" 
+                onClick={solicitarMentoria}
+                disabled={loading}
+              >
+                {loading ? "Enviando..." : "Enviar solicitud"}
+              </button>
 
-            <button
-              className="btn cancelar"
-              onClick={() => setHorarioSeleccionado(null)}
-            >
-              Cancelar
-            </button>
+              <button
+                className="btn cancelar"
+                onClick={() => {
+                  setHorarioSeleccionado(null);
+                  setMotivo("");
+                }}
+                disabled={loading}
+              >
+                Cancelar
+              </button>
+            </div>
           </div>
         </div>
       )}
