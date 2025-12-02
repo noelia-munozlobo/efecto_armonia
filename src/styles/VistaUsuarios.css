@@ -3,19 +3,14 @@
   justify-content: center;
   align-items: start;
   min-height: 100vh;
-  background-color: #F0F9F7;
   padding: 2rem;
   font-family: 'Roboto', sans-serif;
 }
 
 .usuarios-container {
-  background: white;
-  border-radius: 16px;
-  border: 1px solid #CCE7D6;
   padding: 2rem 3rem;
   max-width: 1100px;
   width: 100%;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .usuarios-container h2 {
@@ -32,11 +27,7 @@
 }
 
 .card-usuario {
-  background: white;
-  border: 1px solid #CCE7D6;
   padding: 1.5rem;
-  border-radius: 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
   transition: transform .2s ease;
 }
 
@@ -61,11 +52,9 @@
 }
 
 .btn-editar {
-  background: #81C784;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
   transition: .2s;
 }
@@ -75,11 +64,9 @@
 }
 
 .btn-eliminar {
-  background: #E57373;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
   transition: .2s;
 }
@@ -94,3 +81,4 @@
   padding: 3rem;
   color: #2E7D6F;
 }
+
