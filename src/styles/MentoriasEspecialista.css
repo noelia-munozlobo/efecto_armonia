@@ -134,3 +134,15 @@
 .btn-rechazar:hover {
   background: #c82333;
 }
+
+.btn-editar {
+  background-color: #007bff;
+  color: white;
+  /* resto de estilos similares a btn-aprobar */
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  color: white;
+  /* resto de estilos similares a btn-rechazar */
+}

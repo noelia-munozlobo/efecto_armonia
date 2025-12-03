@@ -8,7 +8,6 @@ const RecursosVista = () => {
     <div>
         <Header />
         <InfoRecursos/>
-        {/* <ComentariosRecursos /> */}
         <Footer />
     </div>
   )

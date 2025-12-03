@@ -4,7 +4,7 @@ import "../styles/MentoriasEspecialista.css";
 const MentoriasEspecialista = () => {
   const [mentorias, setMentorias] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [filtro, setFiltro] = useState("todas"); // todas, pendiente, aprobado, rechazado
+  const [filtro, setFiltro] = useState("todas");
 
   const usuarioId = localStorage.getItem("usuarioId");
 
@@ -42,6 +42,56 @@ const MentoriasEspecialista = () => {
       }
     } catch (error) {
       console.error("Error al actualizar estado:", error);
+    }
+  };
+
+  const cambiarAPendiente = async (mentoriaId) => {
+    if (!window.confirm("¿Deseas cambiar esta mentoría a estado pendiente para revisarla nuevamente?")) {
+      return;
+    }
+
+    try {
+      const resp = await fetch(
+        `http://127.0.0.1:8000/mentorias/mentorias/${mentoriaId}/`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ estado: "pendiente" }),
+        }
+      );
+
+      if (resp.ok) {
+        alert("Mentoría cambiada a pendiente correctamente");
+        obtenerMentorias();
+      } else {
+        alert("Error al cambiar el estado");
+      }
+    } catch (error) {
+      console.error("Error al cambiar estado:", error);
+    }
+  };
+
+  const eliminarMentoria = async (mentoriaId) => {
+    if (!window.confirm("¿Estás seguro de eliminar esta mentoría? Esta acción no se puede deshacer.")) {
+      return;
+    }
+
+    try {
+      const resp = await fetch(
+        `http://127.0.0.1:8000/mentorias/mentorias/${mentoriaId}/`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (resp.ok) {
+        alert("Mentoría eliminada correctamente");
+        obtenerMentorias();
+      } else {
+        alert("Error al eliminar la mentoría");
+      }
+    } catch (error) {
+      console.error("Error al eliminar:", error);
     }
   };
 
@@ -140,6 +190,23 @@ const MentoriasEspecialista = () => {
                     onClick={() => actualizarEstado(m.id, "rechazado")}
                   >
                     Rechazar
+                  </button>
+                </div>
+              )}
+
+              {(m.estado === "aprobado" || m.estado === "rechazado") && (
+                <div className="mentoria-acciones">
+                  <button
+                    className="btn-editar"
+                    onClick={() => cambiarAPendiente(m.id)}
+                  >
+                    Volver a Pendiente
+                  </button>
+                  <button
+                    className="btn-eliminar"
+                    onClick={() => eliminarMentoria(m.id)}
+                  >
+                    Eliminar
                   </button>
                 </div>
               )}
