@@ -1,64 +1,86 @@
 .ver-horario-container {
-  padding: 20px;
-  background: #fff;
+  padding: 25px;
+  background: #fdfdfd; /* Fondo limpio */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  color: #2a9d8f; /* Verde principal Armonía */
 }
 
 .no-horarios {
   text-align: center;
   font-style: italic;
-  color: #666;
+  color: #6c757d;
+  font-size: 1rem;
 }
 
 .tabla-horarios {
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .tabla-horarios th,
 .tabla-horarios td {
-  padding: 12px;
-  border: 1px solid #ddd;
+  padding: 14px;
+  border: 1px solid #e0e0e0;
   text-align: center;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .tabla-horarios th {
-  background: #4c89ff;
-  color: white;
+  background: linear-gradient(135deg, #2a9d8f, #52b788); /* Verdes armoniosos */
+  color: #fff;
+  font-weight: 600;
+}
+
+.tabla-horarios tr:nth-child(even) {
+  background: #f1f5f9; /* Alternancia suave */
 }
 
 .acciones .btn {
-  margin: 0 5px;
-  padding: 6px 10px;
+  margin: 0 6px;
+  padding: 8px 14px;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+.acciones .btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Botones con paleta verde Armonía */
 .btn.editar {
-  background: #ffc107;
+  background: #95d5b2; /* Verde suave */
+  color: #fff;
 }
 
 .btn.eliminar {
-  background: #dc3545;
-  color: white;
+  background: #40916c; /* Verde intenso */
+  color: #fff;
 }
 
 .btn.guardar {
-  background: #28a745;
-  color: white;
+  background: #2a9d8f; /* Verde principal */
+  color: #fff;
 }
 
 .btn.cancelar {
-  background: #6c757d;
-  color: white;
-}
-
-.btn:hover {
-  opacity: 0.85;
+  background: #52b788; /* Verde secundario */
+  color: #fff;
 }

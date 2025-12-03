@@ -6,8 +6,8 @@ const Hero = () => (
   <section className="imagen-fondo">
     <img src={Fondo} alt="Fondo Efecto Armonía" className="fondo-img" />
     <div className="texto-superpuesto">
-      <h1>Bienvenido</h1>
-      <h1>A EFECTO ARMONIA</h1>
+      <h1>Bienvenido a</h1>
+      <h1>EFECTO ARMONIA</h1>
       <p>Tu espacio seguro para crecer emocionalmente.</p>
     </div>
   </section>

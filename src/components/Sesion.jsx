@@ -9,7 +9,6 @@ const Sesion = () => {
   const navigate = useNavigate();
 
   const iniciarSesion = async () => {
-
     const respuesta = await loginUsuario(username, contraseña);
     console.log(respuesta);
 
@@ -26,7 +25,6 @@ const Sesion = () => {
       else if (respuesta.rol === "especialista") {
         navigate("/PagEspecialista");
       }
-
     } else {
       alert("Credenciales incorrectas");
     }
