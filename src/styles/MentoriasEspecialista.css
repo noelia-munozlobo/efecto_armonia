@@ -1,0 +1,136 @@
+.mentorias-especialista-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.mentorias-especialista-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filtros button {
+  padding: 10px 20px;
+  border: 2px solid #ddd;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filtros button:hover {
+  background: #f0f0f0;
+}
+
+.filtro-activo {
+  background: #007bff !important;
+  color: white !important;
+  border-color: #007bff !important;
+}
+
+.cargando, .no-mentorias {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.lista-mentorias {
+  display: grid;
+  gap: 20px;
+}
+
+.tarjeta-mentoria {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mentoria-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.mentoria-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.estado {
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.estado-pendiente {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.estado-aprobado {
+  background: #d4edda;
+  color: #155724;
+}
+
+.estado-rechazado {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.mentoria-detalles p {
+  margin: 10px 0;
+  color: #555;
+}
+
+.mentoria-detalles strong {
+  color: #333;
+}
+
+.mentoria-acciones {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.btn-aprobar, .btn-rechazar {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.btn-aprobar {
+  background: #28a745;
+  color: white;
+}
+
+.btn-aprobar:hover {
+  background: #218838;
+}
+
+.btn-rechazar {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-rechazar:hover {
+  background: #c82333;
+}

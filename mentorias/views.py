@@ -23,3 +23,13 @@ class MentoriasPorUsuario(ListAPIView):
     def get_queryset(self):
         usuario_id = self.kwargs['usuario_id']
         return Mentorias.objects.filter(usuario_id=usuario_id)
+    
+# Listar mentorías por especialista
+class MentoriasPorEspecialista(ListAPIView):
+    serializer_class = MentoriasSerializer
+
+    def get_queryset(self):
+        especialista_id = self.kwargs['especialista_id']
+        return Mentorias.objects.filter(
+            usuario_especialista_id=especialista_id
+        ).order_by('-id')  # Las más recientes primero

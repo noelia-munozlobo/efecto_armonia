@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FormularioAdmin from '../components/FormularioAdmin';
 import VerHorario from '../components/VerHorario';
+import MentoriasEspecialista from '../components/MentoriasEspecialista';
 
 const PagEspecialista = () => {
   return (
@@ -11,6 +12,7 @@ const PagEspecialista = () => {
          <Header />
         <Especialista/>
         <VerHorario/>
+        <MentoriasEspecialista/>
         <FormularioAdmin/>
         <Footer />
     </div>

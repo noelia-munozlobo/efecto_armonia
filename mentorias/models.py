@@ -17,22 +17,10 @@ class Mentorias(models.Model):
     hora_inicio = models.TimeField(null=True, blank=True)
     hora_fin = models.TimeField(null=True, blank=True)
 
-
     # Usuario que creó el horario (mentor)
-    usuario_especialista = models.ForeignKey(
-    Usuario,
-    related_name="mentor",
-    on_delete=models.CASCADE,
-    null=True,
-    blank=True)
-
+    usuario_especialista = models.ForeignKey(Usuario, related_name="mentor", on_delete=models.CASCADE, null=True, blank=True)
     # Usuario que crea la mentoría (estudiante)
-    usuario_cliente = models.ForeignKey(
-    Usuario,
-    related_name="solicitante",
-    on_delete=models.CASCADE,
-    null=True,
-    blank=True)
+    usuario_cliente = models.ForeignKey(Usuario, related_name="solicitante", on_delete=models.CASCADE, null=True, blank=True)
 
     horario = models.ForeignKey(Horarios, on_delete=models.CASCADE, null=True, blank=True)
 
