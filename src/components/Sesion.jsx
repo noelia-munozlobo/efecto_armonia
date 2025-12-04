@@ -21,8 +21,7 @@ const Sesion = () => {
         navigate("/PagCliente");
       } else if (respuesta.rol === "admin") {
         navigate("/PagAdmin");
-      }
-      else if (respuesta.rol === "especialista") {
+      } else if (respuesta.rol === "especialista") {
         navigate("/PagEspecialista");
       }
     } else {
@@ -63,11 +62,22 @@ const Sesion = () => {
           >
             Iniciar Sesión
           </button>
+
+          {/* Enlace para recuperar contraseña */}
+          <p id="login-form-recovery-link">
+            ¿Olvidaste tu contraseña?{" "}
+            <a
+              href="http://localhost:5173/recuperar-contrasena"
+              id="login-form-recovery-anchor"
+            >
+              Recuperar contraseña
+            </a>
+          </p>
         </form>
       </div>
     </div>
-  )
-}
-  ;
+  );
+};
 
 export default Sesion;
+

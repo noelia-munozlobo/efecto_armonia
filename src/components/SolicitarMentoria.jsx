@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../styles/SolicitarMentoria.css";
 
 const SolicitarMentoria = () => {
   const [horarios, setHorarios] = useState([]);
@@ -79,7 +80,7 @@ const SolicitarMentoria = () => {
       <h2>Solicitar Mentoría</h2>
 
       {horarios.length === 0 ? (
-        <p>No hay horarios disponibles.</p>
+        <p className="no-horarios">No hay horarios disponibles.</p>
       ) : (
         <table className="tabla-horarios">
           <thead>
@@ -101,7 +102,7 @@ const SolicitarMentoria = () => {
                 <td>{h.hora_fin}</td>
                 <td>
                   <button
-                    className="btn"
+                    className="btn solicitar"
                     onClick={() => setHorarioSeleccionado(h)}
                   >
                     Solicitar

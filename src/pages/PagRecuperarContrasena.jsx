@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import RecuperarContrasena from '../components/RecuperarContrasena';
+import RecoveryEmailForm from '../components/RecoveryEmailForm';
 
 const RecuperarContrasena  = () => {
   return (
     <div>
         <Header/>
-        <RecuperarContrasena/>
+        <RecoveryEmailForm recoveryCode="123456" toEmail=''/>
         <Footer/>
     </div>
   )

@@ -1,0 +1,106 @@
+/* Contenedor principal */
+#recovery-form-container {
+  background: linear-gradient(135deg, #fdfdfd, #f3f7f9);
+  border: 1px solid #dbe4ea;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  max-width: 420px;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Título */
+#recovery-form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Formulario */
+#recovery-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Etiquetas */
+#recovery-form-label-email,
+#recovery-form-label-code {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #34495e;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+/* Input */
+#recovery-form-input-email {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#recovery-form-input-email:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+  outline: none;
+}
+
+/* Bloque código */
+#recovery-code-block {
+  background: #f9fbfc;
+  border: 1px solid #e0e6eb;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  color: #2c3e50;
+}
+
+#recovery-form-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #b8e3d0, #8ccfb5); /* verde menta efecto armonía */
+  color: #1f3f3a;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+#recovery-form-button:hover:not(:disabled) {
+  opacity: 0.95;
+  transform: translateY(-2px);
+}
+
+#recovery-form-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#recovery-form-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mensajes */
+#recovery-message-success {
+  font-size: 0.85rem;
+  color: #2e7d32;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+#recovery-message-error {
+  font-size: 0.85rem;
+  color: #c62828;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
