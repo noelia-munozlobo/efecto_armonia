@@ -183,22 +183,6 @@ const AdminRecursos = () => {
           )
         )}
       </div>
-
-      <div className="lista-mentorias" style={{ marginTop: "2rem" }}>
-        <h2>Mentorías Solicitadas</h2>
-        {mentorías.length > 0 ? (
-          <ul>
-            {mentorías.map((m, idx) => (
-              <li key={idx}>
-                <strong>{m.nombreUsuario}</strong> - {m.fecha} <br />
-                {m.texto}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No hay mentorías solicitadas.</p>
-        )}
-      </div>
     </div>
   );
 };
