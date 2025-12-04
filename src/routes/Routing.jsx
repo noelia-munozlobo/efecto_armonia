@@ -10,7 +10,7 @@ import PagEspecialista from '../pages/PagEspecialista';
 import PagPsicologos from '../pages/PagPsicologos';
 import RecursosVista from '../pages/RecursosVista';
 import FormularioUsuarios from '../components/FormularioUsuarios';
-import RecuperarContrasena from '../components/RecuperarContrasena';
+import PagRecuperarContrasena from '../pages/PagRecuperarContrasena';
 
 const Routing = () => (
   <Router>
@@ -26,7 +26,7 @@ const Routing = () => (
       <Route path="/PagPsicologos" element={<PagPsicologos/>} />
       <Route path="/RecursosVista" element={<RecursosVista/>} />
       <Route path="/editar-usuario/:id" element={<FormularioUsuarios />} />
-      <Route path="/recuperar-contrasena" element={<RecuperarContrasena />} />
+      <Route path="/recuperar-contrasena" element={<PagRecuperarContrasena />} />
       
     </Routes>
   </Router>
