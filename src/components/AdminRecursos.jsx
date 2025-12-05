@@ -6,6 +6,7 @@ const AdminRecursos = () => {
   const [recursos, setRecursos] = useState([]);
   const [mentorías, setMentorías] = useState([]);
   const [editando, setEditando] = useState(null);
+  const [usuarios, setUsuarios] = useState([]);
 
   const [formulario, setFormulario] = useState({
     nombre_recurso: "",
@@ -20,7 +21,13 @@ const AdminRecursos = () => {
   useEffect(() => {
     cargarRecursos();
     cargarMentorias();
+    cargarUsuarios();
   }, []);
+
+  const cargarUsuarios = async () => {
+    const data = await getData("usuarios/usuarios");
+    setUsuarios(data || []);
+  }
 
   const cargarRecursos = async () => {
     const data = await getData("recursos/crear-recurso");
@@ -124,7 +131,11 @@ const AdminRecursos = () => {
                 onChange={actualizarFormulario}
               >
                 <option value="">Seleccione usuario</option>
-                {/* Puedes cargar lista de usuarios si tienes endpoint */}
+                {usuarios.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.username}
+                  </option>
+                ))}
               </select>
 
 
@@ -151,7 +162,7 @@ const AdminRecursos = () => {
               {/* Imagen actual */}
               {formulario.imagen_url && (
                 <img
-                  src={formulario.imagen_url}
+                  src={recursos.imagen_recurso}
                   alt="imagen recurso"
                   style={{ width: "120px", marginBottom: "10px", borderRadius: "6px" }}
                 />

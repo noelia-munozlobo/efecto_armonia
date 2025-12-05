@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import "../styles/InfoRecursos.css";
 import { getData } from '../services/fetch';
+import { useParams } from "react-router-dom";
 
-function InfoRecursos({ id }) {
+function InfoRecursos() {
+  const { id } = useParams();
   const [infoRecurso, setInfoRecurso] = useState(null);
 
   useEffect(() => {
     async function traerInfo() {
       try {
-        // Usa el id recibido como prop o desde localStorage
-        const recursoId = id || localStorage.getItem("id_recurso");
-        if (!recursoId) {
-          console.error("No se encontró un id válido para el recurso");
-          return;
+        const recursoId = id || localStorage.getItem("recurso_unico");
+        if (!recursoId) return;
+
+        const peticion = await getData(`recursos/recurso/${recursoId}`);
+        
+        // La API devuelve un array, así que tomamos el primer elemento
+        if (Array.isArray(peticion) && peticion.length > 0) {
+          setInfoRecurso(peticion[0]);
         }
 
-        const peticion = await getData(`recursos/recurso/${recursoId}/`);
-        // Si la API devuelve un objeto directamente
-        setInfoRecurso(peticion);
         console.log("Respuesta recurso:", peticion);
       } catch (error) {
         console.error("Error al traer recurso:", error);
@@ -26,9 +28,16 @@ function InfoRecursos({ id }) {
     traerInfo();
   }, [id]);
 
+  if (!infoRecurso) return <h3>Cargando información del recurso...</h3>;
+
   return (
     <div className="info-container">
-     
+      <h2>{infoRecurso.nombre_recurso}</h2>
+      <p><strong>Autor:</strong> {infoRecurso.nombre_usuario}</p>
+      <p><strong>Fecha:</strong> {infoRecurso.fecha}</p>
+      <p><strong>Tipo:</strong> {infoRecurso.tipo}</p>
+      <p><strong></strong> {infoRecurso.descripcion}</p>
+
     </div>
   );
 }

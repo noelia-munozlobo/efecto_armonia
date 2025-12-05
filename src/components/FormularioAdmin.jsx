@@ -17,6 +17,8 @@ const FormularioAdmin = () => {
       try {
         const resp = await fetch("http://127.0.0.1:8000/usuarios/usuarios/rol/especialista/");
         const data = await resp.json();
+        console.log(data);
+        
         setUsuarios(data);
       } catch (error) {
         console.error("Error cargando usuarios:", error);
