@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import FormularioAdmin from '../components/FormularioAdmin';
 import VerHorario from '../components/VerHorario';
 import MentoriasEspecialista from '../components/MentoriasEspecialista';
+import Chat from '../components/Chat';
 
 const PagEspecialista = () => {
   return (

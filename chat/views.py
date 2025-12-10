@@ -9,20 +9,31 @@ from django.db import models
 class ChatCreateView(ListCreateAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
+    
+    def create(self, request, *args, **kwargs):
+        print("Datos recibidos:", request.data)  # Para debugging
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
-# Listar mensajes entre dos usuarios (conversación)
 class ConversacionView(ListAPIView):
     serializer_class = ChatSerializer
 
     def get_queryset(self):
         remitente_id = self.kwargs['remitente_id']
         destinatario_id = self.kwargs['destinatario_id']
-        # mensajes entre ambos (ida y vuelta)
-        return Chat.objects.filter(
+        print(f"Buscando conversación entre {remitente_id} y {destinatario_id}")
+        
+        queryset = Chat.objects.filter(
             models.Q(remitente_id=remitente_id, destinatario_id=destinatario_id) |
             models.Q(remitente_id=destinatario_id, destinatario_id=remitente_id)
         ).order_by('fecha_envio')
+        
+        print(f"Mensajes encontrados: {queryset.count()}")
+        return queryset
 
 
 # Listar mensajes recibidos por un usuario

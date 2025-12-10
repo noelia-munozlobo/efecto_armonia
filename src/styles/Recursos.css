@@ -141,7 +141,11 @@
   font-style: italic;
 }
 
-
-
-
-
+/* Imagen dentro del recurso: tamaño uniforme */
+.recursos-imagen {
+  width: 100%;
+  height: 180px;       /* Ajusta la altura como prefieras */
+  object-fit: cover;   /* Evita deformación */
+  border-radius: 12px; /* Opcional */
+  margin-bottom: 1rem;
+}

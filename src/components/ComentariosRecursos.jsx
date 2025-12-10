@@ -1,25 +1,20 @@
-
 import React, { useEffect, useState } from 'react';
 import { getData, } from "../services/fetch";
 import '../styles/ComentariosRecursos.css';
 
-function ComentariosRecursos() {
-  // Estado para el texto del comentario
-  const [descripcion, setDescripcion] = useState('');
-  // Estado para mostrar errores de validación
+function ComentariosRecursos({ recursoId }) {
+
+  const [comentario, setComentario] = useState('');
   const [error, setError] = useState('');
   // Estado para almacenar lista de comentarios
   const [comentarios, setComentarios] = useState([]);
-  // Obtener usuario autenticado desde localStorage
-  const usuario = JSON.parse(localStorage.getItem("authUser"));
+  const usuario = JSON.parse(localStorage.getItem("usuarioId"));
 
   // Función para cargar comentarios desde la API
   const cargarComentarios = async () => {
     try {
-      
-      const data = await getData('comentarios');
-      // Guardar comentarios en el estado
-      setComentarios(data || []);
+      const data = await getData(`comentarios/comentarios-recurso/${recursoId}`);
+      setComentarios(data);
     } catch (error) {
       console.error('Error al cargar comentarios:', error);
     }
@@ -28,78 +23,84 @@ function ComentariosRecursos() {
   // Al montar el componente, cargar comentarios
   useEffect(() => {
     cargarComentarios();
-  }, []);
+  }, [recursoId]);
 
   // Función para enviar un nuevo comentario
   const enviarComentario = async () => {
-    // Validación: no permitir comentarios vacíos
-    if (!descripcion.trim()) {
-      setError("La descripción es obligatoria.");
+    if (!usuario) {
+      setError("Debe iniciar sesión para comentar.");
       return;
     }
+
+    if (!comentario.trim()) {
+      setError("El comentario es obligatorio.");
+      return;
+    }
+
+    const nuevo = {
+      contenido: comentario,
+      usuario: localStorage.getItem("usuarioId"),              // ← Corregido: usuario.id
+      recursos: recursoId               // ← ID del recurso
+    };
+
+    console.log("Datos a enviar:", nuevo); // Para debugging
+
     try {
-      // Crear objeto con datos del comentario
-      const nuevoComentario = {
-        descripcion,
-        autor: usuario?.email || "Anónimo" // Si no hay usuario, se marca como "Anónimo"
-      };
-      // Enviar comentario a la API
-      await Services.postDatos('comentarios', nuevoComentario);
-      // Limpiar formulario y errores
-      setDescripcion('');
+      await postData("comentarios/crear-comentario/", nuevo);
+      setComentario('');
       setError('');
-      // Recargar lista de comentarios inmediatamente
       cargarComentarios();
     } catch (e) {
-      console.error(e);
+      console.error("Error al enviar:", e);
+      setError("Error al enviar el comentario. Intenta nuevamente.");
     }
   };
 
   return (
     <section className="comentarios-recursos">
+
       <h2 className="comentarios-titulo">Comparte tu reflexión o experiencia</h2>
 
-      {/* Formulario para escribir comentario */}
+      {/* Formulario */}
       <div className="comentario-formulario">
         <textarea
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
+          value={comentario}
+          onChange={(e) => setComentario(e.target.value)}
           className={`form-input form-textarea ${error ? 'is-invalid' : ''}`}
           placeholder="Escribe tu comentario sobre la charla"
         />
         {/* Mostrar error si existe */}
         {error && <p className="error">{error}</p>}
-        
-        {/* Mensaje según si el usuario está autenticado */}
-        <p className={`${usuario ? "inactivo" : "activo"}`}>
-          Inicia sesión para agregar un comentario
-        </p>
-        
-        {/* Botón para enviar comentario */}
+
+        {!usuario && <p className="error">Inicia sesión para agregar un comentario</p>}
+
         <button
-          className={`btn-submit ${usuario ? "activo" : "inactivo"}`}
+          className="btn-submit"
           onClick={enviarComentario}
+          disabled={!usuario}
         >
           Enviar
         </button>
       </div>
 
-      {/* Lista de comentarios */}
+      {/* Comentarios */}
       <div className="comentarios-ver">
         <h3>Comentarios de la comunidad</h3>
         {comentarios.length === 0 ? (
           <p>No hay comentarios aún.</p>
         ) : (
           <ul className="comentarios-lista">
-            {comentarios.map((comentario, index) => (
-              <li key={index} className="comentario-item">
-                <p><strong>Autor:</strong> {comentario.autor}</p>
-                <p>{comentario.descripcion}</p>
+            {comentarios.map((c) => (
+              <li key={c.id} className="comentario-item">
+                <p><strong>{c.usuario_nombre}</strong></p>
+                <p>{c.contenido}</p>
+                <small>{c.fecha}</small>
               </li>
             ))}
           </ul>
         )}
       </div>
+
     </section>
   );
 }

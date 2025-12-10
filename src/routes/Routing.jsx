@@ -24,7 +24,7 @@ const Routing = () => (
       <Route path="/PagCliente" element={<PagCliente/>} />
       <Route path="/PagEspecialista" element={<PagEspecialista/>} />
       <Route path="/PagPsicologos" element={<PagPsicologos/>} />
-      <Route path="/RecursosVista" element={<RecursosVista/>} />
+      <Route path="/recurso/:id" element={<RecursosVista />} />
       <Route path="/editar-usuario/:id" element={<FormularioUsuarios />} />
       <Route path="/recuperar-contrasena" element={<PagRecuperarContrasena />} />
       

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getData, deleteData, obtenerMentorias } from "../services/fetch";
 import "../styles/AdminRecursos.css";
+import SubirImagen from "./SubirImagen";
 
 const AdminRecursos = () => {
   // Estado para lista de recursos
@@ -9,24 +10,31 @@ const AdminRecursos = () => {
   const [mentorías, setMentorías] = useState([]);
   // Estado para saber cuál recurso se está editando
   const [editando, setEditando] = useState(null);
+  const [usuarios, setUsuarios] = useState([]);
+  const [imagenURL, setImagenURL] = useState("");
 
   // Estado para manejar datos del formulario
   const [formulario, setFormulario] = useState({
     nombre_recurso: "",
     descripcion: "",
     tipo: "",
-    imagen_recurso: null,
-    imagen_url: null,
-    usuario: "",   // Nuevo campo para asociar recurso a un usuario
+    imagen_recurso: imagenURL,
+    imagen_url: imagenURL,
+    usuario: "",   // <-- NUEVO
   });
 
   // Al montar el componente, cargar recursos y mentorías
   useEffect(() => {
     cargarRecursos();
     cargarMentorias();
+    cargarUsuarios();
   }, []);
 
-  // Obtener recursos desde la API
+  const cargarUsuarios = async () => {
+    const data = await getData("usuarios/usuarios");
+    setUsuarios(data || []);
+  }
+
   const cargarRecursos = async () => {
     const data = await getData("recursos/crear-recurso");
     setRecursos(data || []);
@@ -140,7 +148,11 @@ const AdminRecursos = () => {
                 onChange={actualizarFormulario}
               >
                 <option value="">Seleccione usuario</option>
-                {/* Aquí se puede cargar lista de usuarios desde un endpoint */}
+                {usuarios.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.username}
+                  </option>
+                ))}
               </select>
 
               <textarea
@@ -167,14 +179,13 @@ const AdminRecursos = () => {
               {/* Mostrar imagen actual */}
               {formulario.imagen_url && (
                 <img
-                  src={formulario.imagen_url}
+                  src={recursos.imagen_recurso}
                   alt="imagen recurso"
                   style={{ width: "120px", marginBottom: "10px", borderRadius: "6px" }}
                 />
               )}
 
-              {/* Subir nueva imagen */}
-              <input type="file" accept="image/*" onChange={actualizarImagen} />
+        
 
               {/* Botones de acción */}
               <button onClick={() => guardarCambios(r.id)}>Guardar</button>

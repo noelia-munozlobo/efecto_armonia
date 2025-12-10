@@ -7,10 +7,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from especialista.models import Especialista
+from .models import RecuperacionCodigo
+from .serializers import RecuperacionCodigoSerializer
+
 
 class UsuarioCreateView(ListCreateAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
+
 
 class UsuarioLoginView(APIView):
     def post(self, request):
@@ -32,6 +36,7 @@ class UsuarioLoginView(APIView):
             return Response({
                 "error": "Credenciales inválidas"
             }, status=401)
+
 
 class UsuarioCrud(RetrieveUpdateDestroyAPIView):
     queryset = Usuario.objects.all()
@@ -60,7 +65,6 @@ class UsuarioCrud(RetrieveUpdateDestroyAPIView):
         return response
 
 
-
 # Filtrar usuarios por rol (por ejemplo: admin, cliente o especialista)
 class UsuarioPorRolView(ListAPIView):
     serializer_class = UsuarioSerializer
@@ -69,13 +73,14 @@ class UsuarioPorRolView(ListAPIView):
         rol = self.kwargs['rol']  # toma el rol desde la URL
         return Usuario.objects.filter(rol=rol)
 
+
 class UsuarioEditarView(APIView):
-    def patch(self,request):
+    def patch(self, request):
         id_usuario = request.data.get("id")
         nombre_usuario = request.data.get("username")
         email = request.data.get("email")
         rol = request.data.get("rol")
-        
+
         usuario = Usuario.objects.get(id=id_usuario)
         usuario.username = nombre_usuario
         usuario.email = email
@@ -85,16 +90,18 @@ class UsuarioEditarView(APIView):
             "mensaje": "Usuario actualizado exitosamente",
             "usuario": UsuarioSerializer(usuario).data
         })
-    
+
 
 class UsuariosDisponiblesParaEspecialista(APIView):
     def get(self, request):
         # Obtener IDs de usuarios que ya son especialistas
-        usuarios_especialistas_ids = Especialista.objects.values_list('usuario_id', flat=True)
-        
+        usuarios_especialistas_ids = Especialista.objects.values_list(
+            'usuario_id', flat=True)
+
         # Filtrar usuarios que NO son especialistas
-        usuarios_disponibles = Usuario.objects.exclude(id__in=usuarios_especialistas_ids)
-        
+        usuarios_disponibles = Usuario.objects.exclude(
+            id__in=usuarios_especialistas_ids)
+
         # Serializar los datos
         data = [
             {
@@ -107,6 +114,40 @@ class UsuariosDisponiblesParaEspecialista(APIView):
             }
             for u in usuarios_disponibles
         ]
-        
+
         return Response(data)
-    
+
+
+class CodigoRecuperacionView(ListCreateAPIView):
+    queryset = RecuperacionCodigo.objects.all()
+    serializer_class = RecuperacionCodigoSerializer
+
+
+class CodigoCambiarClave(APIView):
+    def patch(self,request):
+        id_usuario = request.data.get("id_usuario")
+        codigo_recuperacion = request.data.get("codigo_recuperacion")
+        nueva_clave = request.data.get("nueva_clave")
+
+        try:
+            usuario = Usuario.objects.get(id=id_usuario)
+            codigo_obj = RecuperacionCodigo.objects.filter(
+                usuario=usuario, codigo=codigo_recuperacion).first()
+
+            if codigo_obj:
+                usuario.set_password(nueva_clave)
+                usuario.save()
+                codigo_obj.delete() 
+
+                return Response({
+                    "mensaje": "Contraseña actualizada exitosamente"
+                })
+            else:
+                return Response({
+                    "error": "Código de recuperación inválido"
+                }, status=400)
+            
+        except Usuario.DoesNotExist:
+            return Response({
+                "error": "Usuario no encontrado"
+            }, status=404)

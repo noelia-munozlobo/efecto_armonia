@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import "../styles/FormularioAdmin.css";
 import { enviarRecurso } from "../services/fetch";
+import SubirImagen from "./SubirImagen";
 
 const FormularioAdmin = () => {
-  // Estados para cada campo del formulario
-  const [tipo, setTipo] = useState("charla"); // tipo de recurso
-  const [nombre, setNombre] = useState("");   // nombre del recurso
-  const [descripcion, setDescripcion] = useState(""); // descripción
-  const [usuario, setUsuario] = useState(""); // especialista autor
-  const [imagen, setImagen] = useState(null); // imagen del recurso
+  const [tipo, setTipo] = useState("charla");
+  const [nombre, setNombre] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [usuario, setUsuario] = useState("");
+  const [imagen, setImagen] = useState(null); 
 
   // Estado para lista de especialistas cargados desde la API
   const [usuarios, setUsuarios] = useState([]);
@@ -17,8 +17,9 @@ const FormularioAdmin = () => {
   useEffect(() => {
     const cargarUsuarios = async () => {
       try {
-        // Petición GET al backend para obtener especialistas
-        const resp = await fetch("http://127.0.0.1:8000/usuarios/usuarios/rol/especialista/");
+        const resp = await fetch(
+          "http://127.0.0.1:8000/usuarios/usuarios/rol/especialista/"
+        );
         const data = await resp.json();
         console.log(data); // útil para depuración
         setUsuarios(data); // guardar en estado
@@ -41,20 +42,20 @@ const FormularioAdmin = () => {
     formData.append("descripcion", descripcion);
     formData.append("usuario", usuario);
 
+    // URL de Cloudinary
     if (imagen) {
       formData.append("imagen_recurso", imagen);
     }
 
     try {
-      // Enviar recurso usando función auxiliar (POST con FormData)
-      await enviarRecurso("/recursos/crear-recurso/", formData, true);
-
-      // Reiniciar estados del formulario
+      const peticion = await enviarRecurso("/recursos/crear-recurso/", formData, true);
+      console.log(peticion);
+      
       setTipo("charla");
       setNombre("");
       setDescripcion("");
       setUsuario("");
-      setImagen(null);
+      setImagen("");
 
       alert("El recurso fue agregado exitosamente");
     } catch (error) {
@@ -66,13 +67,11 @@ const FormularioAdmin = () => {
     <div className="admin-form-container">
       <h2 className="admin-form-title">Agregar recurso</h2>
 
-      {/* Formulario principal */}
       <form
         onSubmit={enviarFormulario}
         className="admin-form"
         encType="multipart/form-data"
       >
-        {/* Campo: nombre del recurso */}
         <div className="admin-form-group">
           <label className="admin-form-label">Nombre del Recurso</label>
           <input
@@ -84,7 +83,6 @@ const FormularioAdmin = () => {
           />
         </div>
 
-        {/* Campo: tipo de recurso */}
         <div className="admin-form-group">
           <label className="admin-form-label">Tipo</label>
           <select
@@ -99,7 +97,6 @@ const FormularioAdmin = () => {
           </select>
         </div>
 
-        {/* Campo: descripción */}
         <div className="admin-form-group">
           <label className="admin-form-label">Descripción</label>
           <textarea
@@ -111,7 +108,6 @@ const FormularioAdmin = () => {
           ></textarea>
         </div>
 
-        {/* Campo: usuario autor */}
         <div className="admin-form-group">
           <label className="admin-form-label">Usuario Autor</label>
           <select
@@ -129,28 +125,11 @@ const FormularioAdmin = () => {
           </select>
         </div>
 
-        {/* Campo: imagen del recurso */}
         <div className="admin-form-group">
-          <label className="admin-form-label">Imagen del Recurso</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImagen(e.target.files[0])}
-            className="admin-form-input"
-          />
+          {/* Componente para subir imagen y obtener URL */}
+          <SubirImagen setImagen={setImagen} />
         </div>
 
-        {/* Vista previa de la imagen seleccionada */}
-        {imagen && (
-          <div className="admin-card-preview">
-            <img src={URL.createObjectURL(imagen)} alt="Vista previa del recurso" />
-            <h4>{nombre || "Título del recurso"}</h4>
-            <p>Tipo: {tipo}</p>
-            <p>{descripcion || "Descripción breve del recurso"}</p>
-          </div>
-        )}
-
-        {/* Botón de envío */}
         <button type="submit" className="admin-form-button">
           Guardar
         </button>

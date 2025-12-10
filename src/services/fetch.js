@@ -113,4 +113,22 @@ const loginUsuario = async (username, password) => {
   return response.json();
 };
 
-export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias, loginUsuario };
+async function patchData(endpoint, obj) {
+  try {
+    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    });
+
+    const respuesta = await peticion.json();
+    console.log(respuesta);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias, loginUsuario, patchData };
