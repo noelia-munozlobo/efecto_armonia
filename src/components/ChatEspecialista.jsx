@@ -107,10 +107,7 @@ function ChatEspecialista() {
     };
 
     cargarConversaciones();
-
-    // Auto-actualizar cada 10 segundos
-    const interval = setInterval(cargarConversaciones, 10000);
-    return () => clearInterval(interval);
+    
   }, [especialistaId]);
 
   // Cargar mensajes de la conversación seleccionada
@@ -157,13 +154,13 @@ function ChatEspecialista() {
     cargarConversacion();
 
     // Auto-actualizar cada 5 segundos
-    const interval = setInterval(cargarConversacion, 5000);
-    return () => clearInterval(interval);
+    // const interval = setInterval(cargarConversacion, 5000);
+    // return () => clearInterval(interval);
   }, [conversacionSeleccionada, especialistaId]);
 
   // Scroll automático
   useEffect(() => {
-    mensajesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // mensajesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [mensajes]);
 
   // Enviar mensaje

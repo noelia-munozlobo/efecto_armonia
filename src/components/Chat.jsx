@@ -71,7 +71,7 @@ function Chat() {
 
   // Scroll automático al último mensaje
   useEffect(() => {
-    mensajesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // mensajesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [mensajes]);
 
   // Enviar mensaje
