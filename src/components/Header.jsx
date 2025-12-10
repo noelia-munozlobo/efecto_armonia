@@ -40,12 +40,21 @@ const Header = () => {
           </>
 
         )}
-
-        <Link to="/sesion">Inicio de sesión</Link>
-        <span>|</span>
-        <Link to="/" onClick={() => {
-          localStorage.clear()
-        }}>Cerrar Sesion</Link>
+        {localStorage.getItem('usuarioId')
+          ? (
+            <>
+              <Link to="/" onClick={() => localStorage.clear()}>
+                Cerrar Sesión
+              </Link>
+            </>
+          )
+          : (
+            <>
+              <Link to="/sesion">Inicio de sesión</Link>
+              <span>|</span>
+            </>
+          )
+        }
       </nav>
     </header>
   );

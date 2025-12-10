@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { getData, deleteData, obtenerMentorias } from "../services/fetch";
 import "../styles/AdminRecursos.css";
+import SubirImagen from "./SubirImagen";
 
 const AdminRecursos = () => {
   const [recursos, setRecursos] = useState([]);
   const [mentorías, setMentorías] = useState([]);
   const [editando, setEditando] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
+  const [imagenURL, setImagenURL] = useState("");
 
   const [formulario, setFormulario] = useState({
     nombre_recurso: "",
     descripcion: "",
     tipo: "",
-    imagen_recurso: null,
-    imagen_url: null,
+    imagen_recurso: imagenURL,
+    imagen_url: imagenURL,
     usuario: "",   // <-- NUEVO
   });
 
@@ -168,8 +170,7 @@ const AdminRecursos = () => {
                 />
               )}
 
-              {/* Nueva imagen */}
-              <input type="file" accept="image/*" onChange={actualizarImagen} />
+        
 
               <button onClick={() => guardarCambios(r.id)}>Guardar</button>
               <button onClick={cancelarEdicion}>Cancelar</button>

@@ -7,7 +7,7 @@ const RecuperarContrasena  = () => {
   return (
     <div>
         <Header/>
-        <RecoveryEmailForm recoveryCode="123456" toEmail=''/>
+        <RecoveryEmailForm toEmail=''/>
         <Footer/>
     </div>
   )

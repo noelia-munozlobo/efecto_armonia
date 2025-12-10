@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Usuario
-
+from .models import RecuperacionCodigo
 
 class UsuarioSerializer(ModelSerializer):
     class Meta:
@@ -13,3 +13,8 @@ class UsuarioSerializer(ModelSerializer):
         usuario.set_password(clave)
         usuario.save()
         return usuario
+
+class RecuperacionCodigoSerializer(ModelSerializer):
+    class Meta:
+        model = RecuperacionCodigo
+        fields = "__all__"
