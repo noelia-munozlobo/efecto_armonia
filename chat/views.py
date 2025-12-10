@@ -5,6 +5,7 @@ from rest_framework.generics import ListCreateAPIView, ListAPIView, UpdateAPIVie
 from rest_framework.response import Response
 from rest_framework import status
 from django.db import models
+from rest_framework.views import APIView
 
 class ChatCreateView(ListCreateAPIView):
     queryset = Chat.objects.all()
@@ -64,3 +65,18 @@ class MarcarLeidoView(UpdateAPIView):
         mensaje.leido = True
         mensaje.save()
         return Response({'status': 'mensaje marcado como leído'}, status=status.HTTP_200_OK)
+
+class BorrarConversacionView(APIView):
+    def delete(self, request, remitente_id, destinatario_id):
+        mensajes = Chat.objects.filter(
+            models.Q(remitente_id=remitente_id, destinatario_id=destinatario_id) |
+            models.Q(remitente_id=destinatario_id, destinatario_id=remitente_id)
+        )
+
+        cantidad = mensajes.count()
+        mensajes.delete()
+
+        return Response(
+            {"mensaje": f"Conversación eliminada ({cantidad} mensajes)"},
+            status=status.HTTP_200_OK
+        )
