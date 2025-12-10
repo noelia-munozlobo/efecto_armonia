@@ -5,7 +5,6 @@ import { getData, postData, patchData } from "../services/fetch";
 
 export default function RecoveryEmailForm({ toEmail = "" }) {
   const [email, setEmail] = useState(toEmail);
-  // Estado para mostrar indicador de carga
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
   const [message, setMessage] = useState("");
@@ -85,7 +84,6 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
     };
     
     try {
-      // Enviar correo usando EmailJS
       await send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
       setStatus("ok");
       setMessage("Correo de recuperación enviado correctamente.");
@@ -174,8 +172,8 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
   };
 
   return (
-    <div id="recovery-form-container">
-      <h2 id="recovery-form-title">
+    <div id="rec-email-container">
+      <h2 id="rec-email-title">
         {!correoEnviado && "Enviar código de recuperación"}
         {correoEnviado && !codigoVerificado && "Verificar código"}
         {codigoVerificado && "Cambiar contraseña"}
@@ -184,10 +182,10 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
       {/* Paso 1: Enviar correo */}
       {!correoEnviado && (
         <>
-          <label id="recovery-form-label-email">
+          <label id="rec-email-label-email">
             Correo destinatario
             <input
-              id="recovery-form-input-email"
+              id="rec-email-input-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -197,14 +195,14 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
             />
           </label>
           <button
-            id="recovery-form-button"
+            id="rec-email-button"
             type="button"
             onClick={handleSend}
             disabled={loading}
           >
             {loading ? "Enviando..." : "Enviar correo"}
           </button>
-          <div id="recovery-note">
+          <div id="rec-email-note">
             <strong>Nota:</strong> Revisa tu carpeta de spam si no ves el correo en tu bandeja de entrada.
           </div>
         </>
@@ -212,7 +210,7 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
 
       {/* Paso 2: Verificar código */}
       {correoEnviado && !codigoVerificado && (
-        <div className="recovery-container">
+        <div className="rec-email-verify-container">
           <input
             type="text"
             value={codigoIngresado}
@@ -226,7 +224,7 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
 
       {/* Paso 3: Cambiar contraseña */}
       {codigoVerificado && (
-        <div className="recovery-container">
+        <div className="rec-email-change-password-container">
           <input
             type="password"
             value={nuevaClave}
@@ -247,10 +245,10 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
 
       {/* Mensajes de estado */}
       {status === "ok" && (
-        <p id="recovery-message-success" role="status">{message}</p>
+        <p id="rec-email-message-success" role="status">{message}</p>
       )}
       {status === "error" && (
-        <p id="recovery-message-error" role="alert">{message}</p>
+        <p id="rec-email-message-error" role="alert">{message}</p>
       )}
     </div>
   );

@@ -1,112 +1,271 @@
-/* Contenedor principal */
-#recovery-form-container {
-  background: linear-gradient(135deg, #fdfdfd, #f3f7f9);
+#rec-email-container {
+  background: linear-gradient(135deg, #fdfdfd 0%, #f3f7f9 100%);
   border: 1px solid #dbe4ea;
-  border-radius: 1.25rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
-  max-width: 420px;
-  margin: 2rem auto;
-  font-family: 'Segoe UI', sans-serif;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 3rem 2.5rem;
+  max-width: 480px;
+  margin: 3rem auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Título */
-#recovery-form-title {
-  font-size: 1.4rem;
-  font-weight: 600;
+#rec-email-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* TÍTULO PRINCIPAL */
+#rec-email-title {
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #2c3e50;
   text-align: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  line-height: 1.3;
 }
 
-/* Formulario */
-#recovery-form {
+#rec-email-title::before {
+  content: "🔐";
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* ETIQUETAS DE FORMULARIO */
+#rec-email-label-email {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.01em;
+}
+
+/* INPUTS */
+#rec-email-input-email,
+.rec-email-verify-container input,
+.rec-email-change-password-container input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 2px solid #e1e8ed;
+  border-radius: 1rem;
+  font-size: 1rem;
+  background: #ffffff;
+  color: #2c3e50;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+#rec-email-input-email:focus,
+.rec-email-verify-container input:focus,
+.rec-email-change-password-container input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15), 0 4px 12px rgba(74, 144, 226, 0.12);
+  outline: none;
+  background: #f9fcff;
+  transform: translateY(-1px);
+}
+
+#rec-email-input-email::placeholder,
+.rec-email-verify-container input::placeholder,
+.rec-email-change-password-container input::placeholder {
+  color: #9aa5b1;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* BOTONES */
+#rec-email-button,
+.rec-email-verify-container button,
+.rec-email-change-password-container button {
+  width: 100%;
+  padding: 1.1rem 1.5rem;
+  background: linear-gradient(135deg, #b8e3d0 0%, #8ccfb5 100%);
+  color: #1f3f3a;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 16px rgba(140, 207, 181, 0.35);
+  position: relative;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+#rec-email-button::before,
+.rec-email-verify-container button::before,
+.rec-email-change-password-container button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+#rec-email-button:hover:not(:disabled)::before,
+.rec-email-verify-container button:hover:not(:disabled)::before,
+.rec-email-change-password-container button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+#rec-email-button:hover:not(:disabled),
+.rec-email-verify-container button:hover:not(:disabled),
+.rec-email-change-password-container button:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(140, 207, 181, 0.45);
+  background: linear-gradient(135deg, #c5ead9 0%, #9dd8bf 100%);
+}
+
+#rec-email-button:active:not(:disabled),
+.rec-email-verify-container button:active:not(:disabled),
+.rec-email-change-password-container button:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 4px 12px rgba(140, 207, 181, 0.3);
+}
+
+#rec-email-button:disabled,
+.rec-email-verify-container button:disabled,
+.rec-email-change-password-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* NOTA INFORMATIVA */
+#rec-email-note {
+  background: linear-gradient(135deg, #fff9e0 0%, #fff4cc 100%);
+  padding: 1rem 1.3rem;
+  border-left: 5px solid #ffb200;
+  border-radius: 0.8rem;
+  font-size: 0.9rem;
+  color: #5c4a00;
+  margin-top: 2rem;
+  text-align: left;
+  box-shadow: 0 3px 8px rgba(255, 178, 0, 0.15);
+  line-height: 1.5;
+}
+
+#rec-email-note strong {
+  color: #4a3900;
+  font-weight: 700;
+}
+
+/* MENSAJES DE ESTADO */
+#rec-email-message-success {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  padding: 1rem 1.3rem;
+  border-radius: 0.8rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  border-left: 5px solid #28a745;
+  box-shadow: 0 3px 8px rgba(40, 167, 69, 0.15);
+  animation: slideIn 0.4s ease-out;
+}
+
+#rec-email-message-error {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  color: #721c24;
+  padding: 1rem 1.3rem;
+  border-radius: 0.8rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  border-left: 5px solid #dc3545;
+  box-shadow: 0 3px 8px rgba(220, 53, 69, 0.15);
+  animation: shake 0.5s ease-out;
+}
+
+/* CONTENEDORES DE PASOS */
+.rec-email-verify-container,
+.rec-email-change-password-container {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  margin-top: 0.5rem;
 }
 
-/* Etiquetas */
-#recovery-form label {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #34495e;
-  margin-bottom: 0.25rem;
-  display: block;
+/* ANIMACIONES */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Inputs generales */
-#recovery-form input {
-  width: 100%;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid #cfd8dc;
-  border-radius: 0.75rem;
-  font-size: 0.95rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
-#recovery-form input:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-  outline: none;
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  #rec-email-container {
+    padding: 2rem 1.5rem;
+    margin: 1.5rem 1rem;
+    border-radius: 1.2rem;
+  }
+  
+  #rec-email-title {
+    font-size: 1.5rem;
+  }
+  
+  #rec-email-button,
+  .rec-email-verify-container button,
+  .rec-email-change-password-container button {
+    padding: 1rem 1.2rem;
+  }
 }
 
-/* Bloque código */
-#recovery-code-block {
-  background: #f9fbfc;
-  border: 1px solid #e0e6eb;
-  border-radius: 0.75rem;
-  padding: 0.7rem 0.9rem;
-  font-size: 0.9rem;
-  color: #2c3e50;
+/* ACCESIBILIDAD */
+*:focus-visible {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
 }
 
-/* Botón principal */
-#recovery-form-button {
-  width: 100%;
-  padding: 0.85rem;
-  background: linear-gradient(135deg, #b8e3d0, #8ccfb5); /* verde menta efecto armonía */
-  color: #1f3f3a;
-  font-weight: 600;
-  border: none;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  transition: opacity 0.3s, transform 0.2s;
+/* MODO OSCURO (opcional) */
+@media (prefers-color-scheme: dark) {
+  #rec-email-container {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-color: #334155;
+  }
+  
+  #rec-email-title {
+    color: #e2e8f0;
+  }
+  
+  #rec-email-label-email {
+    color: #cbd5e1;
+  }
+  
+  #rec-email-input-email,
+  .rec-email-verify-container input,
+  .rec-email-change-password-container input {
+    background: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+  }
+  
+  #rec-email-input-email::placeholder,
+  .rec-email-verify-container input::placeholder,
+  .rec-email-change-password-container input::placeholder {
+    color: #64748b;
+  }
 }
 
-#recovery-form-button:hover:not(:disabled) {
-  opacity: 0.95;
-  transform: translateY(-2px);
-}
 
-#recovery-form-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Mensajes */
-#recovery-message-success {
-  font-size: 0.9rem;
-  color: #2e7d32;
-  margin-top: 0.6rem;
-  text-align: center;
-}
-
-#recovery-message-error {
-  font-size: 0.9rem;
-  color: #c62828;
-  margin-top: 0.6rem;
-  text-align: center;
-}
-
-/* Nota informativa */
-#recovery-note {
-  background: #fff4ca;
-  padding: 12px 16px;
-  border-left: 4px solid #ffb200;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #5c4a00;
-  margin-bottom: 20px;
-  text-align: center;
-}
