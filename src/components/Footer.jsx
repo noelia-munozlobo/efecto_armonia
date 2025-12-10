@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Footer.css'
-
+// Componente Footer para el pie de página
 const Footer = () => (
   <footer className="footer">
     <div className="footer-contenido">

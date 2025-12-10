@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Hero.css';
 import Fondo from '../img/Fondo.jpeg';
 
+//imagen principal de la pagina de inicio
 const Hero = () => (
   <section className="imagen-fondo">
     <img src={Fondo} alt="Fondo Efecto Armonía" className="fondo-img" />

@@ -1,73 +1,89 @@
+/* Paleta Efecto Armonía */
+:root {
+  --verde-armonia-suave: #b7e4c7;     /* verde agua pastel */
+  --verde-armonia-medio: #95d5b2;     /* verde medio armonioso */
+  --verde-armonia-fuerte: #74c69d;    /* verde olivo grisáceo */
+  --gris-borde: #ccc;
+  --gris-texto: #555;
+  --blanco: #fff;
+}
+
+/* Contenedor principal */
 .mentorias-especialista-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background-color: var(--blanco);
 }
 
+/* Título centrado */
 .mentorias-especialista-container h2 {
   margin-bottom: 20px;
-  color: #333;
+  color: #2a9d8f; /* verde azulado estilo "Mis Horarios" */
+  text-align: center;
 }
 
+/* Filtros centrados */
 .filtros {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
   flex-wrap: wrap;
+  justify-content: center; /* centra horizontalmente */
 }
 
 .filtros button {
   padding: 10px 20px;
-  border: 2px solid #ddd;
-  background: white;
+  border: 2px solid var(--verde-armonia-fuerte);
+  background: var(--blanco);
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s;
+  color: var(--verde-armonia-fuerte);
+  transition: background 0.3s;
 }
 
 .filtros button:hover {
-  background: #f0f0f0;
+  background: var(--verde-armonia-suave);
 }
 
 .filtro-activo {
-  background: #007bff !important;
-  color: white !important;
-  border-color: #007bff !important;
+  background: var(--verde-armonia-fuerte) !important;
+  color: var(--blanco) !important;
+  border-color: var(--verde-armonia-fuerte) !important;
 }
 
-.cargando, .no-mentorias {
-  text-align: center;
-  padding: 40px;
-  color: #666;
-}
-
+/* Tarjetas centradas */
 .lista-mentorias {
   display: grid;
   gap: 20px;
+  justify-content: center; /* centra las tarjetas */
 }
 
 .tarjeta-mentoria {
-  background: white;
-  border: 1px solid #ddd;
+  background: var(--blanco);
+  border: 1px solid var(--gris-borde);
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 600px; /* ancho fijo para que se centre mejor */
 }
 
+/* Header de la tarjeta */
 .mentoria-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
   padding-bottom: 15px;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid var(--gris-borde);
 }
 
 .mentoria-header h3 {
   margin: 0;
-  color: #333;
+  color: var(--verde-armonia-fuerte);
 }
 
+/* Estados */
 .estado {
   padding: 5px 15px;
   border-radius: 20px;
@@ -81,7 +97,7 @@
 }
 
 .estado-aprobado {
-  background: #d4edda;
+  background: var(--verde-armonia-suave);
   color: #155724;
 }
 
@@ -90,59 +106,64 @@
   color: #721c24;
 }
 
+/* Detalles */
 .mentoria-detalles p {
   margin: 10px 0;
-  color: #555;
+  color: var(--gris-texto);
 }
 
 .mentoria-detalles strong {
   color: #333;
 }
 
+/* Acciones */
 .mentoria-acciones {
   display: flex;
   gap: 10px;
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 2px solid #f0f0f0;
+  border-top: 2px solid var(--gris-borde);
 }
 
-.btn-aprobar, .btn-rechazar {
+/* Botones */
+.btn-aprobar, .btn-rechazar, .btn-editar, .btn-eliminar {
   flex: 1;
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  transition: all 0.3s;
+  transition: background 0.3s;
 }
 
 .btn-aprobar {
-  background: #28a745;
-  color: white;
+  background: var(--verde-armonia-suave);
+  color: #333;
 }
 
 .btn-aprobar:hover {
-  background: #218838;
+  background: var(--verde-armonia-fuerte);
+  color: var(--blanco);
 }
 
-.btn-rechazar {
+.btn-rechazar, .btn-eliminar {
   background: #dc3545;
-  color: white;
+  color: var(--blanco);
 }
 
-.btn-rechazar:hover {
+.btn-rechazar:hover, .btn-eliminar:hover {
   background: #c82333;
 }
 
 .btn-editar {
-  background-color: #007bff;
-  color: white;
-  /* resto de estilos similares a btn-aprobar */
+  background-color: var(--verde-armonia-fuerte);
+  color: var(--blanco);
 }
 
-.btn-eliminar {
-  background-color: #dc3545;
-  color: white;
-  /* resto de estilos similares a btn-rechazar */
+/* Mensajes centrados */
+.cargando, .no-mentorias {
+  text-align: center;
+  padding: 40px;
+  color: var(--gris-texto);
 }
+

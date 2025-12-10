@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import "../styles/MentoriasEspecialista.css";
 
 const MentoriasEspecialista = () => {
+  // Estado para lista de mentorías
   const [mentorias, setMentorias] = useState([]);
+  // Estado para mostrar indicador de carga
   const [loading, setLoading] = useState(false);
+  // Estado para filtro de mentorías (todas, pendiente, aprobado, rechazado)
   const [filtro, setFiltro] = useState("todas");
 
+  // Obtener ID del especialista desde localStorage
   const usuarioId = localStorage.getItem("usuarioId");
 
+  // Función para cargar mentorías del especialista
   const obtenerMentorias = async () => {
     setLoading(true);
     try {
@@ -23,6 +28,7 @@ const MentoriasEspecialista = () => {
     }
   };
 
+  // Función para aprobar o rechazar mentoría
   const actualizarEstado = async (mentoriaId, nuevoEstado) => {
     try {
       const resp = await fetch(
@@ -36,7 +42,7 @@ const MentoriasEspecialista = () => {
 
       if (resp.ok) {
         alert(`Mentoría ${nuevoEstado === "aprobado" ? "aprobada" : "rechazada"} correctamente`);
-        obtenerMentorias();
+        obtenerMentorias(); // recargar lista
       } else {
         alert("Error al actualizar el estado");
       }
@@ -45,6 +51,7 @@ const MentoriasEspecialista = () => {
     }
   };
 
+  // Función para devolver mentoría a estado pendiente
   const cambiarAPendiente = async (mentoriaId) => {
     if (!window.confirm("¿Deseas cambiar esta mentoría a estado pendiente para revisarla nuevamente?")) {
       return;
@@ -71,6 +78,7 @@ const MentoriasEspecialista = () => {
     }
   };
 
+  // Función para eliminar mentoría
   const eliminarMentoria = async (mentoriaId) => {
     if (!window.confirm("¿Estás seguro de eliminar esta mentoría? Esta acción no se puede deshacer.")) {
       return;
@@ -95,11 +103,13 @@ const MentoriasEspecialista = () => {
     }
   };
 
+  // Filtrar mentorías según estado seleccionado
   const mentoriasFiltradas = mentorias.filter((m) => {
     if (filtro === "todas") return true;
     return m.estado === filtro;
   });
 
+  // Asignar clase CSS según estado
   const obtenerClaseEstado = (estado) => {
     switch (estado) {
       case "pendiente":
@@ -113,6 +123,7 @@ const MentoriasEspecialista = () => {
     }
   };
 
+  // Al montar el componente, cargar mentorías
   useEffect(() => {
     obtenerMentorias();
   }, []);
@@ -121,6 +132,7 @@ const MentoriasEspecialista = () => {
     <div className="mentorias-especialista-container">
       <h2>Mis Solicitudes de Mentoría</h2>
 
+      {/* Botones de filtro */}
       <div className="filtros">
         <button
           className={filtro === "todas" ? "filtro-activo" : ""}
@@ -148,6 +160,7 @@ const MentoriasEspecialista = () => {
         </button>
       </div>
 
+      {/* Mostrar mentorías según estado de carga y filtro */}
       {loading ? (
         <p className="cargando">Cargando mentorías...</p>
       ) : mentoriasFiltradas.length === 0 ? (
@@ -166,17 +179,12 @@ const MentoriasEspecialista = () => {
               </div>
 
               <div className="mentoria-detalles">
-                <p>
-                  <strong>Fecha:</strong> {m.fecha}
-                </p>
-                <p>
-                  <strong>Horario:</strong> {m.hora_inicio} - {m.hora_fin}
-                </p>
-                <p>
-                  <strong>Motivo:</strong> {m.motivo}
-                </p>
+                <p><strong>Fecha:</strong> {m.fecha}</p>
+                <p><strong>Horario:</strong> {m.hora_inicio} - {m.hora_fin}</p>
+                <p><strong>Motivo:</strong> {m.motivo}</p>
               </div>
 
+              {/* Acciones según estado */}
               {m.estado === "pendiente" && (
                 <div className="mentoria-acciones">
                   <button

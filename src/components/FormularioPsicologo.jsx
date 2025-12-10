@@ -3,12 +3,18 @@ import "../styles/FormularioPsicologo.css";
 import { enviarRecurso, getData } from "../services/fetch";
 
 const FormularioPsicologo = () => {
+  // Estado para lista de usuarios cargados desde la API
   const [usuarios, setUsuarios] = useState([]);
+  // Estado para correo seleccionado en el formulario
   const [correo, setCorreo] = useState("");
+  // Estado para guardar el usuario seleccionado (objeto completo)
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+  // Estado para especialidad del psicólogo
   const [especialidad, setEspecialidad] = useState("Psicología Clínica");
+  // Estado para descripción del enfoque
   const [descripcion, setDescripcion] = useState("");
 
+  // Al montar el componente, cargar usuarios con rol "cliente"
   useEffect(() => {
     const cargarUsuarios = async () => {
       const resultado = await getData("usuarios/usuarios/rol/cliente");
@@ -17,33 +23,38 @@ const FormularioPsicologo = () => {
     cargarUsuarios();
   }, []);
 
+  // Función para enviar formulario
   const enviarFormulario = async (evento) => {
-    evento.preventDefault();
+    evento.preventDefault(); // prevenir recarga de página
 
+    // Validación: debe seleccionarse un usuario válido
     if (!usuarioSeleccionado) {
       alert("Debe seleccionar un usuario válido.");
       return;
     }
 
+    // Objeto con datos del nuevo especialista
     const nuevoEspecialista = {
       correo,
       especialidad,
       descripcion,
       nombre_completo: `${usuarioSeleccionado.first_name} ${usuarioSeleccionado.last_name1}`,
-
     };
 
     try {
+      // Enviar datos al backend
       const respuesta = await enviarRecurso(
         "especialistas/crear-especialista/",
         nuevoEspecialista
       );
 
+      // Validar si la API devolvió error
       if (respuesta.error) {
         alert(respuesta.error);
         return;
       }
 
+      // Reiniciar estados del formulario
       setCorreo("");
       setUsuarioSeleccionado(null);
       setEspecialidad("Psicología Clínica");
@@ -63,7 +74,7 @@ const FormularioPsicologo = () => {
 
         <form id="psicologo-form" onSubmit={enviarFormulario}>
 
-          {/* Selección de usuario */}
+          {/* Selección de usuario por correo */}
           <div className="psicologo-campo">
             <label htmlFor="correo">Seleccione el correo del usuario</label>
             <select
@@ -73,6 +84,7 @@ const FormularioPsicologo = () => {
                 const valor = e.target.value;
                 setCorreo(valor);
 
+                // Buscar usuario en la lista por correo
                 const user = usuarios.find((u) => u.email === valor);
                 setUsuarioSeleccionado(user || null);
               }}
@@ -87,8 +99,7 @@ const FormularioPsicologo = () => {
             </select>
           </div>
 
-
-          {/* Especialidad */}
+          {/* Selección de especialidad */}
           <div className="psicologo-campo">
             <label htmlFor="especialidad">Especialidad</label>
             <select
@@ -104,7 +115,7 @@ const FormularioPsicologo = () => {
             </select>
           </div>
 
-          {/* Descripción */}
+          {/* Campo de descripción */}
           <div className="psicologo-campo">
             <label htmlFor="descripcion">Descripción / Enfoque</label>
             <textarea
@@ -116,6 +127,7 @@ const FormularioPsicologo = () => {
             />
           </div>
 
+          {/* Botón de envío */}
           <button id="psicologo-boton" type="submit">
             Registrar
           </button>
@@ -126,3 +138,4 @@ const FormularioPsicologo = () => {
 };
 
 export default FormularioPsicologo;
+

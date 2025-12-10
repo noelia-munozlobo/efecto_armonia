@@ -11,7 +11,7 @@ class Mentorias(models.Model):
 
     motivo = models.CharField(max_length=200)
     estado = models.CharField(max_length=20, choices=ESTADO_OPCIONES, default='pendiente')
-
+    
     # Datos del horario
     fecha = models.DateField(null=True, blank=True)
     hora_inicio = models.TimeField(null=True, blank=True)
