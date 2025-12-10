@@ -5,16 +5,17 @@ import Footer from '../components/Footer';
 import FormularioAdmin from '../components/FormularioAdmin';
 import VerHorario from '../components/VerHorario';
 import MentoriasEspecialista from '../components/MentoriasEspecialista';
-import Chat from '../components/Chat';
+import ChatEspecialista from '../components/ChatEspecialista';
 
 const PagEspecialista = () => {
   return (
     <div>
-         <Header />
+        <Header />
         <Especialista/>
         <VerHorario/>
         <MentoriasEspecialista/>
         <FormularioAdmin/>
+        <ChatEspecialista/>
         <Footer />
     </div>
   )
