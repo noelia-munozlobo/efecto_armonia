@@ -189,10 +189,12 @@ const AdminRecursos = () => {
               <button
                 onClick={async () => {
                   const resultado = await cambiarDestacadoRecurso(r.id);
+
+
                   if (resultado?.destacado) {
-                    alert(":marca_de_verificación_blanca: El recurso ha sido destacado correctamente");
+                    alert("✅ El recurso ha sido destacado correctamente");
                   } else {
-                    alert("ADVERTENCIA: El recurso ya no está destacado");
+                    alert("⚠️ El recurso ya no está destacado");
                   }
                 }}
               >

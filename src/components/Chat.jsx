@@ -3,8 +3,10 @@ import { getData, postData } from "../services/fetch";
 import "../styles/Chat.css";
 
 function Chat() {
+  // obtener el id del remitente desde localstorage
   const remitenteId = parseInt(localStorage.getItem("usuarioId"));
 
+  // estados principales
   const [especialistas, setEspecialistas] = useState([]);
   const [especialistaSeleccionado, setEspecialistaSeleccionado] = useState(null);
   const [mensajes, setMensajes] = useState([]);
@@ -13,27 +15,27 @@ function Chat() {
   const [error, setError] = useState(null);
   const mensajesEndRef = useRef(null);
 
+  // mostrar en consola el id del remitente
   useEffect(() => {
     console.log("remitenteId obtenido del localStorage:", remitenteId);
   }, [remitenteId]);
 
-  // Cargar especialistas
+  // cargar especialistas al iniciar
   useEffect(() => {
     const cargarEspecialistas = async () => {
       try {
         const data = await getData("especialistas/especialistas");
-        console.log("Especialistas cargados:", data);
         setEspecialistas(data);
       } catch (error) {
-        console.error("Error cargando especialistas:", error);
-        setError("No se pudieron cargar los especialistas");
+        console.error("error cargando especialistas:", error);
+        setError("no se pudieron cargar los especialistas");
       }
     };
 
     cargarEspecialistas();
   }, []);
 
-  // Cargar mensajes cuando se selecciona un especialista
+  // cargar mensajes cuando se selecciona un especialista
   useEffect(() => {
     if (!especialistaSeleccionado || !remitenteId) return;
 
@@ -41,40 +43,34 @@ function Chat() {
       try {
         setError(null);
         const url = `chat/chat/conversacion/${remitenteId}/${especialistaSeleccionado.usuario}`;
-        console.log("Intentando cargar conversación desde:", url);
-        
         const data = await getData(url);
-        console.log("Mensajes cargados:", data);
-        console.log("Tipo de datos:", typeof data, Array.isArray(data));
-        
-        // Asegurarse de que data sea un array
+
+        // asegurar que los datos sean un array
         if (Array.isArray(data)) {
           setMensajes(data);
-          console.log("Mensajes establecidos:", data.length, "mensajes");
         } else {
-          console.warn("Los datos no son un array:", data);
           setMensajes([]);
         }
       } catch (error) {
-        console.error("Error cargando conversación:", error);
+        console.error("error cargando conversación:", error);
         setMensajes([]);
-        setError("Error al cargar los mensajes.");
+        setError("error al cargar los mensajes");
       }
     };
 
     cargarConversacion();
 
-    // Auto-actualizar mensajes cada 5 segundos
+    // actualizar mensajes cada 5 segundos
     const interval = setInterval(cargarConversacion, 5000);
     return () => clearInterval(interval);
   }, [especialistaSeleccionado, remitenteId]);
 
-  // Scroll automático al último mensaje
+  // scroll automático al último mensaje
   useEffect(() => {
     // mensajesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [mensajes]);
 
-  // Enviar mensaje
+  // enviar mensaje
   const enviarMensaje = async () => {
     if (!nuevoMensaje.trim() || !especialistaSeleccionado) return;
 
@@ -87,25 +83,24 @@ function Chat() {
     setLoading(true);
     setError(null);
     try {
-      console.log("Enviando mensaje:", payload);
       const data = await postData("chat/chat/", payload);
-      console.log("Mensaje enviado:", data);
       
-      // Solo agregar si data tiene la estructura correcta
+      // agregar mensaje si la respuesta es válida
       if (data && data.id) {
         setMensajes((prev) => [...prev, data]);
         setNuevoMensaje("");
       } else {
-        setError("El mensaje no se envió correctamente");
+        setError("el mensaje no se envió correctamente");
       }
     } catch (error) {
-      console.error("Error enviando mensaje:", error);
-      setError("Error al enviar el mensaje. Verifica que las URLs de Django estén correctas.");
+      console.error("error enviando mensaje:", error);
+      setError("error al enviar el mensaje, revisa las urls de django");
     } finally {
       setLoading(false);
     }
   };
 
+  // manejar tecla enter para enviar mensaje
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -113,6 +108,7 @@ function Chat() {
     }
   };
 
+  // manejar selección de especialista
   const handleSelectChange = (e) => {
     const especialistaId = e.target.value;
     if (!especialistaId) {
@@ -125,7 +121,6 @@ function Chat() {
     const especialista = especialistas.find(
       (esp) => esp.id.toString() === especialistaId
     );
-    console.log("Especialista seleccionado:", especialista);
     setEspecialistaSeleccionado(especialista);
     setError(null);
   };
@@ -133,13 +128,13 @@ function Chat() {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <h2>Chat con Especialista</h2>
+        <h2>chat con especialista</h2>
         <select
           className="chat-select"
           value={especialistaSeleccionado?.id || ""}
           onChange={handleSelectChange}
         >
-          <option value="">-- Escoge un especialista --</option>
+          <option value="">-- escoge un especialista --</option>
           {especialistas.map((esp) => (
             <option key={esp.id} value={esp.id}>
               {esp.nombre_completo} — {esp.especialidad}
@@ -150,7 +145,7 @@ function Chat() {
 
       {error && (
         <div className="chat-error">
-          ⚠️ {error}
+          {error}
         </div>
       )}
 
@@ -164,7 +159,7 @@ function Chat() {
           <div className="chat-messages">
             {mensajes.length === 0 ? (
               <div className="chat-no-messages">
-                No hay mensajes. ¡Inicia la conversación!
+                no hay mensajes, inicia la conversación
               </div>
             ) : (
               mensajes.map((msg, index) => {
@@ -179,7 +174,7 @@ function Chat() {
                         : "chat-message theirs"
                     }
                   >
-                    <div className="chat-message-content">{msg.contenido || "Sin contenido"}</div>
+                    <div className="chat-message-content">{msg.contenido || "sin contenido"}</div>
                     <div className="chat-message-time">
                       {msg.fecha_envio ? new Date(msg.fecha_envio).toLocaleTimeString("es-ES", {
                         hour: "2-digit",
@@ -198,37 +193,25 @@ function Chat() {
               value={nuevoMensaje}
               onChange={(e) => setNuevoMensaje(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Escribe un mensaje..."
+              placeholder="escribe un mensaje..."
               disabled={loading}
               rows="3"
             />
-            <div className="chat-input-buttons">
-              <button
-                onClick={() => {
-                  setNuevoMensaje("");
-                  setError(null);
-                }}
-                disabled={loading || !nuevoMensaje.trim()}
-                className="btn-secondary"
-              >
-                Limpiar
-              </button>
               <button
                 onClick={enviarMensaje}
                 disabled={loading || !nuevoMensaje.trim()}
                 className="btn-primary"
               >
-                {loading ? "Enviando..." : "Enviar"}
+                {loading ? "enviando..." : "enviar"}
               </button>
             </div>
           </div>
-        </div>
       ) : (
         <div className="chat-placeholder">
           {!remitenteId ? (
-            <p>Error: No se encontró el ID del usuario</p>
+            <p>error: no se encontró el id del usuario</p>
           ) : (
-            <p>Selecciona un especialista para comenzar a chatear</p>
+            <p>selecciona un especialista para comenzar a chatear</p>
           )}
         </div>
       )}

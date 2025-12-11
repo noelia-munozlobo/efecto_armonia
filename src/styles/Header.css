@@ -146,3 +146,30 @@ html, body {
     text-align: center;
   }
 }
+
+/* ===== RESET GLOBAL ===== */
+* {
+  box-sizing: border-box; /* asegura que padding y border no desborden */
+}
+
+/* ===== HEADER / NAVBAR ===== */
+.barra-navegacion {
+  position: sticky;
+  top: 0;
+  left: 0;              /* asegura que no se desplace */
+  right: 0;             /* ocupa todo el ancho */
+  width: 100%;
+  min-height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #D0F0E0, #B8E3D0);
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  gap: 2rem;
+  flex-wrap: nowrap;    /* evita que los elementos se rompan y empujen */
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  overflow-x: hidden;   /* evita que se desborde horizontalmente */
+}
+

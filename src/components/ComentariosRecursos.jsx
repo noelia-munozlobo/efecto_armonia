@@ -39,8 +39,8 @@ function ComentariosRecursos({ recursoId }) {
 
     const nuevo = {
       contenido: comentario,
-      usuario: localStorage.getItem("usuarioId"),              // ← Corregido: usuario.id
-      recursos: recursoId               // ← ID del recurso
+      usuario: localStorage.getItem("usuarioId"),  
+      recursos: recursoId            
     };
 
     console.log("Datos a enviar:", nuevo); // Para debugging
