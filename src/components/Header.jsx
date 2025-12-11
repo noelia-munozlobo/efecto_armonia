@@ -24,6 +24,7 @@ const Header = () => {
         <span>|</span>
         <Link to="/contacto">Contacto</Link>
         <span>|</span>
+
         {rolUsuario == "cliente" && (
           <>
             <Link to="/PagCliente">Mi Perfil</Link>
@@ -32,6 +33,7 @@ const Header = () => {
         )}
         <Link to="/registro">Registro</Link>
         <span>|</span>
+
         {rolUsuario == "especialista" && (
           <>
 
@@ -40,6 +42,15 @@ const Header = () => {
           </>
 
         )}
+
+        {rolUsuario == "admin" && (
+          <>
+            <Link to="/PagAdmin">Administrar</Link>
+            <span>|</span>
+          </>
+        )}
+        
+
         {localStorage.getItem('usuarioId')
           ? (
             <>

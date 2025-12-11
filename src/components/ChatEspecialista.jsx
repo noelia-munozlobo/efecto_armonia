@@ -15,7 +15,7 @@ function ChatEspecialista() {
     const [error, setError] = useState(null);
     const mensajesEndRef = useRef(null);
 
-    // ⭐ LIMPIAR CONVERSACIÓN (frontend + backend + panel izquierdo)
+    // LIMPIAR CONVERSACIÓN (frontend + backend + panel izquierdo)
     const limpiarConversacion = async () => {
         if (!conversacionSeleccionada) return;
 
@@ -34,18 +34,18 @@ function ChatEspecialista() {
                 throw new Error("Error al borrar la conversación");
             }
 
-            // ⭐ 1. Limpiar input + mensajes
+            // Limpiar input + mensajes
             setNuevoMensaje("");
             setMensajes([]);
 
-            // ⭐ 2. Quitar la conversación del panel izquierdo
+            // Quitar la conversación del panel izquierdo
             setConversaciones((prev) =>
                 prev.filter(
                     (conv) => conv.pacienteId !== conversacionSeleccionada.pacienteId
                 )
             );
 
-            // ⭐ 3. Deseleccionar conversación
+            // Deseleccionar conversación
             setConversacionSeleccionada(null);
 
             setError(null);
