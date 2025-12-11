@@ -53,3 +53,9 @@ class DestacarRecurso(APIView):
             return Response({
                 "error": "Recurso no encontrado"
             }, status=404)
+
+class VerRecursosDestacados(APIView):
+    def get(self, request):
+        recursos_destacados = Recursos.objects.filter(destacado=True)
+        serializer = RecursosSerializer(recursos_destacados, many=True)
+        return Response(serializer.data)
