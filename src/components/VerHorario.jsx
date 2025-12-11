@@ -4,6 +4,7 @@ const VerHorario = () => {
   const [horarios, setHorarios] = useState([]);
   const [editando, setEditando] = useState(null);
   const usuarioId = localStorage.getItem("usuarioId");
+
   const obtenerHorarios = async () => {
     try {
       const resp = await fetch(
@@ -15,6 +16,7 @@ const VerHorario = () => {
       console.error("Error cargando horarios:", error);
     }
   };
+
   const actualizarHorario = async (id, horarioActualizado) => {
     try {
       const resp = await fetch(
@@ -36,6 +38,7 @@ const VerHorario = () => {
       console.error("Error al actualizar:", error);
     }
   };
+
   const eliminarHorario = async (id) => {
     if (!confirm("¿Seguro que deseas eliminar este horario?")) return;
     try {
@@ -47,105 +50,90 @@ const VerHorario = () => {
       console.error("Error al eliminar:", error);
     }
   };
+
   useEffect(() => {
     obtenerHorarios();
   }, []);
+
   return (
     <div className="ver-horario-container">
       <h2>Mis Horarios</h2>
       {horarios.length === 0 ? (
         <p className="no-horarios">No tienes horarios registrados.</p>
       ) : (
-        <table className="tabla-horarios">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Hora Inicio</th>
-              <th>Hora Fin</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {horarios.map((h) => (
-              <tr key={h.id}>
-                <td>
-                  {editando === h.id ? (
+        <div className="horarios-seleccionados-container">
+          <h3>Horarios Seleccionados ({horarios.length})</h3>
+          {horarios.map((h) => (
+            <div className="horario-item" key={h.id}>
+              <div className="info">
+                {editando === h.id ? (
+                  <>
                     <input
                       type="date"
                       defaultValue={h.fecha}
-                      onChange={(e) =>
-                        (h.fecha = e.target.value)
-                      }
+                      onChange={(e) => (h.fecha = e.target.value)}
                     />
-                  ) : (
-                    h.fecha
-                  )}
-                </td>
-                <td>
-                  {editando === h.id ? (
                     <input
                       type="time"
                       defaultValue={h.hora_inicio}
-                      onChange={(e) =>
-                        (h.hora_inicio = e.target.value)
-                      }
+                      onChange={(e) => (h.hora_inicio = e.target.value)}
                     />
-                  ) : (
-                    h.hora_inicio
-                  )}
-                </td>
-                <td>
-                  {editando === h.id ? (
                     <input
                       type="time"
                       defaultValue={h.hora_fin}
-                      onChange={(e) =>
-                        (h.hora_fin = e.target.value)
-                      }
+                      onChange={(e) => (h.hora_fin = e.target.value)}
                     />
-                  ) : (
-                    h.hora_fin
-                  )}
-                </td>
-                <td className="acciones">
-                  {editando === h.id ? (
-                    <>
-                      <button
-                        className="btn guardar"
-                        onClick={() => actualizarHorario(h.id, h)}
-                      >
-                        Guardar
-                      </button>
-                      <button
-                        className="btn cancelar"
-                        onClick={() => setEditando(null)}
-                      >
-                        Cancelar
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        className="btn editar"
-                        onClick={() => setEditando(h.id)}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        className="btn eliminar"
-                        onClick={() => eliminarHorario(h.id)}
-                      >
-                        Eliminar
-                      </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  </>
+                ) : (
+                  <>
+                    <strong>{h.fecha}</strong> — {h.hora_inicio} a {h.hora_fin}
+                  </>
+                )}
+              </div>
+              <div className="acciones">
+                {editando === h.id ? (
+                  <>
+                    <button
+                      className="btn guardar"
+                      onClick={() => actualizarHorario(h.id, h)}
+                    >
+                      Guardar
+                    </button>
+                    <button
+                      className="btn cancelar"
+                      onClick={() => setEditando(null)}
+                    >
+                      Cancelar
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="btn editar"
+                      onClick={() => setEditando(h.id)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="btn eliminar"
+                      onClick={() => eliminarHorario(h.id)}
+                    >
+                      Eliminar
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          ))}
+
+          <div className="horarios-botones">
+            <button className="btn-guardar">Guardar Horarios</button>
+            <button className="btn-limpiar">Limpiar Todo</button>
+          </div>
+        </div>
       )}
     </div>
   );
 };
+
 export default VerHorario;

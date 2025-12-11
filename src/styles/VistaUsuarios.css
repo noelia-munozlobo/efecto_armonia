@@ -1,70 +1,88 @@
+/* Usuarios.css - estilo armonía igual a AdminRecursos */
+
 .pagina-usuarios {
   display: flex;
   justify-content: center;
   align-items: start;
   min-height: 100vh;
   padding: 2rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Segoe UI', sans-serif; /* igual que AdminRecursos */
+  color: #333;
 }
+
 .usuarios-container {
   padding: 2rem 3rem;
   max-width: 1100px;
   width: 100%;
 }
+
 .usuarios-container h2 {
   text-align: center;
-  color: #2E7D6F;
-  margin-bottom: 2rem;
+  color: #4a7c59; /* verde armonía */
+  margin-bottom: 1.5rem;
   font-size: 1.8rem;
 }
+
 .grid-usuarios {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
+  justify-content: center;
 }
+
 .card-usuario {
-  padding: 1.5rem;
-  transition: transform .2s ease;
+  border: 1px solid #dbe5db;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 280px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  background: #fdfdfd;
 }
+
 .card-usuario:hover {
-  transform: translateY(-4px);
+  transform: scale(1.02);
 }
+
 .card-usuario h3 {
-  color: #2E7D6F;
-  margin-bottom: 1rem;
+  color: #2f5d62;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
+
 .card-usuario p {
+  font-size: 0.95rem;
   margin: 0.3rem 0;
   color: #3D5650;
 }
+
+/* Acciones con botones estilo armonía */
 .acciones {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
 }
-.btn-editar {
+
+.acciones button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #4a7c59;
   color: white;
-  padding: 0.5rem 1rem;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: .2s;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
 }
-.btn-editar:hover {
-  background: #66BB6A;
+
+.acciones button:hover {
+  background-color: #3b5f47;
 }
-.btn-eliminar {
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-  transition: .2s;
-}
-.btn-eliminar:hover {
-  background: #EF5350;
-}
+
+
 .cargando {
   text-align: center;
   font-size: 1.3rem;
   padding: 3rem;
-  color: #2E7D6F;
+  color: #4a7c59;
 }

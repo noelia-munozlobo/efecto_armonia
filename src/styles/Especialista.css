@@ -1,4 +1,3 @@
-/* Contenedor principal */
 .especialista {
   max-width: 1000px;
   width: 100%;
@@ -7,15 +6,36 @@
   font-family: 'Poppins', sans-serif;
   color: #3b2f2f;
   box-sizing: border-box;
+  background: linear-gradient(135deg, #fdfdfd 0%, #f3f7f9 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.especialista:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
 }
 
 /* Títulos */
 .especialista h2, 
 .especialista h3 {
   font-family: 'Playfair Display', serif;
-  color: #3b2f2f;
+  color: #2a9d8f; /* Verde principal Armonía */
   text-align: center;
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.especialista h2::after,
+.especialista h3::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #2a9d8f, #52b788);
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 /* Tarjetas dentro del panel del especialista */
@@ -23,13 +43,22 @@
 .especialista .tarjeta-calendario,
 .especialista .citas,
 .especialista .tarjeta-acciones {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f9fbfc 100%);
   border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(59, 47, 47, 0.1);
+  box-shadow: 0 6px 18px rgba(42, 157, 143, 0.12);
   padding: 2rem;
   margin: 2rem auto;
   box-sizing: border-box;
   max-width: 800px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.especialista .tarjeta-horarios:hover,
+.especialista .tarjeta-calendario:hover,
+.especialista .citas:hover,
+.especialista .tarjeta-acciones:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(42, 157, 143, 0.18);
 }
 
 /* Botones de horario */
@@ -42,24 +71,26 @@
 }
 
 .especialista .botones-horario button {
-  background-color: #e8e3e3;
-  color: #3b2f2f;
+  background: linear-gradient(135deg, #e8f5e9, #d0f0e0);
+  color: #2e7d6f;
   border: none;
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
 .especialista .botones-horario button.activo {
-  background-color: #D0F0E0;
-  color: #2E7D6F;
+  background: linear-gradient(135deg, #b8e3d0, #95d5b2);
+  color: #1f3f3a;
   font-weight: bold;
 }
 
 .especialista .botones-horario button:hover {
-  background-color: #C2E8D4;
+  background: linear-gradient(135deg, #c5ead9, #9dd8bf);
+  transform: translateY(-2px);
 }
 
 /* Calendario centrado */
@@ -68,7 +99,7 @@
   max-width: 600px;
   background: #fff;
   border-radius: 20px;
-  box-shadow: 0 6px 18px rgba(59, 47, 47, 0.15);
+  box-shadow: 0 6px 18px rgba(42, 157, 143, 0.15);
   font-family: 'Poppins', sans-serif;
   border: none;
 }
@@ -83,6 +114,7 @@
   margin-bottom: 1rem;
   font-size: 1.1rem;
   font-weight: 600;
+  color: #2a9d8f;
 }
 
 .especialista .fechas-seleccionadas ul {
@@ -95,12 +127,12 @@
 }
 
 .especialista .fechas-seleccionadas li {
-  background-color: #f3f3f3;
+  background: linear-gradient(135deg, #f9f9f9, #f1f5f9);
   margin: 8px 0;
   padding: 10px 14px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  color: #3b2f2f;
+  color: #2e7d6f;
   width: 100%;
   max-width: 300px;
   text-align: center;
@@ -117,19 +149,21 @@
   border-radius: 12px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: #D0F0E0;
-  color: #2E7D6F;
+  background: linear-gradient(135deg, #b8e3d0, #95d5b2);
+  color: #1f3f3a;
   font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
   display: inline-block;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .especialista .guardar:hover,
 .especialista .limpiar:hover,
 .especialista .confirmar:hover,
 .especialista .eliminar:hover {
-  background-color: #B8E5D0;
-  color: #1E5E50;
+  background: linear-gradient(135deg, #c5ead9, #9dd8bf);
+  color: #1e5e50;
+  transform: translateY(-2px);
 }
 
 /* Citas solicitadas */
@@ -140,17 +174,22 @@
 }
 
 .especialista .citas li {
-  background-color: #ffffff;
-  border: 2px solid #D0F0E0;
+  background: #ffffff;
+  border: 2px solid #d0f0e0;
   margin: 8px 0;
   padding: 12px 16px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  color: #2E7D6F;
+  color: #2e7d6f;
   display: flex;
-  justify-content: space-between; /* texto a la izquierda, botones a la derecha */
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  transition: background 0.3s ease;
+}
+
+.especialista .citas li:hover {
+  background: #f1fdf7;
 }
 
 .especialista .citas li strong {
@@ -170,5 +209,128 @@
   gap: 0.6rem;
 }
 
+/* ===== BOTONES DE HORARIO ===== */
+.botones-horario {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+}
 
+.botones-horario input[type="time"] {
+  padding: 10px 14px;
+  border: 2px solid #cce3de;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: #ffffff;
+  color: #2e7d6f;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.botones-horario input[type="time"]:focus {
+  border-color: #2a9d8f;
+  box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+  outline: none;
+}
+
+/* ===== FECHAS SELECCIONADAS ===== */
+.fechas-seleccionadas {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f3f7f9 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(42, 157, 143, 0.12);
+  text-align: center;
+}
+
+.fechas-seleccionadas h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2a9d8f;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.fechas-seleccionadas h4::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #2a9d8f, #52b788);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.fechas-seleccionadas ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fechas-seleccionadas li {
+  background: linear-gradient(135deg, #fdfdfd 0%, #f1f5f9 100%);
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  color: #2e7d6f;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fechas-seleccionadas li button.eliminar {
+  background: linear-gradient(135deg, #40916c, #2d6a4f);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fechas-seleccionadas li button.eliminar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* ===== BOTONES DE ACCIÓN ===== */
+.fechas-seleccionadas .guardar,
+.fechas-seleccionadas .limpiar {
+  margin: 1rem 0.5rem 0;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fechas-seleccionadas .guardar {
+  background: linear-gradient(135deg, #2a9d8f, #52b788);
+  color: #fff;
+}
+
+.fechas-seleccionadas .limpiar {
+  background: linear-gradient(135deg, #cce3de, #95d5b2);
+  color: #1f3f3a;
+}
+
+.fechas-seleccionadas .guardar:hover,
+.fechas-seleccionadas .limpiar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
 

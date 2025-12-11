@@ -50,6 +50,7 @@
 .rec-email-verify-container input,
 .rec-email-change-password-container input {
   width: 100%;
+  max-width: 100%;
   padding: 1rem 1.2rem;
   border: 2px solid #e1e8ed;
   border-radius: 1rem;
@@ -58,6 +59,9 @@
   color: #2c3e50;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
 }
 
 #rec-email-input-email:focus,
@@ -83,6 +87,7 @@
 .rec-email-verify-container button,
 .rec-email-change-password-container button {
   width: 100%;
+  max-width: 100%;
   padding: 1.1rem 1.5rem;
   background: linear-gradient(135deg, #b8e3d0 0%, #8ccfb5 100%);
   color: #1f3f3a;
@@ -96,6 +101,8 @@
   position: relative;
   overflow: hidden;
   margin-top: 1rem;
+  box-sizing: border-box;
+  display: block;
 }
 
 #rec-email-button::before,
@@ -193,6 +200,7 @@
   flex-direction: column;
   gap: 1.2rem;
   margin-top: 0.5rem;
+  align-items: stretch; /* asegura inputs y botones alineados */
 }
 
 /* ANIMACIONES */
@@ -213,59 +221,7 @@
   20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
-/* RESPONSIVE */
-@media (max-width: 640px) {
-  #rec-email-container {
-    padding: 2rem 1.5rem;
-    margin: 1.5rem 1rem;
-    border-radius: 1.2rem;
-  }
-  
-  #rec-email-title {
-    font-size: 1.5rem;
-  }
-  
-  #rec-email-button,
-  .rec-email-verify-container button,
-  .rec-email-change-password-container button {
-    padding: 1rem 1.2rem;
-  }
-}
 
-/* ACCESIBILIDAD */
-*:focus-visible {
-  outline: 3px solid #4a90e2;
-  outline-offset: 2px;
-}
 
-/* MODO OSCURO (opcional) */
-@media (prefers-color-scheme: dark) {
-  #rec-email-container {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border-color: #334155;
-  }
-  
-  #rec-email-title {
-    color: #e2e8f0;
-  }
-  
-  #rec-email-label-email {
-    color: #cbd5e1;
-  }
-  
-  #rec-email-input-email,
-  .rec-email-verify-container input,
-  .rec-email-change-password-container input {
-    background: #1e293b;
-    border-color: #334155;
-    color: #e2e8f0;
-  }
-  
-  #rec-email-input-email::placeholder,
-  .rec-email-verify-container input::placeholder,
-  .rec-email-change-password-container input::placeholder {
-    color: #64748b;
-  }
-}
 
 

@@ -1,4 +1,4 @@
-/* AdminRecursos.css - estilo Efecto Armonía */
+/* AdminRecursos.css - estilo armonía para tarjetas y botones */
 
 .lista-recursos {
   padding: 2rem;
@@ -27,6 +27,10 @@
   width: 280px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
+  background: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .bloque:hover {
@@ -42,8 +46,10 @@
 .bloque p {
   font-size: 0.95rem;
   margin: 0.3rem 0;
+  color: #3D5650;
 }
 
+/* Inputs y selects */
 .bloque input,
 .bloque textarea,
 .bloque select {
@@ -55,8 +61,23 @@
   font-size: 0.95rem;
 }
 
+/* Contenedor de botones alineados */
+.bloque .acciones,
 .bloque button {
-  margin-right: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.bloque .acciones {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Botones estilo armonía */
+.bloque button {
+  flex: 1;
+  min-width: 80px;
   padding: 0.4rem 0.8rem;
   background-color: #4a7c59;
   color: white;
@@ -71,27 +92,21 @@
   background-color: #3b5f47;
 }
 
-.lista-mentorias {
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+/* Botón eliminar con color distinto */
+.bloque button:nth-child(2) {
+  background-color: #ef5350;
 }
 
-.lista-mentorias h2 {
-  color: #4a7c59;
-  text-align: center;
-  margin-bottom: 1rem;
+.bloque button:nth-child(2):hover {
+  background-color: #c62828;
 }
 
-.lista-mentorias ul {
-  list-style: none;
-  padding-left: 0;
+/* Botón destacar con color secundario */
+.bloque button:nth-child(3) {
+  background-color: #66bb6a;
 }
 
-.lista-mentorias li {
-  border: 1px solid #dbe5db;
-  border-radius: 8px;
-  padding: 0.8rem;
-  margin-bottom: 0.8rem;
-  font-size: 0.95rem;
+.bloque button:nth-child(3):hover {
+  background-color: #388e3c;
 }
+

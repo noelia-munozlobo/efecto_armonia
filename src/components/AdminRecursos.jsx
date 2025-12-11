@@ -212,16 +212,24 @@ const AdminRecursos = () => {
                   style={{ width: "120px", borderRadius: "6px", marginTop: "10px" }}
                 />
               )}
-
               {/* Botones para editar o eliminar */}
               <button onClick={() => editarRecurso(r)}>Editar</button>
               <button onClick={() => eliminarRecurso(r.id)}>Eliminar</button>
               <button
-                onClick={()=>{
-                  cambiarDestacadoRecurso(r.id)
+                onClick={async () => {
+                  const resultado = await cambiarDestacadoRecurso(r.id);
+
+
+                  if (resultado?.destacado) {
+                    alert("✅ El recurso ha sido destacado correctamente");
+                  } else {
+                    alert("⚠️ El recurso ya no está destacado");
+                  }
                 }}
-              
-              >Destacar</button>
+              >
+                Destacar
+              </button>
+
             </div>
           )
         )}
