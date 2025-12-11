@@ -33,3 +33,23 @@ class RecursoPorTipo(ListCreateAPIView):
     def get_queryset(self):
         tipo = self.kwargs["tipo"]
         return Recursos.objects.filter(tipo=tipo)
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+class DestacarRecurso(APIView):
+    def patch(self,request):
+        id_recurso = request.data.get("id_recurso")
+
+        try:
+            recurso = Recursos.objects.get(id=id_recurso)
+            recurso.destacado = not recurso.destacado
+            recurso.save()
+            return Response({
+                "mensaje": "Recurso destacado actualizado",
+                "destacado": recurso.destacado
+            })
+        except Recursos.DoesNotExist:
+            return Response({
+                "error": "Recurso no encontrado"
+            }, status=404)

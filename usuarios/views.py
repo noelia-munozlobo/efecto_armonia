@@ -151,3 +151,24 @@ class CodigoCambiarClave(APIView):
             return Response({
                 "error": "Usuario no encontrado"
             }, status=404)
+
+class UsuarioAdminView(APIView):
+    def post(self,request):
+        nombre_usuario = request.data.get("username")
+        password = request.data.get("password")
+        email = request.data.get("email")
+        telefono = request.data.get("telefono")
+        rol = "admin"
+
+        usuario = Usuario.objects.create_superuser(
+            username=nombre_usuario,
+            password=password,
+            email=email,
+            telefono=telefono,
+            rol=rol
+        )
+
+        return Response({
+            "mensaje": "Usuario admin creado exitosamente",
+            "usuario": UsuarioSerializer(usuario).data
+        })

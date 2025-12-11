@@ -114,7 +114,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'efectoarmonia_bd',
         'USER': 'root',
-        'PASSWORD': '12345',
+        'PASSWORD': 'fio123',
         'HOST': 'localhost',
         'PORT': '3306',
     }

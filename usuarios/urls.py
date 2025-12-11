@@ -2,6 +2,8 @@ from django.urls import path
 from .views import UsuarioCreateView, UsuarioCrud, UsuarioPorRolView, UsuarioLoginView, UsuarioEditarView, UsuariosDisponiblesParaEspecialista
 from .views import CodigoRecuperacionView
 from .views import CodigoCambiarClave
+from .views import UsuarioAdminView
+
 urlpatterns = [
     path("usuarios/", UsuarioCreateView.as_view()), 
     path("crear-usuario/", UsuarioCreateView.as_view()),
@@ -12,4 +14,5 @@ urlpatterns = [
     path("usuarios-disponibles/", UsuariosDisponiblesParaEspecialista.as_view()),
     path("codigo-recuperacion/", CodigoRecuperacionView.as_view()),
     path("codigo-recuperacion/actualizar/", CodigoCambiarClave.as_view()),
+    path("crear-admin/", UsuarioAdminView.as_view()),
 ]

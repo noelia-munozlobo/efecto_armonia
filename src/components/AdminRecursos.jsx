@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getData, deleteData, obtenerMentorias } from "../services/fetch";
+import { getData, deleteData, obtenerMentorias, patchData } from "../services/fetch";
 import "../styles/AdminRecursos.css";
 import SubirImagen from "./SubirImagen";
 
@@ -12,6 +12,13 @@ const AdminRecursos = () => {
   const [editando, setEditando] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
   const [imagenURL, setImagenURL] = useState("");
+
+  const cambiarDestacadoRecurso = async(idRecurso) =>{
+    const petcion = await patchData(`recursos/destacar-recurso/`,{id_recurso: idRecurso});
+    console.log("Recurso destacado modificado:", petcion);
+    cargarRecursos();
+
+  }
 
   // Estado para manejar datos del formulario
   const [formulario, setFormulario] = useState({
@@ -127,8 +134,8 @@ const AdminRecursos = () => {
   return (
     <div className="lista-recursos">
       <h2>Recursos Publicados</h2>
-
       <div className="bloques">
+        
         {recursos.map((r) =>
           editando === r.id ? (
             // Vista de edición
@@ -140,7 +147,6 @@ const AdminRecursos = () => {
                 onChange={actualizarFormulario}
                 placeholder="Nombre del recurso"
               />
-
               {/* Selección de usuario asociado */}
               <select
                 name="usuario"
@@ -196,7 +202,7 @@ const AdminRecursos = () => {
             <div key={r.id} className="bloque">
               <h4>{r.nombre_recurso}</h4>
               <p>Tipo: {r.tipo}</p>
-              <p>{r.descripcion}</p>
+              <p>{r.descripcion.slice(0, 200)+" ..."}</p>
 
               {/* Mostrar imagen si existe */}
               {r.imagen_recurso && (
@@ -210,6 +216,12 @@ const AdminRecursos = () => {
               {/* Botones para editar o eliminar */}
               <button onClick={() => editarRecurso(r)}>Editar</button>
               <button onClick={() => eliminarRecurso(r.id)}>Eliminar</button>
+              <button
+                onClick={()=>{
+                  cambiarDestacadoRecurso(r.id)
+                }}
+              
+              >Destacar</button>
             </div>
           )
         )}
@@ -219,4 +231,3 @@ const AdminRecursos = () => {
 };
 
 export default AdminRecursos;
-
