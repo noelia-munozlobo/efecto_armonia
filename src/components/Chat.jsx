@@ -202,17 +202,6 @@ function Chat() {
               disabled={loading}
               rows="3"
             />
-            <div className="chat-input-buttons">
-              <button
-                onClick={() => {
-                  setNuevoMensaje("");
-                  setError(null);
-                }}
-                disabled={loading || !nuevoMensaje.trim()}
-                className="btn-secondary"
-              >
-                Limpiar
-              </button>
               <button
                 onClick={enviarMensaje}
                 disabled={loading || !nuevoMensaje.trim()}
@@ -222,7 +211,6 @@ function Chat() {
               </button>
             </div>
           </div>
-        </div>
       ) : (
         <div className="chat-placeholder">
           {!remitenteId ? (
