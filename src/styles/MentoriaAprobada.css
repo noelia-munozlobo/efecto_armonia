@@ -1,0 +1,82 @@
+/* Contenedor principal */
+.mentorías-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Título */
+.titulo {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #4CAF50;
+}
+
+/* Mensaje cuando no hay mentorías */
+.sin-mentorías {
+  text-align: center;
+  color: #555;
+  font-size: 16px;
+}
+
+/* Loader */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Lista de cards */
+.lista-mentorías {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Card */
+.mentoría-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-left: 5px solid #4CAF50;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Título dentro del card */
+.card-titulo {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Contenido */
+.mentoría-info p {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+/* Estado */
+.estado {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Estado colores */
+.estado-aprobado {
+  background-color: #DFF6DD;
+  color: #2E7D32;
+}

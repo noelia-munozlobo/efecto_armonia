@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getData } from "../services/fetch";
+import "../styles/MentoriaAprobada.css";
 
-const MentoríasAprobadas = () => {
+const MentoriasAprobadas = () => {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const usuarioId = usuario?.id;
 
@@ -26,34 +27,40 @@ const MentoríasAprobadas = () => {
     fetchMentorias();
   }, [usuarioId]);
 
-  if (loading) return <p>Cargando mentorías...</p>;
+  if (loading) return <p className="loading">Cargando mentorías...</p>;
 
   return (
-    <div className="mentorías-container">
-      <h2>Mis Mentorías Aprobadas</h2>
+    <div className="mentorías-wrapper">
+      <h2 className="titulo">Mis Mentorías Aprobadas</h2>
 
       {mentorías.length === 0 ? (
-        <p>No tienes mentorías aprobadas aún.</p>
+        <p className="sin-mentorías">No tienes mentorías aprobadas aún.</p>
       ) : (
-        mentorías.map((m) => (
-          <div className="mentoría-card" key={m.id}>
-            <h3>Se aprobaron las mentorias que solicitaste:</h3>
+        <div className="lista-mentorías">
+          {mentorías.map((m) => (
+            <div className="mentoría-card" key={m.id}>
+              <h3 className="card-titulo">
+                ¡Tu mentoría fue aprobada! 🎉
+              </h3>
 
-            <p><strong>Fecha:</strong> {m.fecha}</p>
-            <p><strong>Hora:</strong> {m.hora_inicio} - {m.hora_fin}</p>
+              <div className="mentoría-info">
+                <p><strong>Fecha:</strong> {m.fecha}</p>
+                <p><strong>Hora:</strong> {m.hora_inicio} - {m.hora_fin}</p>
 
-            {m.servicio && (
-              <p><strong>Servicio:</strong> {m.servicio}</p>
-            )}
+                {m.servicio && (
+                  <p><strong>Servicio:</strong> {m.servicio}</p>
+                )}
 
-            <p className={`estado ${m.estado.toLowerCase()}`}>
-              {m.estado}
-            </p>
-          </div>
-        ))
+                <span className={`estado estado-${m.estado.toLowerCase()}`}>
+                  {m.estado}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
 };
 
-export default MentoríasAprobadas;
+export default MentoriasAprobadas;
