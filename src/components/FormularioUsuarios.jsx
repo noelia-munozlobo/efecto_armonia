@@ -11,7 +11,6 @@ const FormularioUsuarios = () => {
   const [form, setForm] = useState({
     username: '',
     email: '',
-    password: '',
     first_name: '',
     last_name1: '',
     last_name2: '',
@@ -155,16 +154,6 @@ const FormularioUsuarios = () => {
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-            />
-          </div>
-
-          {/* Campo: contraseña */}
-          <div className="campo">
-            <label>Contraseña</label>
-            <input
-              type="password"
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
           </div>
 
