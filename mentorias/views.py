@@ -22,7 +22,7 @@ class MentoriasPorUsuario(ListAPIView):
 
     def get_queryset(self):
         usuario_id = self.kwargs['usuario_id']
-        return Mentorias.objects.filter(usuario_id=usuario_id)
+        return Mentorias.objects.filter(usuario_cliente_id=usuario_id)
     
 # Listar mentorías por especialista
 class MentoriasPorEspecialista(ListAPIView):
