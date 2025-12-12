@@ -4,7 +4,6 @@ from rest_framework import status
 from usuarios.models import Usuario
 from .models import Especialista
 
-
 class EspecialistaDeleteTest(TestCase):
     def setUp(self):
         self.client = APIClient()

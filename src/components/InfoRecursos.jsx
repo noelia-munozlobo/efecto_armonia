@@ -14,7 +14,7 @@ function InfoRecursos() {
         if (!recursoId) return;
 
         const peticion = await getData(`recursos/recurso/${recursoId}`);
-        
+
         // La API devuelve un array, así que tomamos el primer elemento
         if (Array.isArray(peticion) && peticion.length > 0) {
           setInfoRecurso(peticion[0]);
@@ -32,10 +32,16 @@ function InfoRecursos() {
 
   return (
     <div className="info-container">
+      <div className="info-imagen">
+        <img src={infoRecurso.imagen_recurso} alt="" />
+      </div>
       <h2>{infoRecurso.nombre_recurso}</h2>
-      <p><strong>Autor:</strong> {infoRecurso.nombre_usuario}</p>
-      <p><strong>Fecha:</strong> {infoRecurso.fecha}</p>
-      <p><strong>Tipo:</strong> {infoRecurso.tipo}</p>
+
+      <div className="info-detalles">
+        <p><strong>Autor:</strong> {infoRecurso.nombre_usuario}</p>
+        <p><strong>Fecha:</strong> {infoRecurso.fecha}</p>
+        <p><strong>Tipo:</strong> {infoRecurso.tipo}</p>
+      </div>
       <p><strong></strong> {infoRecurso.descripcion}</p>
 
     </div>

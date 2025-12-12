@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { send } from "@emailjs/browser";
 import '../styles/RecoveryEmailForm.css';
 import { getData, postData, patchData } from "../services/fetch";
+import { useNavigate } from "react-router-dom";
 
 export default function RecoveryEmailForm({ toEmail = "" }) {
   const [email, setEmail] = useState(toEmail);
@@ -19,6 +20,7 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
   const [codigoIngresado, setCodigoIngresado] = useState("");
   const [nuevaClave, setNuevaClave] = useState("");
   const [confirmarClave, setConfirmarClave] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function traerUsuarios() {
@@ -151,7 +153,7 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
 
       setStatus("ok");
       setMessage(response.mensaje || "Contraseña actualizada exitosamente.");
-      
+      navigate("/login");
       setTimeout(() => {
         setEmail("");
         setCodigoIngresado("");
@@ -240,6 +242,7 @@ export default function RecoveryEmailForm({ toEmail = "" }) {
           <button onClick={handleCambiarClave} disabled={loading}>
             {loading ? "Actualizando..." : "Cambiar contraseña"}
           </button>
+          
         </div>
       )}
 

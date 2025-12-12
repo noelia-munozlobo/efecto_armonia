@@ -2,9 +2,11 @@ from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from .models import Mentorias
 from .serializers import MentoriasSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 # Listar todas las mentorías y crear nuevas
 class MentoriasCreateView(ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Mentorias.objects.all()
     serializer_class = MentoriasSerializer
 

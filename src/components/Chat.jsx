@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getData, postData } from "../services/fetch";
+import { getData, postDataAutenticado } from "../services/fetch";
 import "../styles/Chat.css";
 
 function Chat() {
@@ -83,18 +83,18 @@ function Chat() {
     setLoading(true);
     setError(null);
     try {
-      const data = await postData("chat/chat/", payload);
+      const data = await postDataAutenticado("chat/chat/", payload);
       
       // agregar mensaje si la respuesta es válida
       if (data && data.id) {
         setMensajes((prev) => [...prev, data]);
         setNuevoMensaje("");
       } else {
-        setError("el mensaje no se envió correctamente");
+        setError("El mensaje no se envió correctamente");
       }
     } catch (error) {
-      console.error("error enviando mensaje:", error);
-      setError("error al enviar el mensaje, revisa las urls de django");
+      console.error("Error enviando mensaje:", error);
+      setError("Error al enviar el mensaje, revisa las urls de django");
     } finally {
       setLoading(false);
     }
@@ -128,13 +128,13 @@ function Chat() {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <h2>chat con especialista</h2>
+        <h2>Chatea con un especialista</h2>
         <select
           className="chat-select"
           value={especialistaSeleccionado?.id || ""}
           onChange={handleSelectChange}
         >
-          <option value="">-- escoge un especialista --</option>
+          <option value="">-- Escoge un especialista --</option>
           {especialistas.map((esp) => (
             <option key={esp.id} value={esp.id}>
               {esp.nombre_completo} — {esp.especialidad}
@@ -159,7 +159,7 @@ function Chat() {
           <div className="chat-messages">
             {mensajes.length === 0 ? (
               <div className="chat-no-messages">
-                no hay mensajes, inicia la conversación
+                No hay mensajes, inicia la conversación
               </div>
             ) : (
               mensajes.map((msg, index) => {
@@ -193,7 +193,7 @@ function Chat() {
               value={nuevoMensaje}
               onChange={(e) => setNuevoMensaje(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="escribe un mensaje..."
+              placeholder="Escribe un mensaje..."
               disabled={loading}
               rows="3"
             />
@@ -209,9 +209,9 @@ function Chat() {
       ) : (
         <div className="chat-placeholder">
           {!remitenteId ? (
-            <p>error: no se encontró el id del usuario</p>
+            <p>Error: No se encontró el id del usuario</p>
           ) : (
-            <p>selecciona un especialista para comenzar a chatear</p>
+            <p>Selecciona un especialista para comenzar a chatear</p>
           )}
         </div>
       )}

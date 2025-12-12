@@ -40,7 +40,7 @@ const MentoriasAprobadas = () => {
           {mentorías.map((m) => (
             <div className="mentoría-card" key={m.id}>
               <h3 className="card-titulo">
-                ¡Tu mentoría fue aprobada! 🎉
+                ¡Tu mentoría fue aprobada!
               </h3>
 
               <div className="mentoría-info">

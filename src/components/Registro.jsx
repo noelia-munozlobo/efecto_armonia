@@ -10,6 +10,7 @@ const Registro = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [telefono, setTelefono] = useState('');
+  const [mensaje, setMensaje] = useState('');
 
   const navigate = useNavigate();
 
@@ -29,7 +30,10 @@ const Registro = () => {
     try {
       const respuesta = await postData("usuarios/crear-usuario/", obj);
       console.log('Respuesta del servidor:', respuesta);
-      navigate("/sesion");
+      setMensaje('Registro exitoso. Ahora puedes iniciar sesión.');
+      setTimeout(() => {
+        navigate("/sesion");
+      }, 500);
     } catch (error) {
       console.error('Error al registrar:', error);
       alert('Hubo un problema al enviar el registro');
@@ -108,7 +112,7 @@ const Registro = () => {
           />
         </div>
       </div>
-
+      {mensaje && <p className="armonía-mensaje">{mensaje}</p>}
       <button type="submit" className="armonía-boton">
         Registrarse
       </button>

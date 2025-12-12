@@ -7,8 +7,8 @@ const PagCliente = () => (
   <>
     <Header />
     <SolicitarMentoria />
-    <Chat />
     <MentoríasAprobada />
+    <Chat />
     <Footer />
   </>
 );

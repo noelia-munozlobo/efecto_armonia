@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getData, } from "../services/fetch";
+import { getData,postData, postDataAutenticado } from "../services/fetch";
 import '../styles/ComentariosRecursos.css';
 
 function ComentariosRecursos({ recursoId }) {
@@ -46,7 +46,11 @@ function ComentariosRecursos({ recursoId }) {
     console.log("Datos a enviar:", nuevo); // Para debugging
 
     try {
-      await postData("comentarios/crear-comentario/", nuevo);
+      const peticion = await postDataAutenticado("comentarios/crear-comentario/", nuevo);
+      if(localStorage.getItem("token") === null){
+        setError("Debe iniciar sesión para comentar.");
+        return;
+      }
       setComentario('');
       setError('');
       cargarComentarios();

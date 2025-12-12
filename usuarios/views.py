@@ -43,29 +43,25 @@ class UsuarioCrud(RetrieveUpdateDestroyAPIView):
     serializer_class = UsuarioSerializer
 
     def update(self, request, *args, **kwargs):
-        # 1. Obtener el usuario
+        #Obtener el usuario
         usuario = self.get_object()
         rol_anterior = usuario.rol
-
-        # 2. Ejecutar la actualización normal
+        #Ejecutar la actualización normal
         response = super().update(request, *args, **kwargs)
-
-        # 3. Ver si el rol cambió
+        #Ver si el rol cambió
         nuevo_rol = request.data.get("rol", usuario.rol)
-
-        # 4. Si dejó de ser especialista, eliminarlo de especialistas
+        #Si dejó de ser especialista, eliminarlo de especialistas
         if rol_anterior == "especialista" and nuevo_rol != "especialista":
             try:
                 especialista = Especialista.objects.get(usuario=usuario)
                 especialista.delete()
                 print("✔ Especialista eliminado automáticamente")
             except Especialista.DoesNotExist:
-                pass  # No había registro, no pasa nada
-
+                pass 
         return response
 
 
-# Filtrar usuarios por rol (por ejemplo: admin, cliente o especialista)
+# Filtrar usuarios por rol
 class UsuarioPorRolView(ListAPIView):
     serializer_class = UsuarioSerializer
 
@@ -155,6 +151,8 @@ class CodigoCambiarClave(APIView):
 class UsuarioAdminView(APIView):
     def post(self,request):
         nombre_usuario = request.data.get("username")
+        nombre = request.data.get("first_name")
+        apellidos = request.data.get("last_name")
         password = request.data.get("password")
         email = request.data.get("email")
         telefono = request.data.get("telefono")
@@ -165,7 +163,9 @@ class UsuarioAdminView(APIView):
             password=password,
             email=email,
             telefono=telefono,
-            rol=rol
+            rol=rol,
+            last_name=apellidos,
+            first_name=nombre
         )
 
         return Response({

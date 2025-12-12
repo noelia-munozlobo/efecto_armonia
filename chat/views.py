@@ -6,10 +6,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db import models
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class ChatCreateView(ListCreateAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
     
     def create(self, request, *args, **kwargs):
         print("Datos recibidos:", request.data)  # Para debugging

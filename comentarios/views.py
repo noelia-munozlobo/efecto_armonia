@@ -4,11 +4,10 @@ from .serializers import ComentariosSerializer
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 class ComentariosListView(APIView):
-
     def get(self, request):
-        recurso = request.GET.get("recurso")  # ?recurso=12
+        recurso = request.GET.get("recurso") 
         queryset = Comentario.objects.all()
 
         if recurso:
@@ -18,6 +17,7 @@ class ComentariosListView(APIView):
         return Response(serializer.data)
 
 class ComentariosCreateView(ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Comentario.objects.all()
     serializer_class = ComentariosSerializer
 

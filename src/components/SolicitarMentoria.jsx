@@ -45,7 +45,7 @@ const SolicitarMentoria = () => {
         "http://127.0.0.1:8000/mentorias/crear-mentorias/",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
           body: JSON.stringify(body),
         }
       );
@@ -60,7 +60,7 @@ const SolicitarMentoria = () => {
       } else {
         const errorData = await resp.json();
         console.error("Error del servidor:", errorData);
-        alert(`Error al solicitar mentoría: ${JSON.stringify(errorData)}`);
+        alert(`Error al solicitar mentoría: inicia sesión nuevamente.`);
       }
 
     } catch (error) {

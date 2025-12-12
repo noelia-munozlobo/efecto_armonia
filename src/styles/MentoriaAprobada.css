@@ -9,10 +9,9 @@
 /* Título */
 .titulo {
   font-size: 24px;
-  font-weight: 700;
   text-align: center;
   margin-bottom: 30px;
-  color: #4CAF50;
+  color: #16a085;
 }
 
 /* Mensaje cuando no hay mentorías */

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { getData, deleteData, obtenerMentorias, patchData } from "../services/fetch";
 import "../styles/AdminRecursos.css";
-import SubirImagen from "./SubirImagen";
+
 const AdminRecursos = () => {
   // Estado para lista de recursos
   const [recursos, setRecursos] = useState([]);
-  // Estado para lista de mentorías (si se usan en otro lugar)
+  // Estado para lista de mentorías
   const [mentorías, setMentorías] = useState([]);
   // Estado para saber cuál recurso se está editando
   const [editando, setEditando] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
   const [imagenURL, setImagenURL] = useState("");
-  const cambiarDestacadoRecurso = async(idRecurso) =>{
-    const petcion = await patchData(`recursos/destacar-recurso/`,{id_recurso: idRecurso});
+  const cambiarDestacadoRecurso = async (idRecurso) => {
+    const petcion = await patchData(`recursos/destacar-recurso/`, { id_recurso: idRecurso });
     console.log("Recurso destacado modificado:", petcion);
+
     cargarRecursos();
   }
   // Estado para manejar datos del formulario
@@ -174,7 +175,7 @@ const AdminRecursos = () => {
             <div key={r.id} className="bloque">
               <h4>{r.nombre_recurso}</h4>
               <p>Tipo: {r.tipo}</p>
-              <p>{r.descripcion.slice(0, 200)+" ..."}</p>
+              <p>{r.descripcion.slice(0, 200) + " ..."}</p>
               {/* Mostrar imagen si existe */}
               {r.imagen_recurso && (
                 <img
@@ -186,20 +187,21 @@ const AdminRecursos = () => {
               {/* Botones para editar o eliminar */}
               <button onClick={() => editarRecurso(r)}>Editar</button>
               <button onClick={() => eliminarRecurso(r.id)}>Eliminar</button>
+
               <button
                 onClick={async () => {
                   const resultado = await cambiarDestacadoRecurso(r.id);
 
-
-                  if (resultado?.destacado) {
-                    alert("✅ El recurso ha sido destacado correctamente");
-                  } else {
-                    alert("⚠️ El recurso ya no está destacado");
+                  if (resultado?.destacado === true) {
+                    alert("Recurso modificado correctamente.");
                   }
                 }}
               >
-                Destacar
+                {r.destacado ? "Quitar Destacado" : "Destacar"}
               </button>
+
+
+
             </div>
           )
         )}

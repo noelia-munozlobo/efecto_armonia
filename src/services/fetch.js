@@ -16,6 +16,24 @@ async function postData(endpoint, obj) {
   }
 }
 
+async function postDataAutenticado(endpoint, obj) {
+  try {
+    const peticion = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(obj)
+    });
+
+    const respuesta = await peticion.json();
+    console.log(respuesta);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+}
 async function getData(endpoint) {
   try {
     const response = await fetch(`http://127.0.0.1:8000/${endpoint}/`);
@@ -131,4 +149,4 @@ async function patchData(endpoint, obj) {
   }
 }
 
-export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias, loginUsuario, patchData };
+export { postData, getData, putData, deleteData, enviarRecurso, obtenerMentorias, loginUsuario, patchData,postDataAutenticado };

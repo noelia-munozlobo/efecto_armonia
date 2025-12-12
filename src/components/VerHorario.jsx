@@ -125,11 +125,6 @@ const VerHorario = () => {
               </div>
             </div>
           ))}
-
-          <div className="horarios-botones">
-            <button className="btn-guardar">Guardar Horarios</button>
-            <button className="btn-limpiar">Limpiar Todo</button>
-          </div>
         </div>
       )}
     </div>
